@@ -38,7 +38,7 @@ export default function Home() {
   const ourServicesCards = HomePageQuery.data?.data.home.cards;
 
   return (
-    <div>
+    <div className="max-w-screen-2xl mx-auto">
       <HomeNavbar />
 
       <HomeHeroSection1 pageData={pageData} />

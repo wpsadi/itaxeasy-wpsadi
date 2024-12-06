@@ -1,20 +1,12 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
+import Script from "next/script";
 
 import TanstackQuery from "@/helpers/tanstack-query";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "iTaxEasy",
@@ -39,13 +31,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="h-[100vh] w-[100vw] bg-white overflow-scroll">
-        <TanstackQuery>{children}</TanstackQuery>
+      <Script src="https://ebz-static.s3.ap-south-1.amazonaws.com/easecheckout/v2.0.0/easebuzz-checkout-v2.min.js" />
+      <body className={`${inter.className} text-slate-800`}>
+        <div className="h-screen w-screen overflow-auto">
+          <TanstackQuery>{children}</TanstackQuery>
         </div>
-        
       </body>
     </html>
   );

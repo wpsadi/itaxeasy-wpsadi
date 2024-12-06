@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export const HomeDownloadpp = ()=>{
     return (<>
-    <div className="max-w-7xl lg:px-8 mx-auto sm:gap-6 grid md:grid-cols-2 place-items-center">
+    <div className="px-3 max-w-7xl lg:px-8 mx-auto sm:gap-6 grid md:grid-cols-2 place-items-center">
             <Image
               width={500}
               className="rounded-lg"
@@ -12,11 +12,11 @@ export const HomeDownloadpp = ()=>{
               alt="Income tax picture"
             />
 
-            <div className="grid gap-4 ">
+            <div className="grid gap-4 mt-2">
               <h4 className="font-black text-2xl md:text-4xl text-slate-800 leading-snug">
                 Income Tax
               </h4>
-              <p className="font-medium mt-3 text-sm md:text-base text-justify grid grid-cols-1 gap-4">
+              <p className="font-medium mt-3  text-sm md:text-base text-justify grid grid-cols-1 gap-4">
                 <span>
                   <strong className=" text-gray-600">
                     Determine Your Taxable Income:

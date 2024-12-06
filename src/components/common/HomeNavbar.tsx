@@ -1,12 +1,21 @@
-"use client"
+"use client";
 
-import { AnimatePresence, motion } from "framer-motion"
-import { ChevronDown, Download, Grid, Layout, LifeBuoy, Link2Icon, Menu, Sparkles } from 'lucide-react'
-import Image from "next/image"
-import Link from "next/link"
-import * as React from "react"
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  ChevronDown,
+  Download,
+  Grid,
+  Layout,
+  LifeBuoy,
+  Link2Icon,
+  Menu,
+  Sparkles,
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import * as React from "react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,139 +24,301 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/navigation-menu";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/sheet";
+import { MainMenuItem, MenuItem } from "@/types/menu";
 
-const menuItems = [
+const ourProductsMenu: MenuItem[] = [
+  {
+    url: "#",
+    menu: "Easy GST",
+    upcoming: true,
+  },
+  {
+    menu: "Easy ITR",
+    access: "PUBLIC_ONLY",
+    upcoming: true,
+  },
+  {
+    url: "/library",
+    menu: "Easy E-Library",
+  },
+  {
+    url: "/",
+    menu: "Fastag Recharge",
+    upcoming: true,
+  },
+  {
+    url: "#",
+    menu: "Business Erp",
+    upcoming: true,
+  },
+  {
+    url: "#",
+    menu: "School Erp",
+    upcoming: true,
+  },
+  {
+    url: "#",
+    menu: "CRM",
+    upcoming: true,
+  },
+  {
+    url: "#",
+    menu: "Easy Cloud",
+    upcoming: true,
+  },
+];
+
+const ourServicesMenu: MenuItem[] = [
+  {
+    menu: "Easy GST Links",
+    subMenu: [
+      {
+        url: "/easyservice/searchbygstin",
+        menu: "Search by GSTIN",
+      },
+      {
+        url: "/easyservice/searchbypan",
+        menu: "Search by PAN",
+      },
+      {
+        url: "/easyservice/trackgstreturn",
+        menu: "Track GST Return",
+      },
+    ],
+  },
+  {
+    menu: "Easy IncomeTax Links",
+    subMenu: [
+      {
+        url: "/easyservice/verifypandetails",
+        menu: "Verify Pan Details",
+      },
+      {
+        url: "/easyservice/checkpanaadhaarstatus",
+        menu: "Check Pan Aadhaar Status",
+      },
+      {
+        url: "/easyservice/searchtan",
+        menu: "Search Tan",
+      },
+    ],
+  },
+  {
+    menu: "Easy Bank Links",
+    subMenu: [
+      {
+        url: "/easyservice/ifscdetails",
+        menu: "IFSC Code",
+      },
+      {
+        url: "/easyservice/verifybankdetails",
+        menu: "Verify Bank Account",
+      },
+      {
+        url: "/easyservice/upiverify",
+        menu: "UPI Verification",
+      },
+    ],
+  },
+  {
+    menu: "Easy MCA",
+    subMenu: [
+      {
+        url: "/easyservice/companydetails",
+        menu: "Company Details",
+      },
+      {
+        url: "/easyservice/companydirectordetails",
+        menu: "Company Director Details",
+      },
+    ],
+  },
+  {
+    menu: "Easy Aadhaar Links",
+    subMenu: [
+      {
+        url: "/easyservice/aadhaar-verify",
+        menu: "Easy Aadhaar Verification",
+      },
+      {
+        url: "/easyservice/aadhaar-link-status",
+        menu: "Easy Link Aadhaar Status",
+      },
+    ],
+  },
+  {
+    menu: "Easy Converter",
+    subMenu: [
+      {
+        url: "/easyservice/image-to-pdf",
+        menu: "Image to PDF",
+      },
+      {
+        url: "/easyservice/merge-pdf",
+        menu: "Merge PDF",
+      },
+    ],
+  },
+  {
+    menu: "Post Office",
+    subMenu: [
+      {
+        url: "/easyservice/pincodeinfo",
+        menu: "Pincode Information",
+      },
+      {
+        url: "/easyservice/pincodebycity",
+        menu: "Pin by City",
+      },
+    ],
+  },
+];
+
+const financialCalculatorMenu: MenuItem[] = [
+  {
+    menu: "Loan Calculators",
+    subMenu: [
+      {
+        url: "/financialcal/businesscal",
+        menu: "Business Loan Calculator",
+      },
+      {
+        url: "/financialcal/carloancal",
+        menu: "Car Loan Calculator",
+      },
+      {
+        url: "/financialcal/loanagainstcal",
+        menu: "Loan Against Property",
+      },
+      {
+        url: "/financialcal/homeloancal",
+        menu: "Home Loan Calculator",
+      },
+      {
+        url: "/financialcal/personalloancal",
+        menu: "Personal Loan Calculator",
+      },
+    ],
+  },
+  {
+    menu: "Investment Calculators",
+    subMenu: [
+      {
+        url: "/financialcal/miscal",
+        menu: "Post Office MIS",
+      },
+      {
+        url: "/financialcal/cagr",
+        menu: "CAGR Calculator",
+      },
+      {
+        url: "/financialcal/rdcal",
+        menu: "RD Calculator",
+      },
+      {
+        url: "/financialcal/fdcal",
+        menu: "FD Calculator",
+      },
+      {
+        url: "/financialcal/lumpsumpcal",
+        menu: "Lump Sum Calculator",
+      },
+      {
+        url: "/financialcal/sipcal",
+        menu: "SIP Calculator",
+      },
+    ],
+  },
+  {
+    menu: "Income Tax Calculators",
+    subMenu: [
+      {
+        url: "/financialcal/hracal",
+        menu: "HRA Calculator",
+      },
+      {
+        url: "/financialcal/depCalc",
+        menu: "Depreciation Calculator",
+      },
+      {
+        url: "/financialcal/advanceTaxCal",
+        menu: "Advance Tax Calculator",
+      },
+      {
+        url: "/financialcal/taxcalculator/new",
+        menu: "Tax Calculator",
+      },
+      {
+        url: "/financialcal/capitalGainCalc",
+        menu: "Capital Gain Calculator",
+      },
+    ],
+  },
+  
+ 
+  {
+    menu: "GST Calculators",
+    subMenu: [
+      {
+        url: "/financialcal/gstcal",
+        menu: "GST Calculator",
+      },
+    ],
+  },
+
+ 
+  {
+    menu: "Insurance Calculators",
+    subMenu: [
+      {
+        url: "/financialcal/npscal",
+        menu: "NPS Calculator",
+      },
+    ],
+  },
+  {
+    menu: "Bank Calculators",
+    subMenu: [
+      {
+        url: "/financialcal/sical",
+        menu: "Simple Interest Calculator",
+      },
+      {
+        url: "/financialcal/cical",
+        menu: "Compound Interest",
+      },
+    ],
+  },
+];
+
+const menuItems: MainMenuItem[] = [
   {
     icon: Grid,
     title: "Our Products",
     description: "Find the perfect solution for your needs.",
-    href: "/products",
-    submenu: [
-      {
-        title: "Easy GST",
-        href: "/products/analytics",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Easy ITR",
-        href: "/products/engagement",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Easy E-Library",
-        href: "/products/security",
-        description: "Get insights into your data",
-      },
-    ],
+    submenu: ourProductsMenu,
   },
   {
     icon: Grid,
     title: "Easy Services",
     description: "Services tailored to your frequent needs.",
-    href: "/products",
-    submenu: [
-      {
-        title: "Easy GST Links",
-        href: "/products/analytics",
-        description: "Get insights into your data",
-        submenu: [
-          {
-            title: "Search by GSTIN",
-            href: "/products/analytics/gstin",
-            description: "Get insights into your data",
-          },
-          {
-            title: "Search by PAN",
-            href: "/products/analytics/pan",
-            description: "Get insights into your data",
-          },
-          {
-            title: "Track GST Return",
-            href: "/products/analytics/track-gst",
-            description: "Get insights into your data",
-          }
-        ]
-      },
-      {
-        title: "Easy IncomeTax Links",
-        href: "/products/engagement",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Easy Bank Links",
-        href: "/products/security",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Easy MCA",
-        href: "/products/security",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Easy Aadhaar Link",
-        href: "/products/security",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Easy Convertor",
-        href: "/products/security",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Post Office",
-        href: "/products/security",
-        description: "Get insights into your data",
-      },
-    ],
+    submenu: ourServicesMenu,
   },
   {
     icon: Grid,
     title: "Financial Calculators",
     description: "Find the perfect solution for your needs.",
-    href: "/products",
-    submenu: [
-      {
-        title: "Bank Calculators",
-        href: "/products/analytics",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Income Tax Calculators",
-        href: "/products/engagement",
-        description: "Get insights into your data",
-      },
-      {
-        title: "GST Calculators",
-        href: "/products/security",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Investment Calculators",
-        href: "/products/security",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Loan Calculators",
-        href: "/products/security",
-        description: "Get insights into your data",
-      },
-      {
-        title: "Insurance Calculators",
-        href: "/products/security",
-        description: "Get insights into your data",
-      },
-    ],
+    submenu: financialCalculatorMenu,
   },
   {
     icon: Layout,
@@ -179,60 +350,79 @@ const menuItems = [
     description: "Reach out to us for assistance or inquiries",
     href: "/support",
   },
-]
-
+];
 
 export function HomeNavbar() {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [activeSubmenu, setActiveSubmenu] = React.useState<string | null>(null);
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center px-5">
-        <Link href="/" className="mr-6 flex items-center space-x-2">
-          <span className="hidden font-bold sm:inline-block">
-            <Image
-              height={48}
-              width={48}
-              src={"/favicon.svg"}
-              alt={"iTaxEasy"}
-            />
-          </span>
+    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className=" flex h-14 items-center justify-around w-full ">
+        <Link href="/" className="mr-6 ml-2 flex items-center space-x-2">
+          <Image height={48} width={48} src="/favicon.svg" alt="iTaxEasy" />
         </Link>
-        <div className="hidden md:flex md:flex-1">
+        <div className="hidden xl:flex xl:flex-1">
           <NavigationMenu>
             <NavigationMenuList>
               {menuItems.map((item) => (
                 <NavigationMenuItem key={item.title}>
                   {item.submenu ? (
                     <>
-                      <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
+                      <NavigationMenuTrigger
+                        onClick={() =>
+                          setActiveSubmenu(
+                            activeSubmenu === item.title ? null : item.title
+                          )
+                        }
+                      >
+                        {item.title}
+                      </NavigationMenuTrigger>
                       <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                          {item.submenu.map((subItem) => (
-                            <ListItem
-                              key={subItem.title}
-                              title={subItem.title}
-                              href={subItem.submenu ? undefined : subItem.href}
-                            >
-                              {subItem.description}
-                              {subItem.submenu && (
-                                <ul className="mt-2 space-y-1">
-                                  {subItem.submenu.map((subSubItem) => (
-                                    <li key={subSubItem.title}>
-                                      <Link href={subSubItem.href} className="text-sm hover:underline">
-                                        {subSubItem.title}
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </ListItem>
-                          ))}
-                        </ul>
+                        <div className="w-[850px] p-4">
+                          <div className="grid grid-cols-2 gap-4">
+                            {item.submenu.map((subItem) => (
+                              <div key={subItem.menu} className="space-y-2">
+                                <div className="font-medium">
+                                  {subItem.menu}
+                                </div>
+                                {subItem.subMenu ? (
+                                  <ul className="space-y-1">
+                                    {subItem.subMenu.map((subSubItem) => (
+                                      <li key={subSubItem.menu}>
+                                        <Link
+                                          href={subSubItem.url || "#"}
+                                          className="block rounded-md py-1 text-sm text-muted-foreground hover:text-primary"
+                                        >
+                                          {subSubItem.menu}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                ) : (
+                                  <Link
+                                    href={subItem.url || "#"}
+                                    className="block rounded-md text-sm text-muted-foreground hover:text-primary"
+                                  >
+                                    {subItem.menu}
+                                    {subItem.upcoming && (
+                                      <span className="ml-2 rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-800">
+                                        Upcoming
+                                      </span>
+                                    )}
+                                  </Link>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </NavigationMenuContent>
                     </>
                   ) : (
-                    <Link href={item.href} legacyBehavior passHref>
-                      <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                    <Link href={item.href || "#"} legacyBehavior passHref>
+                      <NavigationMenuLink
+                        className={navigationMenuTriggerStyle()}
+                      >
                         {item.title}
                       </NavigationMenuLink>
                     </Link>
@@ -242,14 +432,14 @@ export function HomeNavbar() {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          <Button variant="outline" className="hidden md:inline-flex">
+        <div className="flex flex-1 items-center justify-end space-x-4  ">
+          <Button variant="outline" className="inline-flex">
             Log In
           </Button>
           <Button className="hidden md:inline-flex">Sign Up</Button>
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button variant="ghost" size="icon" className="xl:hidden">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Toggle menu</span>
               </Button>
@@ -276,39 +466,54 @@ export function HomeNavbar() {
           </Sheet>
         </div>
       </div>
+      {activeSubmenu && (
+        <div className="hidden lg:block border-t">
+          <div className="container py-4">
+            <div className="grid grid-cols-4 gap-6">
+              {menuItems
+                .find((item) => item.title === activeSubmenu)
+                ?.submenu?.map((subItem) => (
+                  <div key={subItem.menu} className="space-y-2">
+                    <div className="font-medium text-sm">{subItem.menu}</div>
+                    {subItem.subMenu ? (
+                      <ul className="space-y-1">
+                        {subItem.subMenu.map((subSubItem) => (
+                          <li key={subSubItem.menu}>
+                            <Link
+                              href={subSubItem.url || "#"}
+                              className="block text-sm text-muted-foreground hover:text-primary"
+                            >
+                              {subSubItem.menu}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <Link
+                        href={subItem.url || "#"}
+                        className="block text-sm text-muted-foreground hover:text-primary"
+                      >
+                        {subItem.menu}
+                        {subItem.upcoming && (
+                          <span className="ml-2 rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-800">
+                            Upcoming
+                          </span>
+                        )}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+            </div>
+          </div>
+        </div>
+      )}
     </header>
-  )
+  );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  )
-})
-ListItem.displayName = "ListItem"
-
-function MobileMenuItem({ item }: { item: (typeof menuItems)[0] }) {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const Icon = item.icon
+function MobileMenuItem({ item }: { item: MainMenuItem }) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const Icon = item.icon;
 
   return (
     <div>
@@ -345,15 +550,20 @@ function MobileMenuItem({ item }: { item: (typeof menuItems)[0] }) {
             className="overflow-hidden pl-6"
           >
             {item.submenu.map((subItem) => (
-              <div key={subItem.title} className="py-2">
-                {subItem.submenu ? (
+              <div key={subItem.menu} className="py-2">
+                {subItem.subMenu ? (
                   <MobileSubMenuItem item={subItem} />
                 ) : (
                   <Link
-                    href={subItem.href}
+                    href={subItem.url || "#"}
                     className="block rounded-md py-2 text-sm hover:bg-accent"
                   >
-                    {subItem.title}
+                    {subItem.menu}
+                    {subItem.upcoming && (
+                      <span className="ml-2 rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-800">
+                        Upcoming
+                      </span>
+                    )}
                   </Link>
                 )}
               </div>
@@ -362,11 +572,11 @@ function MobileMenuItem({ item }: { item: (typeof menuItems)[0] }) {
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
 
-function MobileSubMenuItem({ item }: { item: { title: string; href: string; description: string; submenu?: { title: string; href: string; description: string; }[] } }) {
-  const [isOpen, setIsOpen] = React.useState(false)
+function MobileSubMenuItem({ item }: { item: MenuItem }) {
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <div>
@@ -374,7 +584,7 @@ function MobileSubMenuItem({ item }: { item: { title: string; href: string; desc
         className="flex cursor-pointer items-center justify-between rounded-lg p-2 hover:bg-accent"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="text-sm font-medium">{item.title}</div>
+        <div className="text-sm font-medium">{item.menu}</div>
         <ChevronDown
           className={`h-4 w-4 transition-transform duration-200 ${
             isOpen ? "rotate-180" : ""
@@ -382,7 +592,7 @@ function MobileSubMenuItem({ item }: { item: { title: string; href: string; desc
         />
       </div>
       <AnimatePresence>
-        {isOpen && item.submenu && (
+        {isOpen && item.subMenu && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
@@ -390,22 +600,23 @@ function MobileSubMenuItem({ item }: { item: { title: string; href: string; desc
             transition={{ duration: 0.2 }}
             className="overflow-hidden pl-4"
           >
-            {item.submenu.map((subSubItem:{
-              title: string;
-              href: string;
-            }) => (
+            {item.subMenu.map((subSubItem) => (
               <Link
-                key={subSubItem.title}
-                href={subSubItem.href}
+                key={subSubItem.menu}
+                href={subSubItem.url || "#"}
                 className="block rounded-md py-1 text-sm hover:bg-accent"
               >
-                {subSubItem.title}
+                {subSubItem.menu}
+                {subSubItem.upcoming && (
+                  <span className="ml-2 rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-800">
+                    Upcoming
+                  </span>
+                )}
               </Link>
             ))}
           </motion.div>
         )}
       </AnimatePresence>
     </div>
-  )
+  );
 }
-
