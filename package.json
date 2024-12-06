@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^3.9.1",
     "@iconify/react": "^5.0.2",
     "@material-tailwind/react": "^2.1.10",
     "@radix-ui/react-dialog": "^1.1.2",
@@ -20,6 +21,7 @@
     "@radix-ui/react-scroll-area": "^1.2.1",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-toast": "^1.2.2",
     "@tanstack/react-query": "^5.62.2",
     "@tanstack/react-query-devtools": "^5.62.2",
     "axios": "^1.7.9",
@@ -34,6 +36,7 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-fast-marquee": "^1.6.5",
+    "react-hook-form": "^7.53.2",
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",

@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -264,8 +265,7 @@ const financialCalculatorMenu: MenuItem[] = [
       },
     ],
   },
-  
- 
+
   {
     menu: "GST Calculators",
     subMenu: [
@@ -276,7 +276,6 @@ const financialCalculatorMenu: MenuItem[] = [
     ],
   },
 
- 
   {
     menu: "Insurance Calculators",
     subMenu: [
@@ -353,6 +352,7 @@ const menuItems: MainMenuItem[] = [
 ];
 
 export function HomeNavbar() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeSubmenu, setActiveSubmenu] = React.useState<string | null>(null);
 
@@ -433,7 +433,13 @@ export function HomeNavbar() {
           </NavigationMenu>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4  ">
-          <Button variant="outline" className="inline-flex">
+          <Button
+            variant="outline"
+            className="inline-flex"
+            onClick={() => {
+              router.push("/login");
+            }}
+          >
             Log In
           </Button>
           <Button className="hidden md:inline-flex">Sign Up</Button>
