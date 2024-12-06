@@ -45,7 +45,7 @@ export const ListServices = ({ pageData }: ListServicesProps) => {
                       activeNav.current = scrollDiv as HTMLDivElement;
                     }
                   }}
-                  className="flex text-slate-900 items-center justify-center w-4/6 font-semibold text-center cursor-pointer transition-transform-all transform transition-colors duration-300 ease-in-out hover:bg-blue-500 hover:shadow-md rounded-full"
+                  className="flex text-slate-900 items-center justify-center w-4/6 font-semibold text-center cursor-pointer transition-transform-all transform transition-FileTex duration-300 ease-in-out hover:bg-blue-500 hover:shadow-md rounded-full"
                 >
                   {element.name}
                 </HoveringNavCard>
@@ -84,11 +84,11 @@ export const ListServices = ({ pageData }: ListServicesProps) => {
                             <span className="pl-2">{items.heading}</span>
                           </div>
                           <p className="max-h-[100px] overflow-hidden line-clamp-4 text-xs px-5 font-medium text-justify">
-                            <span className="bg-blue-100 rounded-full w-10 p-2 text-center mb-2 mt-2">
+                            <span className="bg-blue-100 rounded-full w-10 p-2 text-center mb-2 mt-2 block">
                               <FileText
                          
-                                width={20}
-                                className="ml-1"
+                                
+                                className="text-sm"
                               />
                             
                             </span>
