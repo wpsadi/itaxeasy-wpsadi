@@ -3,9 +3,11 @@ import styled from 'styled-components';
 
 interface CardContainerProps {
   shadow?: string;
+  color?: string;
+  border?: string;
 }
 
-export const CardContainer = styled.a<CardContainerProps>`
+const CardContainer = styled.a<CardContainerProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,13 +15,13 @@ export const CardContainer = styled.a<CardContainerProps>`
   min-width: 14rem;
   min-height: 14rem;
   padding-top: 1.5rem;
-  background-color: #ffffff;
   box-shadow: 0 3px 8px ${(props) => props.shadow || 'rgb(0, 85, 212, .4)'};
   border-radius: 10px;
   overflow: hidden;
+  border: ${(props) => props.border || '1px solid #ccc'};
 `;
 
-export const CardContainerDiv = styled.div<CardContainerProps>`
+const CardContainerDiv = styled.div<CardContainerProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,47 +31,46 @@ export const CardContainerDiv = styled.div<CardContainerProps>`
   padding-top: 1.5rem;
   gap: 4rem;
   background-color: #ffffff;
-  // box-shadow: 0 3px 8px ${(props) => props.shadow || 'rgb(0, 85, 212, .4)'};
   border-radius: 10px;
   overflow: hidden;
+  border: ${(props) => props.border || '1px solid #ccc'};
 `;
 
-export const Logo = styled.img<CardContainerProps>`
+const Logo = styled.img`
   width: 82px;
   height: 82px;
   margin-right: 16px;
 `;
 
-export const Text = styled.p<CardContainerProps>`
+const Text = styled.p<CardContainerProps>`
   font-size: 16px;
   width: 100%;
   text-align: center;
   padding: 1rem;
   color: white;
-  background-color: ${(props) => props.shadow || 'rgb(0, 85, 212, .4)'};
+  background-color: ${(props) => props.color || 'rgb(0, 85, 212, .4)'};
   font-weight: 500;
 `;
 
-const Card = ({ logo, text, href, color, shadow, children }:{
-    logo?: string;
-    text?: string;
-    href?: string;
-    color?: string;
-    shadow?: string;
-    children?: React.ReactNode;
-}) => (
+interface CardProps {
+  logo?: string;
+  text?: string;
+  href?: string;
+  color?: string;
+  shadow?: string;
+  border?: string;
+  children?: React.ReactNode;
+}
+
+const Card: React.FC<CardProps> = ({ logo, text, href, color, shadow, border, children }) => (
   <>
     {href ? (
-      <CardContainer href={href} target="_main" color={color} shadow={shadow}>
+      <CardContainer href={href} target="_main" shadow={shadow} border={border}>
         {logo && <Logo src={logo} alt="Logo" />}
         {children && <Text color={color}>{children}</Text>}
       </CardContainer>
     ) : (
-      <CardContainerDiv
-        className="shadow-md border"
-        color={color}
-        shadow={shadow}
-      >
+      <CardContainerDiv shadow={shadow} border={border} className='border-[1px] border-solid border-black '>
         {text && <p className="font-bold text-2xl text-slate-800">{text}</p>}
         {children && <Text color={color}>{children}</Text>}
       </CardContainerDiv>

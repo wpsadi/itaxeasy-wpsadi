@@ -16,26 +16,26 @@ export const HomeUserInsights = ()=>{
             </h3>
             <div className="flex flex-wrap gap-10 my-16 mx-auto justify-center sm:justify-between ">
              
-              <Card text={`${userInsightQuery[1]?.data?.count || 0}+`} color="rgb(0, 85, 212)">
+              <Card text={`${userInsightQuery[1]?.data?.count }+`} color="#0055d4">
                 Total Visitors
               </Card>
               <Card
-                text={`${userInsightQuery[0] ?.data?.data?.totalUsers || 0}+`}
-                color="rgb(0, 85, 212)"
+                text={`${userInsightQuery[0] ?.data?.data?.totalUsers }+`}
+                color="#0055d4"
               >
                 Total Active User
               </Card>
               <Card
-                text={`${userInsightQuery[0]?.data?.data?.totalPhoneNumbers || 0}+`}
+                text={`${userInsightQuery[0]?.data?.data?.totalPhoneNumbers }+`}
                 logo="logo"
-                color="rgb(0, 85, 212)"
+                color="#0055d4"
               >
                 Total Phone Contacts
               </Card>
               <Card
-                text={`${userInsightQuery[0]?.data?.data?.totalEmails || 0}+`}
+                text={`${userInsightQuery[0]?.data?.data?.totalEmails}+`}
                 logo="logo"
-                color="rgb(0, 85, 212)"
+                color="#0055d4"
               >
                 Total Mailing Addresses
               </Card>
