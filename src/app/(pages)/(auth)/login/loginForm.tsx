@@ -56,7 +56,7 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="shadow-lg bg-neutral-50   rounded-lg   max-w-[400px] min-w-[350px]   ">
+    <Card className="shadow-lg bg-neutral-50   rounded-lg   max-w-[400px] min-w-[320px]   ">
       <CardHeader>
         <CardTitle>Login</CardTitle>
         <CardDescription>
