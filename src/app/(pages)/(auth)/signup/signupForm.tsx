@@ -40,7 +40,7 @@ export function SignupForm() {
       firstName: "",
       lastName: "",
       email: "",
-      phoneNumber: "",
+      phone: "",
       password: "",
       confirmPassword: "",
       gender: "",
@@ -122,7 +122,7 @@ export function SignupForm() {
 
           <FormField
             control={form.control}
-            name="phoneNumber"
+            name="phone"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Phone Number</FormLabel>

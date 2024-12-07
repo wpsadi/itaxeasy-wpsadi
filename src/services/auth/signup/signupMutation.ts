@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 
 import { toast } from "@/hooks/use-toast";
+// import { apiAxios } from "@/instances/apiInstance";
 import { signupSchema } from "@/validations/auth/signup";
 import { validate } from "@/validations/validate";
 
@@ -44,8 +45,8 @@ export const useSignupMutation = () => {
       // checking with the zod again to make sure the data is correct
       const validatedData = validate(data, signupSchema);
       console.log(validatedData);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      // const response = await apiAxios.post("user/login", validatedData);
+      // await new Promise((resolve) => setTimeout(resolve, 2000));
+      // const response = await apiAxios.post("user/sign-up", validatedData);
       // return response.data as SuccessfullResponse;
       return {
         success: true,
@@ -67,7 +68,9 @@ export const useSignupMutation = () => {
         title: "Signup Successful",
         description: "Welcome to the family!",
       });
-      router.push(`/verify-otp?email=${data.data.user.email}&otp_key=${data.data.otp_key}`);
+      router.push(
+        `/verify-otp?email=${data.data.user.email}&otp_key=${data.data.otp_key}`
+      );
     },
     onError: (error: ErrorResponse) => {
       console.error(error);

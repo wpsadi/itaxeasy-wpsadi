@@ -1,5 +1,6 @@
 "use client";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 import { ErrorPage } from "@/components/common/errorRaiser";
 
@@ -17,7 +18,9 @@ export default function Page() {
 
   return (
     <>
-      <OTPVerificationForm email={email} otpKey={otpKey} />
+      <Suspense fallback={<ErrorPage message="Unable to render the page" />}>
+        <OTPVerificationForm email={email} otpKey={otpKey} />
+      </Suspense>
     </>
   );
 }

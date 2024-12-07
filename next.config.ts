@@ -1,5 +1,21 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+import { NextConfig } from "next"; // Import the NextConfig type
+
+// Define the RemotePattern type
+interface RemotePattern {
+  protocol: "http" | "https"; // Restrict to valid protocols
+  hostname: string;
+}
+
+// Define the configuration
+const nextConfig: NextConfig = {
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.json$/,
+      type: "json",
+    });
+    return config;
+  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
@@ -11,15 +27,9 @@ const nextConfig = {
       { protocol: "https", hostname: "flowbite.s3.amazonaws.com" },
       { protocol: "https", hostname: "googleusercontent.com" },
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
-      {
-        protocol: "https",
-        hostname: "img.freepik.com",
-      },
-      {
-        protocol:"https",
-        hostname:"res.cloudinary.com"
-      }
-    ],
+      { protocol: "https", hostname: "img.freepik.com" },
+      { protocol: "https", hostname: "res.cloudinary.com" },
+    ] as RemotePattern[], // Use the RemotePattern type
   },
 };
 

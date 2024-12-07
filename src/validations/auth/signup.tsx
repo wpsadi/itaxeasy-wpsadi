@@ -10,7 +10,7 @@ export const signupSchema = z.object({
     email: z.string().email({
       message: "Please enter a valid email address.",
     }),
-    phoneNumber: z.string().regex(/^\d{10}$/, {
+    phone: z.string().regex(/^\d{10}$/, {
       message: "Please enter a valid 10 digit phone number.",
     }),
     password: z.string().min(8, {
