@@ -455,7 +455,13 @@ export function HomeNavbar() {
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
               <div className="mb-4 flex flex-col space-y-2">
-                <Button variant="outline" className="w-full">
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => {
+                    router.push("/login");
+                  }}
+                >
                   Log In
                 </Button>
                 <Button className="w-full">Sign Up</Button>
