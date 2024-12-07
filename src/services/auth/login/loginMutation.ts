@@ -37,6 +37,7 @@ return useMutation({
         console.error(error);
         toast({
             title: "Login Failed",
+            variant:"destructive",
             description: error.error || "Please check your credentials and try again.",
         });
     }

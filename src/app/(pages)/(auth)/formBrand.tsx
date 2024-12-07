@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function FormBrand() {
   return (
-    <div className=" mt-12 grid place-content-center gap-2 justify-center">
+    <div className=" grid place-content-center gap-2 justify-center">
       <Link href="/">
         <Image
           className="w-full max-w-36 mx-auto "

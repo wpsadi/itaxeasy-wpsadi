@@ -1,0 +1,1 @@
+reset passsword nhi bna

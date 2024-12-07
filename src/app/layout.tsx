@@ -2,7 +2,6 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 
 import { Toaster } from "@/components/ui/toaster";
 import TanstackQuery from "@/helpers/tanstack-query";
@@ -31,10 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <Script src="https://ebz-static.s3.ap-south-1.amazonaws.com/easecheckout/v2.0.0/easebuzz-checkout-v2.min.js" />
-      <body className={`${inter.className} text-slate-800`}>
-        <div className="h-screen w-screen overflow-auto">
+    <html lang="en" className="h-full bg-slate-50">
+      <body className={`${inter.className} text-slate-800 h-full`}>
+        <div className="min-h-screen flex flex-col">
           <Toaster />
           <TanstackQuery>{children}</TanstackQuery>
         </div>
