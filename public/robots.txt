@@ -1,0 +1,22 @@
+# If you would like to crawl GitHub contact us via https://support.github.com?tags=dotcom-robots
+# We also provide an extensive API: https://docs.github.com
+User-agent: baidu
+crawl-delay: 1
+
+
+User-agent: *
+
+Disallow: /*/*/pulse
+Disallow: /*/*/projects
+Disallow: /*/*/forks
+Disallow: /*/*/issues/new
+Disallow: /*/*/issues/search
+Disallow: /*/*/commits/
+Disallow: /*/*/branches
+Disallow: /*/*/contributors
+Disallow: /*/*/tags
+Disallow: /*/*/stargazers
+Disallow: /*/*/watchers
+Disallow: /*/*/network
+Disallow: /*/*/graphs
+Disallow: /*/*/compare

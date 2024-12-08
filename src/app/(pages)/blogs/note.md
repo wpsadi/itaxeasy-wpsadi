@@ -1,0 +1,1 @@
+previous ka button dikkat deta h theek krlena
