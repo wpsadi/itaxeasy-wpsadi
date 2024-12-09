@@ -1,4 +1,4 @@
-import { useQueries } from "@tanstack/react-query";
+import { keepPreviousData, useQueries } from "@tanstack/react-query";
 
 // import { apiAxios } from "@/instances/apiInstance";
 
@@ -66,7 +66,7 @@ export const useUserInsights = () => {
           // return data;
           return placeholder2 as SuccessResponse2;
         },
-        placeholderData: placeholder2,
+        placeholderData: keepPreviousData ?? placeholder2,
       },
     ],
   });

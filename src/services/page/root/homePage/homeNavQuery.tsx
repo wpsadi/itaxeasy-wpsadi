@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 // import { apiAxios } from "@/instances/apiInstance";
 
@@ -382,6 +382,6 @@ export const useHomeNavQuery = () => {
       // throw httpError.BadGateway();
       return tempData as unknown as SuccessResponse;
     },
-    placeholderData,
+    placeholderData: keepPreviousData ?? placeholderData,
   });
 };

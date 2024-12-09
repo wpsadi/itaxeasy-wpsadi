@@ -1,21 +1,11 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
 
-import { StatusBadge } from "./status-badge";
+import { StatusBadge } from "../status-badge";
 
-export type ProfileType = "user" | "business";
-
-interface ProfileCardProps {
-  activeTab: ProfileType;
-}
-
-export function ProfileCard({ activeTab }: ProfileCardProps) {
-    console.log("ProfileCard",activeTab);
+export const UserProfile = () => {
   return (
-    <Card className="p-6">
-      {
-        activeTab === "user" && (<>
-        <div className="relative mb-6">
+    <>
+      <div className="relative mb-6">
         <div className="h-32 w-full rounded-lg bg-gradient-to-r from-blue-200 to-pink-200" />
         <Avatar className="absolute bottom-0 left-1/2 h-24 w-24 -translate-x-1/2 translate-y-1/2 transform border-4 border-white">
           <AvatarImage src="/placeholder.svg" />
@@ -50,8 +40,6 @@ export function ProfileCard({ activeTab }: ProfileCardProps) {
           </div>
         </div>
       </div>
-        </>)
-      }
-    </Card>
+    </>
   );
-}
+};

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React from "react";
 
+import HomeFooter from "@/components/common/HomeFooter";
 import { useBlogsQuery } from "@/services/Blogs/getBlogsQuery";
 
 import { BlogPagination } from "./BlogPagination";
@@ -17,11 +18,13 @@ const Blogs = () => {
 
   return (
     <>
-      <div className="container mx-auto flex flex-row flex-wrap py-6">
+      <div className="container mx-auto flex flex-row flex-wrap pt-6">
         {/* Posts Section */}
         <>
           <div className="w-full md:w-2/3">
-            {BlogsQuery.isPending ? (
+            {BlogsQuery.isPending ||
+            BlogsQuery.isFetchingNextPage ||
+            BlogsQuery.isFetchingPreviousPage ? (
               <div className="fixed w-full md:2/3 bg-white flex items-center justify-center">
                 <Image
                   src="/loading.svg"
@@ -32,17 +35,20 @@ const Blogs = () => {
               </div>
             ) : (
               <section className="w-full flex flex-col items-center px-3">
-                
-                  {BlogsQuery.data?.pages.map((response, index) => {
-                    const pageIndex = index + 1;
-                    return (
-                      // ${pageIndex !== (BlogsQuery.data?.pageParams?.length || 0) && "hidden"}
-                      <span key={pageIndex} className={`grid sm:grid-cols-2 gap-4 ${pageIndex!==page && "hidden"}`}>
-                        <ShowBlogs blogs={response.data} />
-                      </span>
-                    );
-                  })}
-                
+                {BlogsQuery.data?.pages.map((response, index) => {
+                  const pageIndex = index + 1;
+                  return (
+                    // ${pageIndex !== (BlogsQuery.data?.pageParams?.length || 0) && "hidden"}
+                    <span
+                      key={pageIndex}
+                      className={`grid sm:grid-cols-2 gap-4 ${
+                        pageIndex !== page && "hidden"
+                      }`}
+                    >
+                      <ShowBlogs blogs={response.data} />
+                    </span>
+                  );
+                })}
 
                 {/* Pagination */}
               </section>
@@ -52,7 +58,8 @@ const Blogs = () => {
           <BlogSidebar />
         </>
       </div>
-      <BlogPagination paginator={BlogsQuery} page={page} setPage={setPage}/>
+      <BlogPagination paginator={BlogsQuery} page={page} setPage={setPage} />
+      <HomeFooter />
     </>
   );
 };

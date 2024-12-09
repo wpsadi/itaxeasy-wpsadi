@@ -192,3 +192,12 @@ body {
 
 
 
+@media print {
+  body {
+    background: none;
+  }
+  .print-hidden {
+    display: none;
+  }
+}
+
