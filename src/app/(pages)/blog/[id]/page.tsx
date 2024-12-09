@@ -2,6 +2,8 @@
 import { useParams } from "next/navigation";
 
 import { ErrorPage } from "@/components/common/errorRaiser";
+import HomeFooter from "@/components/common/HomeFooter";
+import { HomeNavbar } from "@/components/common/HomeNavbar";
 
 import { Blog } from "./blog";
 
@@ -19,7 +21,11 @@ export default function Page() {
   }
   return (
     <>
-      <Blog blogId={blogId} />
+      <div className="bg-white">
+        <HomeNavbar />
+        <Blog blogId={blogId} />
+        <HomeFooter />
+      </div>
     </>
   );
 }

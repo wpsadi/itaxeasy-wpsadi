@@ -1,12 +1,23 @@
+"use client";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import React from "react";
+
+import { useHomeFooterQuery } from "@/services/page/root/homePage/homeFooterQuery";
 
 // import { env } from "@/env";
 
 // const GOOGLE_MAPS_API_KEY = env.apiKeys.public.google_maps;
 
 export default function HomeFooter() {
+  const FooterQuery = useHomeFooterQuery();
+  if (FooterQuery.isPending) {
+    return <>Loading Footer</>;
+  }
+  if (FooterQuery.isError) {
+    return <>Error Loading Footer</>;
+  }
+  const footerData = FooterQuery.data?.data.socials;
   return (
     <footer className="bg-zinc-100 border-t py-10">
       <div className="max-w-7xl mx-auto pb-10">
@@ -104,10 +115,14 @@ export default function HomeFooter() {
               <h6 className="text-lg font-semibold border-b">Any Questions</h6>
               <ul className="font-medium text-sm leading-7 my-2">
                 <li>
-                  <Link href="tel:+918770877270">Contact us: 8770877270</Link>
+                  <Link href={
+                    `tel:${footerData?.phone || "-"}`
+                  }>Contact us: {footerData?.phone || "-"}</Link>
                 </li>
                 <li>
-                  <Link href="mailto:support@itaxeasy.com">support@itaxeasy.com</Link>
+                  <Link href="mailto:support@itaxeasy.com">
+                    {footerData?.email || ""}
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -118,12 +133,10 @@ export default function HomeFooter() {
             <h5 className="font-semibold text-xl">Our Branches</h5>
             <div className="flex mt-1">
               <p className="text-sm font-medium pr-5 py-2">
-                <b>Main Branch:</b> G - 41, Gandhi Nagar, Near Defence
-                Colony,Padav Gwalior 474002 (M.P)
+                {footerData?.address || "address unavailable"}
               </p>
               <p className="text-sm font-medium border-slate-300 border-l pl-5 py-2">
-                <b>Second Branch:</b> Sat 1 ,Flat - 811, Logix Zest Blossom,
-                Sector 143, Noida 201306 ( U.P)
+              {footerData?.addressAlternate || "address unavailable 2"}
               </p>
             </div>
           </div>
@@ -134,14 +147,14 @@ export default function HomeFooter() {
             <div className="flex items-center justify-between mt-2">
               <Link
                 target="_blank"
-                href="https://www.facebook.com/itaxeasy.accounting.9/"
+                href={footerData?.facebook || "#"}
                 className="h-7 w-7 mx-3"
               >
                 {React.cloneElement(socialMediaIcons.fb, { fill: "#1877F2" })}
               </Link>
               <Link
                 target="_blank"
-                href="https://www.instagram.com/_itax_easy/"
+                href={footerData?.instagram || "#"}
                 className="h-7 w-7 mx-3"
               >
                 <Icon icon="skill-icons:instagram" className=" h-7 w-7" />
@@ -149,7 +162,7 @@ export default function HomeFooter() {
               </Link>
               <Link
                 target="_blank"
-                href="https://in.linkedin.com/company/itaxeasy-pvt-limited"
+                href={footerData?.linkedin || "#"}
                 className="h-7 w-7 mx-3"
               >
                 {React.cloneElement(socialMediaIcons.linkedin, {
@@ -158,7 +171,7 @@ export default function HomeFooter() {
               </Link>
               <Link
                 target="_blank"
-                href="https://wa.me/8770877270"
+                href={footerData?.whatsapp || "#"}
                 className="h-7 w-7 mx-3"
               >
                 {React.cloneElement(socialMediaIcons.whatsapp, {
@@ -167,7 +180,7 @@ export default function HomeFooter() {
               </Link>
               <Link
                 target="_blank"
-                href="https://www.youtube.com/@Itaxeasy"
+                href={footerData?.youtube || "#"}
                 className="h-10 w-10 ml-3 flex items-center mt-[2px]"
               >
                 {React.cloneElement(socialMediaIcons.yt, { fill: "#FF0000" })}
@@ -178,7 +191,7 @@ export default function HomeFooter() {
       </div>
       <div className="bg-zinc-200 py-5 text-center">
         <span className="text-xs font-semibold">
-          Copyright {new Date().getFullYear()} | All rights reserved by iTaxEasy
+         {footerData?.copyright}
         </span>
       </div>
     </footer>

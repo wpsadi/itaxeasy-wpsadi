@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import { LoadUser } from "@/components/common/LoadUser";
 import { Toaster } from "@/components/ui/toaster";
 import TanstackQuery from "@/helpers/tanstack-query";
 
@@ -34,7 +35,11 @@ export default function RootLayout({
       <body className={`${inter.className} text-slate-800 h-full`}>
         <div className="min-h-screen flex flex-col">
           <Toaster />
-          <TanstackQuery>{children}</TanstackQuery>
+         
+          <TanstackQuery>
+          <LoadUser />{/* This is to load th user*/}
+            {children}
+            </TanstackQuery>
         </div>
       </body>
     </html>

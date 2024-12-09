@@ -4,7 +4,11 @@ export const verifyOtpSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address.",
   }),
-  otp_key: z.string(),
+  otp_key: z
+    .union([z.string(), z.number()])
+    .refine((val) => !isNaN(Number(val)), {
+      message: "OTP key must be a valid number.",
+    }),
   otp: z
     .string()
     .length(6, {

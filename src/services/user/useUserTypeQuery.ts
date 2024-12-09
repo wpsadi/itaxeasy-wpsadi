@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 // import { apiAxios } from "@/instances/apiInstance";
 
-type SuccessResponse  = {
+type SuccessResponse = {
     success: boolean;
     message: string;
 }

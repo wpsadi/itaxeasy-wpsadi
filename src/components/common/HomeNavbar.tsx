@@ -35,7 +35,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useUserProfileQuery } from "@/services/user/profile/UserProfileQuery";
 import { MainMenuItem, MenuItem } from "@/types/menu";
+
+import { NavbarUserDropdown } from "./NavbarLoggedInUI";
 
 const ourProductsMenu: MenuItem[] = [
   {
@@ -353,6 +356,7 @@ const menuItems: MainMenuItem[] = [
 
 export function HomeNavbar() {
   const router = useRouter();
+  const userQuery = useUserProfileQuery();
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeSubmenu, setActiveSubmenu] = React.useState<string | null>(null);
 
@@ -433,16 +437,45 @@ export function HomeNavbar() {
           </NavigationMenu>
         </div>
         <div className="flex flex-1 items-center justify-end space-x-4  ">
-          <Button
-            variant="outline"
-            className="inline-flex"
-            onClick={() => {
-              router.push("/login");
-            }}
-          >
-            Log In
-          </Button>
-          <Button className="hidden md:inline-flex">Sign Up</Button>
+          {userQuery.isPending && (
+            <Button
+              variant="outline"
+              className="inline-flex"
+              onClick={() => {
+                router.push("#");
+              }}
+            >
+              ...
+            </Button>
+          )}
+          {userQuery.isError && (
+            <>
+              <Button
+                variant="outline"
+                className="inline-flex"
+                onClick={() => {
+                  router.push("/login");
+                }}
+              >
+                Log In
+              </Button>
+              <Button
+                className="hidden md:inline-flex"
+                onClick={() => {
+                  router.push("/signup");
+                }}
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
+
+          {userQuery.isSuccess && (
+            <>
+              <NavbarUserDropdown />
+            </>
+          )}
+
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="xl:hidden">
@@ -464,7 +497,14 @@ export function HomeNavbar() {
                 >
                   Log In
                 </Button>
-                <Button className="w-full">Sign Up</Button>
+                <Button
+                  className="w-full"
+                  onClick={() => {
+                    router.push("/signup");
+                  }}
+                >
+                  Sign Up
+                </Button>
               </div>
               <Separator className="mb-4" />
               <ScrollArea className="h-[calc(100vh-10rem)] pb-10">
