@@ -1,200 +1,217 @@
 "use client";
 import { Icon } from "@iconify/react";
+import { HydrationBoundary } from "@tanstack/react-query";
 import Link from "next/link";
 import React from "react";
 
-import { useHomeFooterQuery } from "@/services/page/root/homePage/homeFooterQuery";
+import {
+  fetchHomeFooterStaticProp,
+  useHomeFooterQuery,
+} from "../../services/page/root/homePage/homeFooterQuery";
+import { LoadingScreen } from "./Loader";
 
 // import { env } from "@/env";
 
 // const GOOGLE_MAPS_API_KEY = env.apiKeys.public.google_maps;
 
+export async function getStaticProps() {
+  return await fetchHomeFooterStaticProp();
+}
+
 export default function HomeFooter() {
   const FooterQuery = useHomeFooterQuery();
   if (FooterQuery.isPending) {
-    return <>Loading Footer</>;
+    return <><LoadingScreen/></>;
   }
   if (FooterQuery.isError) {
     return <>Error Loading Footer</>;
   }
   const footerData = FooterQuery.data?.data.socials;
   return (
-    <footer className="bg-zinc-100 border-t py-10">
-      <div className="max-w-7xl mx-auto pb-10">
-        <div className="flex flex-col md:flex-row">
-          <div className="flex flex-col max-w-xl items-start justify-between">
-            <div className="md:pl-10 mt-3 md:mt-0 px-5 md:px-0">
-              <h4 className="heading-4">iTaxEasy</h4>
-              <p className="description mt-1">
-                India&apos;s Most Trusted Accounting And Financial Platform
-                Continuing The Legacy Of Accounting Firm N.S. Bedi And
-                Associates Since 1972.
-              </p>
-              <iframe
-                width="100%"
-                className="mt-5 border border-double border-zink-700 p-4 hover:shadow-lg transition duration-300 ease-in-out"
-                // src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA-P0vEicsimy6oT5Ssd1Ml_XkbdUOm99E&q=LogixBlossomGreensNoida,Sector143,Noida,UttarPradesh`}
-                // src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.2999690887127!2d77.42162527485846!3d28.500621390059813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce9aadaef8dab%3A0xf4fd0d24e08b249b!2sLogix%20Blossom%20Greens%20Noida%2C%20Sector%20143%2C%20Noida%2C%20Uttar%20Pradesh%20201305!5e0!3m2!1sen!2sin!4v1699005409701!5m2!1sen!2sin'
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4668.759088204337!2d78.1760718502079!3d26.2171536260565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3976c69faa0547f1%3A0x3996f8cdea3069b!2sItax%20easy%20private%20limited!5e0!3m2!1sen!2sin!4v1676326483432!5m2!1sen!2sin"
-                allowFullScreen
-              ></iframe>
-              {/* <img
+    <HydrationBoundary>
+      <footer className="bg-zinc-100 border-t py-10 print-hidden">
+        <div className="max-w-7xl mx-auto pb-10">
+          <div className="flex flex-col md:flex-row">
+            <div className="flex flex-col max-w-xl items-start justify-between">
+              <div className="md:pl-10 mt-3 md:mt-0 px-5 md:px-0">
+                <h4 className="heading-4">iTaxEasy</h4>
+                <p className="description mt-1">
+                  India&apos;s Most Trusted Accounting And Financial Platform
+                  Continuing The Legacy Of Accounting Firm N.S. Bedi And
+                  Associates Since 1972.
+                </p>
+                <iframe
+                  width="100%"
+                  className="mt-5 border border-double border-zink-700 p-4 hover:shadow-lg transition duration-300 ease-in-out"
+                  // src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA-P0vEicsimy6oT5Ssd1Ml_XkbdUOm99E&q=LogixBlossomGreensNoida,Sector143,Noida,UttarPradesh`}
+                  // src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.2999690887127!2d77.42162527485846!3d28.500621390059813!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce9aadaef8dab%3A0xf4fd0d24e08b249b!2sLogix%20Blossom%20Greens%20Noida%2C%20Sector%20143%2C%20Noida%2C%20Uttar%20Pradesh%20201305!5e0!3m2!1sen!2sin!4v1699005409701!5m2!1sen!2sin'
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4668.759088204337!2d78.1760718502079!3d26.2171536260565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3976c69faa0547f1%3A0x3996f8cdea3069b!2sItax%20easy%20private%20limited!5e0!3m2!1sen!2sin!4v1676326483432!5m2!1sen!2sin"
+                  allowFullScreen
+                ></iframe>
+                {/* <img
               width={150}
               src="logo.svg"
               alt="logo"
               className="object-contain mx-auto md:m-0 py-5"
             /> */}
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row items-start justify-between md:ml-auto mt-8 md:mt-0">
+              <div className="mx-8">
+                <h6 className="text-lg font-semibold border-b">Quick Link</h6>
+                <ul className="description leading-7 my-2">
+                  <li>
+                    <Link href="/about" className="hover:text-blue-600">
+                      About us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contactus" className="hover:text-blue-600">
+                      Contact us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://profile.itaxeasy.com/"
+                      className="hover:text-blue-600 inline-block"
+                    >
+                      Company Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/tc" className="hover:text-blue-600">
+                      Terms & Conditions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/privacy-policy"
+                      className="hover:text-blue-600"
+                    >
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/disclaimerpolicy"
+                      className="hover:text-blue-600"
+                    >
+                      Disclaimer Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/softwarelicense"
+                      className="hover:text-blue-600"
+                    >
+                      Software License
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/" className="hover:text-blue-600">
+                      FAQ&apos;s{" "}
+                      <span className="text-xs text-blue-500 italic">
+                        Upcoming
+                      </span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="mx-8">
+                <h6 className="text-lg font-semibold border-b">We Offer</h6>
+                <ul className="font-medium text-sm leading-7 my-2">
+                  <li>
+                    <Link href="/career" className="hover:text-blue-600">
+                      Careers
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="mx-8">
+                <h6 className="text-lg font-semibold border-b">
+                  Any Questions
+                </h6>
+                <ul className="font-medium text-sm leading-7 my-2">
+                  <li>
+                    <Link href={`tel:${footerData?.phone || "-"}`}>
+                      Contact us: {footerData?.phone || "-"}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="mailto:support@itaxeasy.com">
+                      {footerData?.email || ""}
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row items-start justify-between md:ml-auto mt-8 md:mt-0">
-            <div className="mx-8">
-              <h6 className="text-lg font-semibold border-b">Quick Link</h6>
-              <ul className="description leading-7 my-2">
-                <li>
-                  <Link href="/about" className="hover:text-blue-600">
-                    About us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contactus" className="hover:text-blue-600">
-                    Contact us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://profile.itaxeasy.com/"
-                    className="hover:text-blue-600 inline-block"
-                  >
-                    Company Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/tc" className="hover:text-blue-600">
-                    Terms & Conditions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/privacy-policy" className="hover:text-blue-600">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/disclaimerpolicy"
-                    className="hover:text-blue-600"
-                  >
-                    Disclaimer Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/softwarelicense" className="hover:text-blue-600">
-                    Software License
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" className="hover:text-blue-600">
-                    FAQ&apos;s{" "}
-                    <span className="text-xs text-blue-500 italic">
-                      Upcoming
-                    </span>
-                  </Link>
-                </li>
-              </ul>
+          <div className="flex flex-col md:flex-row items-start justify-between border-slate-300 border-t mt-5 pt-8 mx-1 sm:mx-10">
+            <div className="max-w-2xl">
+              <h5 className="font-semibold text-xl">Our Branches</h5>
+              <div className="flex mt-1">
+                <p className="text-sm font-medium pr-5 py-2">
+                  {footerData?.address || "address unavailable"}
+                </p>
+                <p className="text-sm font-medium border-slate-300 border-l pl-5 py-2">
+                  {footerData?.addressAlternate || "address unavailable 2"}
+                </p>
+              </div>
             </div>
-            <div className="mx-8">
-              <h6 className="text-lg font-semibold border-b">We Offer</h6>
-              <ul className="font-medium text-sm leading-7 my-2">
-                <li>
-                  <Link href="/career" className="hover:text-blue-600">
-                    Careers
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div className="mx-8">
-              <h6 className="text-lg font-semibold border-b">Any Questions</h6>
-              <ul className="font-medium text-sm leading-7 my-2">
-                <li>
-                  <Link href={
-                    `tel:${footerData?.phone || "-"}`
-                  }>Contact us: {footerData?.phone || "-"}</Link>
-                </li>
-                <li>
-                  <Link href="mailto:support@itaxeasy.com">
-                    {footerData?.email || ""}
-                  </Link>
-                </li>
-              </ul>
+            <div className="w-full md:w-auto mt-8 md:mt-0">
+              <h5 className="font-semibold text-xl text-center md:text-right">
+                Stay Connected
+              </h5>
+              <div className="flex items-center justify-between mt-2">
+                <Link
+                  target="_blank"
+                  href={footerData?.facebook || "#"}
+                  className="h-7 w-7 mx-3"
+                >
+                  {React.cloneElement(socialMediaIcons.fb, { fill: "#1877F2" })}
+                </Link>
+                <Link
+                  target="_blank"
+                  href={footerData?.instagram || "#"}
+                  className="h-7 w-7 mx-3"
+                >
+                  <Icon icon="skill-icons:instagram" className=" h-7 w-7" />
+                  {/* {React.cloneElement(socialMediaIcons.insta, { fill: '#C13584' })} */}
+                </Link>
+                <Link
+                  target="_blank"
+                  href={footerData?.linkedin || "#"}
+                  className="h-7 w-7 mx-3"
+                >
+                  {React.cloneElement(socialMediaIcons.linkedin, {
+                    fill: "#0A66C2",
+                  })}
+                </Link>
+                <Link
+                  target="_blank"
+                  href={footerData?.whatsapp || "#"}
+                  className="h-7 w-7 mx-3"
+                >
+                  {React.cloneElement(socialMediaIcons.whatsapp, {
+                    fill: "#25D366",
+                  })}
+                </Link>
+                <Link
+                  target="_blank"
+                  href={footerData?.youtube || "#"}
+                  className="h-10 w-10 ml-3 flex items-center mt-[2px]"
+                >
+                  {React.cloneElement(socialMediaIcons.yt, { fill: "#FF0000" })}
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row items-start justify-between border-slate-300 border-t mt-5 pt-8 mx-1 sm:mx-10">
-          <div className="max-w-2xl">
-            <h5 className="font-semibold text-xl">Our Branches</h5>
-            <div className="flex mt-1">
-              <p className="text-sm font-medium pr-5 py-2">
-                {footerData?.address || "address unavailable"}
-              </p>
-              <p className="text-sm font-medium border-slate-300 border-l pl-5 py-2">
-              {footerData?.addressAlternate || "address unavailable 2"}
-              </p>
-            </div>
-          </div>
-          <div className="w-full md:w-auto mt-8 md:mt-0">
-            <h5 className="font-semibold text-xl text-center md:text-right">
-              Stay Connected
-            </h5>
-            <div className="flex items-center justify-between mt-2">
-              <Link
-                target="_blank"
-                href={footerData?.facebook || "#"}
-                className="h-7 w-7 mx-3"
-              >
-                {React.cloneElement(socialMediaIcons.fb, { fill: "#1877F2" })}
-              </Link>
-              <Link
-                target="_blank"
-                href={footerData?.instagram || "#"}
-                className="h-7 w-7 mx-3"
-              >
-                <Icon icon="skill-icons:instagram" className=" h-7 w-7" />
-                {/* {React.cloneElement(socialMediaIcons.insta, { fill: '#C13584' })} */}
-              </Link>
-              <Link
-                target="_blank"
-                href={footerData?.linkedin || "#"}
-                className="h-7 w-7 mx-3"
-              >
-                {React.cloneElement(socialMediaIcons.linkedin, {
-                  fill: "#0A66C2",
-                })}
-              </Link>
-              <Link
-                target="_blank"
-                href={footerData?.whatsapp || "#"}
-                className="h-7 w-7 mx-3"
-              >
-                {React.cloneElement(socialMediaIcons.whatsapp, {
-                  fill: "#25D366",
-                })}
-              </Link>
-              <Link
-                target="_blank"
-                href={footerData?.youtube || "#"}
-                className="h-10 w-10 ml-3 flex items-center mt-[2px]"
-              >
-                {React.cloneElement(socialMediaIcons.yt, { fill: "#FF0000" })}
-              </Link>
-            </div>
-          </div>
+        <div className="bg-zinc-200 py-5 text-center">
+          <span className="text-xs font-semibold">{footerData?.copyright}</span>
         </div>
-      </div>
-      <div className="bg-zinc-200 py-5 text-center">
-        <span className="text-xs font-semibold">
-         {footerData?.copyright}
-        </span>
-      </div>
-    </footer>
+      </footer>
+    </HydrationBoundary>
   );
 }
 

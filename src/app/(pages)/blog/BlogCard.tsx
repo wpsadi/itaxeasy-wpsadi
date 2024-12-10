@@ -6,6 +6,8 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { BlogData } from "@/services/Blogs/getBlogsQuery";
 
+
+
 export type BlogProps = {
   blog: BlogData & {
     day: number;
@@ -48,7 +50,7 @@ export const BlogCard: React.FC<BlogProps> = ({ blog }) => {
               Continue reading
             </Link>
           </p>
-          <span  className="text-sm pb-3">
+          <span className="text-sm pb-3">
             By
             <a href="#" className="font-semibold mx-1 hover:text-gray-800">
               ItaxEasy

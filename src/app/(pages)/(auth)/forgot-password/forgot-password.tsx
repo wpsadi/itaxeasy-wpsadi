@@ -26,8 +26,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import { useForgotPasswordMutation } from "@/services/auth/forgot-password/forgotPasswordMutation";
 import { forgotPasswordSchema } from "@/validations/auth/forgot-password";
+
+import { useForgotPasswordMutation } from "../../../../services/auth/forgot-password/forgotPasswordMutation";
 
 export function ForgotPassword() {
   const forgetPasswordMutation = useForgotPasswordMutation();
@@ -68,7 +69,11 @@ export function ForgotPassword() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your email" disabled={forgetPasswordMutation.isPending} {...field} />
+                    <Input
+                      placeholder="Enter your email"
+                      disabled={forgetPasswordMutation.isPending}
+                      {...field}
+                    />
                   </FormControl>
                   <FormDescription>
                     We&apos;ll send a OTP to this email.
@@ -77,10 +82,12 @@ export function ForgotPassword() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full" disabled={forgetPasswordMutation.isPending}>
-              {
-                forgetPasswordMutation.isPending ? "Sending..." : "Send OTP"
-              }
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={forgetPasswordMutation.isPending}
+            >
+              {forgetPasswordMutation.isPending ? "Sending..." : "Send OTP"}
             </Button>
           </form>
         </Form>

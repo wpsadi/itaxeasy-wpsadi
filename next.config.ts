@@ -7,13 +7,21 @@ interface RemotePattern {
   hostname: string;
 }
 
+
+
 // Define the configuration
 const nextConfig: NextConfig = {
+ 
   webpack: (config) => {
     config.module.rules.push({
       test: /\.json$/,
       type: "json",
     });
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
+
     return config;
   },
   images: {

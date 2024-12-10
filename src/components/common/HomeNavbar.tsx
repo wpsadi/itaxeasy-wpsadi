@@ -35,9 +35,9 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useUserProfileQuery } from "@/services/user/profile/UserProfileQuery";
 import { MainMenuItem, MenuItem } from "@/types/menu";
 
+import { useUserProfileQuery } from "../../services/user/profile/UserProfileQuery";
 import { NavbarUserDropdown } from "./NavbarLoggedInUI";
 
 const ourProductsMenu: MenuItem[] = [
@@ -338,7 +338,7 @@ const menuItems: MainMenuItem[] = [
     icon: Link2Icon,
     title: "APIs",
     description: "Meet and learn about our dedication",
-    href: "/about",
+    href: "/apis/all_apis",
   },
   {
     icon: Download,
@@ -361,7 +361,7 @@ export function HomeNavbar() {
   const [activeSubmenu, setActiveSubmenu] = React.useState<string | null>(null);
 
   return (
-    <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky print-hidden top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className=" flex h-14 items-center justify-around w-full ">
         <Link href="/" className="mr-6 ml-2 flex items-center space-x-2">
           <Image height={48} width={48} src="/favicon.svg" alt="iTaxEasy" />
@@ -440,7 +440,7 @@ export function HomeNavbar() {
           {userQuery.isPending && (
             <Button
               variant="outline"
-              className="inline-flex"
+              className="inline-flex mr-2"
               onClick={() => {
                 router.push("#");
               }}

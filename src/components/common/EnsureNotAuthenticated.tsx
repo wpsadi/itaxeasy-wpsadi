@@ -2,8 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { useUserProfileQuery } from "@/services/user/profile/UserProfileQuery";
-
+import { useUserProfileQuery } from "../../services/user/profile/UserProfileQuery";
 import { ErrorPage } from "./errorRaiser";
 import { LoadingScreen } from "./Loader";
 
@@ -19,18 +18,12 @@ export const EnsureNotAuthenticated = ({
     return <LoadingScreen />;
   }
 
-
-
   if (userQuery.isError) {
-    return (<>
-    {children}
-    </>)
+    return <>{children}</>;
   }
 
   setTimeout(() => {
     router.push("/dashboard");
-}, 1000);
-return <ErrorPage message="User Already Logged In" />;
-
-  
+  }, 1000);
+  return <ErrorPage message="User Already Logged In" />;
 };

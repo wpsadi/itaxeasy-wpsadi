@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-interface BusinessProfileCardProps {
+interface businessDetails {
   name: string
   panCard: string
   taxPayerType: string
@@ -10,15 +10,18 @@ interface BusinessProfileCardProps {
   address: string
 }
 
-export function BusinessProfileCard({
-  name,
-  panCard,
-  taxPayerType,
-  status,
-  ctb,
-  gstNumber,
-  address,
-}: BusinessProfileCardProps) {
+const dummyData: businessDetails = {
+  name: 'Business Name',
+  panCard: 'PAN1234567',
+  taxPayerType: 'Individual',
+  status: 'Active',
+  ctb: 'CTB1234567',
+  gstNumber: 'GST1234567',
+  address: 'Address'
+}
+
+
+export function BusinessProfileCard() {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       <div className="relative h-40 bg-blue-100">
@@ -41,14 +44,14 @@ export function BusinessProfileCard({
         </div>
       </div>
       <div className="pt-16 pb-6 px-6">
-        <h2 className="text-xl font-semibold text-center mb-4">{name}</h2>
+        <h2 className="text-xl font-semibold text-center mb-4">{dummyData.name}</h2>
         <div className="space-y-2 text-sm">
-          <p><span className="font-medium">PAN Card:</span> {panCard}</p>
-          <p><span className="font-medium">Tax Payer Type:</span> {taxPayerType}</p>
-          <p><span className="font-medium">Status:</span> {status}</p>
-          <p><span className="font-medium">CTB:</span> {ctb}</p>
-          <p><span className="font-medium">GST Number:</span> {gstNumber}</p>
-          <p><span className="font-medium">Address:</span> {address}</p>
+          <p><span className="font-medium">PAN Card:</span> {dummyData.panCard}</p>
+          <p><span className="font-medium">Tax Payer Type:</span> {dummyData.taxPayerType}</p>
+          <p><span className="font-medium">Status:</span> {dummyData.status}</p>
+          <p><span className="font-medium">CTB:</span> {dummyData.ctb}</p>
+          <p><span className="font-medium">GST Number:</span> {dummyData.gstNumber}</p>
+          <p><span className="font-medium">Address:</span> {dummyData.address}</p>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 
-import { HomeType } from "@/services/page/root/homePage/homeNavQuery";
+import { HomeType } from "../../services/page/root/homePage/homeNavQuery";
 
 export const HomeCorporatePartners = ({ pageData }: { pageData: HomeType }) => {
   const checkImageLink = (url: string) => {

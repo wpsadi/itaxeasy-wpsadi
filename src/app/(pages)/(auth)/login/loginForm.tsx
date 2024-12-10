@@ -25,9 +25,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import { useLoginMutation } from "@/services/auth/login/loginMutation";
 import { loginFormSchema } from "@/validations/auth/login";
 
+import { useLoginMutation } from "../../../../services/auth/login/loginMutation";
 import { PasswordInput } from "../passwordInput";
 import { GoogleButton } from "./login-google-btn";
 
@@ -52,7 +52,7 @@ export function LoginForm() {
       ),
     });
 
-    loginMutation.mutate(values)
+    loginMutation.mutate(values);
   }
 
   return (
@@ -73,7 +73,11 @@ export function LoginForm() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your email"  disabled={loginMutation.isPending}    {...field} />
+                    <Input
+                      placeholder="Enter your email"
+                      disabled={loginMutation.isPending}
+                      {...field}
+                    />
                   </FormControl>
                   <FormDescription>
                     Please enter your registered email address.
@@ -90,7 +94,7 @@ export function LoginForm() {
                   <FormLabel>Password</FormLabel>
                   <FormControl>
                     <PasswordInput
-                     disabled={loginMutation.isPending}
+                      disabled={loginMutation.isPending}
                       placeholder="Enter your password"
                       {...field}
                     />
@@ -102,14 +106,18 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full" disabled={loginMutation.isPending}>
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={loginMutation.isPending}
+            >
               {loginMutation.isPending ? "Logging in..." : "Login"}
             </Button>
           </form>
         </Form>
       </CardContent>
       <CardFooter className="flex flex-col space-y-4">
-        <GoogleButton disabled={loginMutation.isPending}/>
+        <GoogleButton disabled={loginMutation.isPending} />
         <div className="flex justify-between w-full text-sm">
           <Button variant="link" asChild className="px-0">
             <Link href="/forgot-password">Forgot Password?</Link>

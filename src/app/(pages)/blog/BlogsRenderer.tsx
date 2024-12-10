@@ -32,7 +32,7 @@ export const ShowBlogs: React.FC<ShowBlogsProps> = ({ blogs }) => {
 
         return (
           <React.Fragment key={blogIndex}>
-            <BlogCard blog={blogData}/>
+            <BlogCard blog={blogData} />
           </React.Fragment>
         );
       })}

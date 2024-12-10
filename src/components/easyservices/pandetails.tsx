@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -11,10 +12,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { panSchema, type PANFormValues } from "@/lib/validations/pan"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { PANFormValues, panSchema } from "@/validations/easyservices/pan";
+
 
 export function PANSearchForm() {
   const form = useForm<PANFormValues>({
@@ -22,15 +23,15 @@ export function PANSearchForm() {
     defaultValues: {
       pan: "",
     },
-  })
+  });
 
   function onSubmit(data: PANFormValues) {
-    console.log(data)
+    console.log(data);
     // Handle search logic here
   }
 
   function onClear() {
-    form.reset()
+    form.reset();
   }
 
   return (
@@ -85,5 +86,5 @@ export function PANSearchForm() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

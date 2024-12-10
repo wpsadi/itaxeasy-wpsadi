@@ -3,8 +3,8 @@
 import HomeFooter from "@/components/common/HomeFooter";
 import { HomeNavbar } from "@/components/common/HomeNavbar";
 import { LoadingScreen } from "@/components/common/Loader";
-import { useHomeNavQuery } from "@/services/page/root/homePage/homeNavQuery";
 
+import { useHomeNavQuery } from "../../services/page/root/homePage/homeNavQuery";
 import { HomeChooseYourPolicy } from "./choose-your-policy";
 import { HomeCorporatePartners } from "./corporate-partners";
 import { HomeDownloadpp } from "./download-app";

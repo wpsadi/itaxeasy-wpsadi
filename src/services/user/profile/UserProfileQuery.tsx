@@ -2,7 +2,7 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import { apiAxios } from "@/instances/apiInstance";
 
-type SuccessResponse = {
+export type UserProfileSuccessResponse = {
   success: boolean;
   data: {
     user: {
@@ -32,9 +32,9 @@ export const useUserProfileQuery = () => {
     queryFn: async () => {
       // await new Promise((resolve) => setTimeout(resolve, 1000));
       const response = await apiAxios.get("user/profile");
-      return response.data as SuccessResponse;
+      return response.data as UserProfileSuccessResponse;
     },
-    placeholderData:keepPreviousData,
-    retry:1
+    placeholderData: keepPreviousData,
+    retry: 1,
   });
 };

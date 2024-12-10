@@ -26,8 +26,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
-import { useSignupMutation } from "@/services/auth/signup/signupMutation";
 import { signupSchema } from "@/validations/auth/signup";
+
+import { useSignupMutation } from "../../../../services/auth/signup/signupMutation";
 
 export function SignupForm() {
   const signUpMutation = useSignupMutation();
@@ -77,7 +78,11 @@ export function SignupForm() {
                 <FormItem>
                   <FormLabel>First Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your first name" disabled={signUpMutation.isPending} {...field} />
+                    <Input
+                      placeholder="Enter your first name"
+                      disabled={signUpMutation.isPending}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -90,7 +95,11 @@ export function SignupForm() {
                 <FormItem>
                   <FormLabel>Last Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your last name"  disabled={signUpMutation.isPending} {...field} />
+                    <Input
+                      placeholder="Enter your last name"
+                      disabled={signUpMutation.isPending}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -162,7 +171,6 @@ export function SignupForm() {
                       type="button"
                       variant="ghost"
                       size="sm"
-
                       className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                       onClick={() => setShowPassword(!showPassword)}
                     >
@@ -225,7 +233,7 @@ export function SignupForm() {
                 <FormItem>
                   <FormLabel>Gender</FormLabel>
                   <Select
-                   disabled={signUpMutation.isPending}
+                    disabled={signUpMutation.isPending}
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
@@ -252,7 +260,11 @@ export function SignupForm() {
                 <FormItem>
                   <FormLabel>PIN Code</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter PIN code"  disabled={signUpMutation.isPending} {...field} />
+                    <Input
+                      placeholder="Enter PIN code"
+                      disabled={signUpMutation.isPending}
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -284,9 +296,7 @@ export function SignupForm() {
             className="w-full bg-blue-600 hover:bg-blue-700"
             disabled={signUpMutation.isPending}
           >
-            {
-                signUpMutation.isPending ? "Signing up..." : "Sign Up"
-            }
+            {signUpMutation.isPending ? "Signing up..." : "Sign Up"}
           </Button>
 
           <div className="text-center space-y-2">

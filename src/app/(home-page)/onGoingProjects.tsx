@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-import { HomeOnGoingPro } from "@/services/page/root/homePage/homeNavQuery";
+import { HomeOnGoingPro } from "../../services/page/root/homePage/homeNavQuery";
 
 export const HomeOnGoingProjects = ({
   ongoingProjects,

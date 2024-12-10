@@ -2,7 +2,8 @@ import Link from "next/link";
 import React from "react";
 
 import { H2 } from "@/components/common/Headings";
-import { cardType } from "@/services/page/root/homePage/homeNavQuery";
+
+import { cardType } from "../../services/page/root/homePage/homeNavQuery";
 
 export default function OurServices({
   ourServicesCards,

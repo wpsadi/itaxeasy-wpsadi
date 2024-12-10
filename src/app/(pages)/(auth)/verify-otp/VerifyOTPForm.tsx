@@ -25,7 +25,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import { useVerifyOTP } from "@/services/auth/verify-otp/verifyOTPMutation";
+
+import { useVerifyOTP } from "../../../../services/auth/verify-otp/verifyOTPMutation";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -51,7 +52,7 @@ export function OTPVerificationForm({
   email,
   otpKey,
 }: OTPVerificationFormProps) {
-    const verifyOTPMutation = useVerifyOTP();
+  const verifyOTPMutation = useVerifyOTP();
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -68,15 +69,12 @@ export function OTPVerificationForm({
       title: "Verification Attempt",
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">
-            {JSON.stringify(values, null, 2)}
-          </code>
+          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
         </pre>
       ),
     });
 
     verifyOTPMutation.mutate(values);
-
   }
 
   return (
@@ -104,7 +102,6 @@ export function OTPVerificationForm({
             <FormField
               control={form.control}
               name="otp_key"
-              
               render={({ field }) => (
                 <FormItem className="hidden">
                   <FormLabel>OTP Key</FormLabel>
@@ -122,7 +119,11 @@ export function OTPVerificationForm({
                 <FormItem>
                   <FormLabel>One-Time Password</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter 6-digit OTP" disabled={verifyOTPMutation.isPending} {...field} />
+                    <Input
+                      placeholder="Enter 6-digit OTP"
+                      disabled={verifyOTPMutation.isPending}
+                      {...field}
+                    />
                   </FormControl>
                   <FormDescription>
                     Please check your email for the OTP.
@@ -131,12 +132,12 @@ export function OTPVerificationForm({
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full"
-                disabled={verifyOTPMutation.isPending}
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={verifyOTPMutation.isPending}
             >
-              {
-                verifyOTPMutation.isPending ? "Verifying..." : "Verify OTP"
-              }
+              {verifyOTPMutation.isPending ? "Verifying..." : "Verify OTP"}
             </Button>
           </form>
         </Form>
@@ -149,4 +150,3 @@ export function OTPVerificationForm({
     </Card>
   );
 }
-

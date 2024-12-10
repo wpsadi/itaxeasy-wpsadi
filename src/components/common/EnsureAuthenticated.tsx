@@ -2,8 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { useUserProfileQuery } from "@/services/user/profile/UserProfileQuery";
-
+import { useUserProfileQuery } from "../../services/user/profile/UserProfileQuery";
 import { ErrorPage } from "./errorRaiser";
 import { LoadingScreen } from "./Loader";
 
@@ -21,7 +20,7 @@ export const EnsureAuthenticated = ({
 
   if (userQuery.isError) {
     setTimeout(() => {
-        router.push("/login");
+      router.push("/login");
     }, 1000);
     return <ErrorPage message="We could verify your authentication Status" />;
   }

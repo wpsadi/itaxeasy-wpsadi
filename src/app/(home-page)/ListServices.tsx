@@ -3,8 +3,9 @@ import { ArrowBigRight, FileText } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 
-import { HomeType } from "@/services/page/root/homePage/homeNavQuery";
 import { HoveringNavCard } from "@/styles/navcardStyle";
+
+import { HomeType } from "../../services/page/root/homePage/homeNavQuery";
 
 type ListServicesProps = {
   pageData: HomeType;
@@ -26,7 +27,7 @@ export const ListServices = ({ pageData }: ListServicesProps) => {
           }}
         >
           {pageData.navcards?.map(
-            (element,index) =>
+            (element, index) =>
               element.name && (
                 <HoveringNavCard
                   ref={(el) => {
@@ -56,7 +57,7 @@ export const ListServices = ({ pageData }: ListServicesProps) => {
 
       <div id="servicesSection" className="max-w-6xl mx-auto relative">
         {pageData.navcards?.map(
-          (element,index) =>
+          (element, index) =>
             element.name &&
             element.link && (
               <div
@@ -70,7 +71,7 @@ export const ListServices = ({ pageData }: ListServicesProps) => {
                 <h4 className="text-slate-800 text-lg lg:text-[32px] font-semibold text-center flex-wrap my-8">
                   {element.name}
                 </h4>
-          
+
                 <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10">
                   {element?.cards?.map(
                     (items) =>
@@ -85,12 +86,7 @@ export const ListServices = ({ pageData }: ListServicesProps) => {
                           </div>
                           <p className="max-h-[100px] overflow-hidden line-clamp-4 text-xs px-5 font-medium text-justify">
                             <span className="bg-blue-100 rounded-full w-10 p-2 text-center mb-2 mt-2 block">
-                              <FileText
-                         
-                                
-                                className="text-sm"
-                              />
-                            
+                              <FileText className="text-sm" />
                             </span>
                             {items.content}
                           </p>

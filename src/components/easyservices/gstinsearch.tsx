@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -11,10 +12,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { gstinSchema, type GSTINFormValues } from "@/lib/validations/gstin"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { GSTINFormValues, gstinSchema } from "@/validations/easyservices/gstin";
 
 export function GSTINSearchForm() {
   const form = useForm<GSTINFormValues>({
@@ -22,15 +22,15 @@ export function GSTINSearchForm() {
     defaultValues: {
       gstin: "",
     },
-  })
+  });
 
   function onSubmit(data: GSTINFormValues) {
-    console.log(data)
+    console.log(data);
     // Handle search logic here
   }
 
   function onClear() {
-    form.reset()
+    form.reset();
   }
 
   return (
@@ -89,5 +89,5 @@ export function GSTINSearchForm() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

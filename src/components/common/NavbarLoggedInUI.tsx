@@ -14,8 +14,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useLogoutMutation } from "@/services/auth/logout/logoutMutation";
-import { useUserProfileQuery } from "@/services/user/profile/UserProfileQuery";
+
+import { useLogoutMutation } from "../../services/auth/logout/logoutMutation";
+import { useUserProfileQuery } from "../../services/user/profile/UserProfileQuery";
 
 export function NavbarUserDropdown() {
   const userUser = useUserProfileQuery();
@@ -24,10 +25,15 @@ export function NavbarUserDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full lg:mr-2">
+        <Button
+          variant="ghost"
+          className="relative h-8 w-8 rounded-full lg:mr-2"
+        >
           <Avatar className="h-8 w-8">
             <AvatarImage src={userData?.avatar} alt={userData?.firstName} />
-            <AvatarFallback>{userData?.firstName.charAt(0).toLocaleUpperCase()}</AvatarFallback>
+            <AvatarFallback>
+              {userData?.firstName.charAt(0).toLocaleUpperCase()}
+            </AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

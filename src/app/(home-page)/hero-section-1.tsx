@@ -5,20 +5,17 @@ import { useRouter } from "next/navigation";
 import Typewriter from "typewriter-effect";
 
 import { Button } from "@/components/ui/button";
-import { HomeType } from "@/services/page/root/homePage/homeNavQuery";
 
-export const HomeHeroSection1 = ({
-  pageData,
-}: {
-  pageData: HomeType;
-}) => {
+import { HomeType } from "../../services/page/root/homePage/homeNavQuery";
+
+export const HomeHeroSection1 = ({ pageData }: { pageData: HomeType }) => {
   const router = useRouter();
   return (
     <div className="mx-auto max-w-7xl grid lg:grid-cols-2 items-center gap-y-8 my-28">
       <div className="lg:order-2 mx-auto">
         {/* <Video src="/ITR.mp4" /> */}
         <Image
-        unoptimized
+          unoptimized
           src="/Hero-ITR.gif"
           loading="eager"
           width={700}

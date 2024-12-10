@@ -1,8 +1,8 @@
 "use client";
 import { ErrorPage } from "@/components/common/errorRaiser";
 import { LoadingScreen } from "@/components/common/Loader";
-import { useUserTypeQuery } from "@/services/user/useUserTypeQuery";
 
+import { useUserTypeQuery } from "../../../../services/user/useUserTypeQuery";
 import { CreateBlog } from "./CreateBlog";
 
 export default function Page() {
