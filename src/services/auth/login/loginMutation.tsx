@@ -40,11 +40,14 @@ type SuccessResponse = {
   };
 };
 
+export type UserSuccessLogin = SuccessResponse; 
+
 type ErrorResponse = {
   success: boolean;
   message: string;
 };
 
+export type UserErrorLogin = ErrorResponse
 // const dummyData: SuccessResponse = {
 //   success: true,
 //   message: "Login successful",

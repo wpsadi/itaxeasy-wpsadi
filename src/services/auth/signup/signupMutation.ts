@@ -28,10 +28,14 @@ type SuccessfullResponse = {
   };
 };
 
+export type SignupSuccessResponse = SuccessfullResponse
+
 type ErrorResponse = {
   success: boolean;
   message: string;
 };
+
+export type SignupErrorResponse = ErrorResponse
 
 export const useSignupMutation = () => {
   const router = useRouter();
@@ -71,7 +75,7 @@ export const useSignupMutation = () => {
       console.log(error);
       if (isHttpError(error)) {
         toast({
-          title: "Login Failed",
+          title: "Signup Failed",
           variant: "destructive",
           description: error.message,
         });
