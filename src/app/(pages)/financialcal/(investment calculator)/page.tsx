@@ -17,7 +17,8 @@ import {
   FormLabel,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { calculateMIS } from "@/lib/calculate-mis"
+
+import { calculateMIS } from "./(lib)/calculate-mis"
 
 // Register ChartJS components
 ChartJS.register(ArcElement, Tooltip, Legend)
