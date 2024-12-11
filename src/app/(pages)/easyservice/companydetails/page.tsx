@@ -1,13 +1,12 @@
 import HomeFooter from "@/components/common/HomeFooter";
 import { HomeNavbar } from "@/components/common/HomeNavbar";
-
-import { GSTINSearchForm } from "@/components/easyservices/gstinsearch";
+import { CompanyIDSearchForm } from "@/components/easyservices/companyIDfrom";
 
 export default function Page() {
   return (
     <>
       <HomeNavbar />
-      <GSTINSearchForm></GSTINSearchForm>
+      <CompanyIDSearchForm></CompanyIDSearchForm>
       <HomeFooter/>
     </>
   );

@@ -16,31 +16,27 @@ import {
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 
-// Zod schema for validating Aadhaar and PAN numbers
-const validationSchema = z.object({
-  aadhaar: z
+// Zod schema for validating City name
+const citySchema = z.object({
+  city: z
     .string()
-    .length(12, "Aadhaar number must be exactly 12 digits long")
-    .regex(/^[0-9]{12}$/, "Aadhaar number must contain only 12 digits"),
-  pan: z
-    .string()
-    .length(10, "PAN number must be exactly 10 characters long")
-    .regex(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "PAN number is invalid"),
+    .min(3, "City name must be at least 3 characters long")
+    .max(50, "City name cannot exceed 50 characters")
+    .regex(/^[a-zA-Z\s]+$/, "City name must only contain alphabets and spaces"),
 });
 
 // Type for the form values
-type FormValues = z.infer<typeof validationSchema>;
+type CityFormValues = z.infer<typeof citySchema>;
 
-export function CheckAadhaarLinkStatus() {
-  const form = useForm<FormValues>({
-    resolver: zodResolver(validationSchema),
+export function CitySearchForm() {
+  const form = useForm<CityFormValues>({
+    resolver: zodResolver(citySchema),
     defaultValues: {
-      aadhaar: "",
-      pan: "",
+      city: "",
     },
   });
 
-  function onSubmit(data: FormValues) {
+  function onSubmit(data: CityFormValues) {
     console.log(data);
     // Handle search logic here
   }
@@ -53,21 +49,20 @@ export function CheckAadhaarLinkStatus() {
     <div className="grid p-10 gap-5 md:grid-cols-2">
       <Card>
         <CardHeader>
-          <CardTitle>Check Aadhaar Link Status</CardTitle>
+          <CardTitle>Search By City</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              {/* Aadhaar Number Field */}
               <FormField
                 control={form.control}
-                name="aadhaar"
+                name="city"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Aadhaar No.</FormLabel>
+                    <FormLabel>City Name:</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter your Aadhaar number"
+                        placeholder="Enter City Name"
                         {...field}
                       />
                     </FormControl>
@@ -75,25 +70,6 @@ export function CheckAadhaarLinkStatus() {
                   </FormItem>
                 )}
               />
-
-              {/* PAN Number Field */}
-              <FormField
-                control={form.control}
-                name="pan"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>PAN No.</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter your PAN number"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
               <div className="flex gap-4">
                 <Button
                   type="submit"
@@ -116,10 +92,10 @@ export function CheckAadhaarLinkStatus() {
       <Card>
         <CardContent className="p-6">
           <h2 className="text-2xl font-bold mb-2">
-            Welcome to the Aadhaar and PAN search page.
+            Welcome to the City search page.
           </h2>
           <p className="text-muted-foreground">
-            Use the search bar to find information related to Aadhaar and PAN numbers.
+            Use the search bar to find information related to the given City name.
           </p>
         </CardContent>
       </Card>
