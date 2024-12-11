@@ -19,7 +19,7 @@ export const signupSchema = z.object({
     confirmPassword: z.string(),
     gender: z.string({
       required_error: "Please select a gender.",
-    }),
+    }).optional(),
     pinCode: z.string().regex(/^\d{6}$/, {
       message: "Please enter a valid 6 digit PIN code.",
     }).optional(),

@@ -10,5 +10,10 @@ export const env = {
         public:{
             google_maps:String(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY),
         }
+    },
+    auth:{
+        google:{
+            client_id:String(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID)
+        }
     }
 }

@@ -1,6 +1,7 @@
 "use client";
 import { Icon } from "@iconify/react";
 import { HydrationBoundary } from "@tanstack/react-query";
+import { Loader } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -8,7 +9,6 @@ import {
   fetchHomeFooterStaticProp,
   useHomeFooterQuery,
 } from "../../services/page/root/homePage/homeFooterQuery";
-import { LoadingScreen } from "./Loader";
 
 // import { env } from "@/env";
 
@@ -21,7 +21,13 @@ export async function getStaticProps() {
 export default function HomeFooter() {
   const FooterQuery = useHomeFooterQuery();
   if (FooterQuery.isPending) {
-    return <><LoadingScreen/></>;
+    return (
+      <>
+        <div className="w-full flex justify-center">
+          <Loader className="animate-spin" />
+        </div>
+      </>
+    );
   }
   if (FooterQuery.isError) {
     return <>Error Loading Footer</>;
@@ -41,6 +47,7 @@ export default function HomeFooter() {
                   Associates Since 1972.
                 </p>
                 <iframe
+                  title="Google Maps Location"
                   width="100%"
                   className="mt-5 border border-double border-zink-700 p-4 hover:shadow-lg transition duration-300 ease-in-out"
                   // src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyA-P0vEicsimy6oT5Ssd1Ml_XkbdUOm99E&q=LogixBlossomGreensNoida,Sector143,Noida,UttarPradesh`}

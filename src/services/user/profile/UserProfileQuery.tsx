@@ -35,6 +35,6 @@ export const useUserProfileQuery = () => {
       return response.data as UserProfileSuccessResponse;
     },
     placeholderData: keepPreviousData,
-    retry: 1,
+    retry: 0,
   });
 };

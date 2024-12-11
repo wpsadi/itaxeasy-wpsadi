@@ -7,10 +7,19 @@ interface RemotePattern {
   hostname: string;
 }
 
+ 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 
 
 // Define the configuration
 const nextConfig: NextConfig = {
+
+  experimental: {
+    optimizePackageImports: ['icon-library'],
+  },
  
   webpack: (config) => {
     config.module.rules.push({
@@ -42,4 +51,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);

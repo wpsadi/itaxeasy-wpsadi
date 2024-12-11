@@ -29,6 +29,7 @@ import { toast } from "@/hooks/use-toast";
 import { signupSchema } from "@/validations/auth/signup";
 
 import { useSignupMutation } from "../../../../services/auth/signup/signupMutation";
+import { GoogleButtonSignup } from "./googleSignupBtn";
 
 export function SignupForm() {
   const signUpMutation = useSignupMutation();
@@ -225,43 +226,67 @@ export function SignupForm() {
             )}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <FormField
-              control={form.control}
-              name="gender"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Gender</FormLabel>
-                  <Select
-                    disabled={signUpMutation.isPending}
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select gender" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="male">Male</SelectItem>
-                      <SelectItem value="female">Female</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <div className="hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+              <FormField
+                control={form.control}
+                name="gender"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Gender</FormLabel>
+                    <Select
+                      disabled={signUpMutation.isPending}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="male">Male</SelectItem>
+                        <SelectItem value="female">Female</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="hidden">
+                <FormField
+                  control={form.control}
+                  name="pinCode"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>PIN Code</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter PIN code"
+                          disabled={signUpMutation.isPending}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+          </div>
 
+          <div className="hidden">
             <FormField
               control={form.control}
-              name="pinCode"
+              name="address"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>PIN Code</FormLabel>
+                  <FormLabel>Address</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Enter PIN code"
+                    <Textarea
+                      placeholder="Enter your address"
+                      className="resize-none"
                       disabled={signUpMutation.isPending}
                       {...field}
                     />
@@ -272,25 +297,6 @@ export function SignupForm() {
             />
           </div>
 
-          <FormField
-            control={form.control}
-            name="address"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Address</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Enter your address"
-                    className="resize-none"
-                    disabled={signUpMutation.isPending}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           <Button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700"
@@ -298,6 +304,10 @@ export function SignupForm() {
           >
             {signUpMutation.isPending ? "Signing up..." : "Sign Up"}
           </Button>
+
+          <div className="">
+            <GoogleButtonSignup disabled={signUpMutation.isPending} />
+          </div>
 
           <div className="text-center space-y-2">
             <div>
