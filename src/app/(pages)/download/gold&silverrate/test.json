@@ -1,0 +1,257 @@
+{
+    "status": true,
+    "data": [
+        {
+            "id": "e6f124b5-2992-4e71-91b0-c5eacdbe679c",
+            "assessmentYear": "31/03/2022",
+            "stGoldRate24CPer10Grams": "51484",
+            "stSilverRateFor1Kg": "66990"
+        },
+        {
+            "id": "91681fd6-60ec-429b-b70c-33abb64db9b9",
+            "assessmentYear": "31/03/2021",
+            "stGoldRate24CPer10Grams": "48720",
+            "stSilverRateFor1Kg": "65400"
+        },
+        {
+            "id": "d73cff82-a550-4f91-be56-3728330f24a3",
+            "assessmentYear": "31/03/2020",
+            "stGoldRate24CPer10Grams": "48651",
+            "stSilverRateFor1Kg": "40500"
+        },
+        {
+            "id": "799dcf4f-281d-4a33-87d1-2c80afe2a8c0",
+            "assessmentYear": "31/03/2019",
+            "stGoldRate24CPer10Grams": "35220",
+            "stSilverRateFor1Kg": "40600"
+        },
+        {
+            "id": "99e4c180-c0dd-4223-b4cb-a4019d0576d6",
+            "assessmentYear": "31/03/2018",
+            "stGoldRate24CPer10Grams": "30680",
+            "stSilverRateFor1Kg": "38355"
+        },
+        {
+            "id": "12bf1c63-de98-45fc-a0ea-39b04bd9800f",
+            "assessmentYear": "31/03/2017",
+            "stGoldRate24CPer10Grams": "28950",
+            "stSilverRateFor1Kg": "42000"
+        },
+        {
+            "id": "26cf77cb-af64-419b-b817-d5ebba9958e8",
+            "assessmentYear": "31/03/2016",
+            "stGoldRate24CPer10Grams": "28340",
+            "stSilverRateFor1Kg": "36990"
+        },
+        {
+            "id": "c9c74c98-76a7-4195-ba1c-ddce8470a375",
+            "assessmentYear": "31/03/2015",
+            "stGoldRate24CPer10Grams": "26245",
+            "stSilverRateFor1Kg": "26245"
+        },
+        {
+            "id": "205389b1-fd31-4db9-a81b-a93ec6c5682f",
+            "assessmentYear": "31/03/2014",
+            "stGoldRate24CPer10Grams": "28470",
+            "stSilverRateFor1Kg": "43070"
+        },
+        {
+            "id": "28ecdf33-cac6-4b3d-883e-1a7d8bcee7d7",
+            "assessmentYear": "31/03/2013",
+            "stGoldRate24CPer10Grams": "29610",
+            "stSilverRateFor1Kg": "54030"
+        },
+        {
+            "id": "f30d1ef7-f899-4fe1-bbf9-d03edff26440",
+            "assessmentYear": "31/03/2012",
+            "stGoldRate24CPer10Grams": "28040",
+            "stSilverRateFor1Kg": "56290"
+        },
+        {
+            "id": "fd04d194-bc50-46db-ba6d-624ba48409f3",
+            "assessmentYear": "31/03/2011",
+            "stGoldRate24CPer10Grams": "20775",
+            "stSilverRateFor1Kg": "56900"
+        },
+        {
+            "id": "ba39083a-4efb-4ab4-b072-98bf72cc2c35",
+            "assessmentYear": "31/03/2010",
+            "stGoldRate24CPer10Grams": "16320",
+            "stSilverRateFor1Kg": "27255"
+        },
+        {
+            "id": "e785c446-9ddd-4aa3-8bd3-1092ddc7ec45",
+            "assessmentYear": "31/03/2009",
+            "stGoldRate24CPer10Grams": "15105",
+            "stSilverRateFor1Kg": "22165"
+        },
+        {
+            "id": "d259473b-e1e3-4e17-ac2f-3a273125c1ee",
+            "assessmentYear": "31/03/2008",
+            "stGoldRate24CPer10Grams": "12125",
+            "stSilverRateFor1Kg": "23625"
+        },
+        {
+            "id": "6edeb62b-d946-43a6-99fe-cfed7cac993b",
+            "assessmentYear": "31/03/2007",
+            "stGoldRate24CPer10Grams": "9395",
+            "stSilverRateFor1Kg": "19520"
+        },
+        {
+            "id": "415b68fa-b7dd-40cd-8c48-cd84708d9274",
+            "assessmentYear": "31/03/2006",
+            "stGoldRate24CPer10Grams": "8490",
+            "stSilverRateFor1Kg": "17405"
+        },
+        {
+            "id": "fd518321-42c0-4e23-a90c-d1ac9162249e",
+            "assessmentYear": "31/03/2005",
+            "stGoldRate24CPer10Grams": "6180",
+            "stSilverRateFor1Kg": "10675"
+        },
+        {
+            "id": "b9925eb0-15ed-4789-92bf-40ffe3ce8039",
+            "assessmentYear": "31/03/2004",
+            "stGoldRate24CPer10Grams": "6065",
+            "stSilverRateFor1Kg": "11770"
+        },
+        {
+            "id": "7cfbb6b1-8c53-42f9-b5cc-72d0816e9222",
+            "assessmentYear": "31/03/2003",
+            "stGoldRate24CPer10Grams": "5310",
+            "stSilverRateFor1Kg": "7695"
+        },
+        {
+            "id": "a8ed7fea-fb87-4b63-b93c-f4820dca7f4a",
+            "assessmentYear": "31/03/2002",
+            "stGoldRate24CPer10Grams": "5010",
+            "stSilverRateFor1Kg": "7875"
+        },
+        {
+            "id": "d6174b5f-6709-4b62-854a-7de0804c2c16",
+            "assessmentYear": "31/03/2001",
+            "stGoldRate24CPer10Grams": "4190",
+            "stSilverRateFor1Kg": "7215"
+        },
+        {
+            "id": "6198d0ab-1bee-4d6a-b5c7-ca66a42b4d22",
+            "assessmentYear": "31/03/2000",
+            "stGoldRate24CPer10Grams": "4380",
+            "stSilverRateFor1Kg": "7900"
+        },
+        {
+            "id": "a1cc5fc5-f263-4a8c-8a89-16f5a304a12a",
+            "assessmentYear": "31/03/1999",
+            "stGoldRate24CPer10Grams": "4235",
+            "stSilverRateFor1Kg": "7615"
+        },
+        {
+            "id": "d3ba6933-0f38-4ba4-bfe8-73c71c9722ff",
+            "assessmentYear": "31/03/1998",
+            "stGoldRate24CPer10Grams": "4045",
+            "stSilverRateFor1Kg": "8560"
+        },
+        {
+            "id": "1e7e427c-4e01-4b0d-924e-ce373c8d0881",
+            "assessmentYear": "31/03/1997",
+            "stGoldRate24CPer10Grams": "4725",
+            "stSilverRateFor1Kg": "7345"
+        },
+        {
+            "id": "87757070-1a63-43b9-bcc2-2c50488ae251",
+            "assessmentYear": "31/03/1996",
+            "stGoldRate24CPer10Grams": "5160",
+            "stSilverRateFor1Kg": "7346"
+        },
+        {
+            "id": "be276612-a618-47f4-a3ac-8d739270bd72",
+            "assessmentYear": "31/03/1995",
+            "stGoldRate24CPer10Grams": "4680",
+            "stSilverRateFor1Kg": "4680"
+        },
+        {
+            "id": "f0ccef71-abbd-421d-8b94-e565475490dc",
+            "assessmentYear": "31/03/1994",
+            "stGoldRate24CPer10Grams": "4598",
+            "stSilverRateFor1Kg": "7142"
+        },
+        {
+            "id": "2d232977-097d-4d70-abce-7125bce6d9cd",
+            "assessmentYear": "31/03/1993",
+            "stGoldRate24CPer10Grams": "4140",
+            "stSilverRateFor1Kg": "5489"
+        },
+        {
+            "id": "6ac6776c-bb96-465b-bf2c-212bfc26e65e",
+            "assessmentYear": "31/03/1992",
+            "stGoldRate24CPer10Grams": "4334",
+            "stSilverRateFor1Kg": "8040"
+        },
+        {
+            "id": "a6cbcf0a-9ab9-424c-9e01-89cf720fee9c",
+            "assessmentYear": "31/03/1991",
+            "stGoldRate24CPer10Grams": "3466",
+            "stSilverRateFor1Kg": "6646"
+        },
+        {
+            "id": "93d31d56-5c87-44f9-9050-7f1776c7e2e3",
+            "assessmentYear": "31/03/1990",
+            "stGoldRate24CPer10Grams": "3200",
+            "stSilverRateFor1Kg": "6463"
+        },
+        {
+            "id": "42393236-9199-47cb-8966-9398cb6ae042",
+            "assessmentYear": "31/03/1989",
+            "stGoldRate24CPer10Grams": "3140",
+            "stSilverRateFor1Kg": "6755"
+        },
+        {
+            "id": "cb886cc2-d924-48d4-b668-e8f6eae535c6",
+            "assessmentYear": "31/03/1988",
+            "stGoldRate24CPer10Grams": "3130",
+            "stSilverRateFor1Kg": "6066"
+        },
+        {
+            "id": "26cfda3b-7fc4-4f4f-ba29-df4ee02e1fdd",
+            "assessmentYear": "31/03/1987",
+            "stGoldRate24CPer10Grams": "2570",
+            "stSilverRateFor1Kg": "4794"
+        },
+        {
+            "id": "cb211108-d85a-4d8f-9639-391cae8297cb",
+            "assessmentYear": "31/03/1986",
+            "stGoldRate24CPer10Grams": "2140",
+            "stSilverRateFor1Kg": "4015"
+        },
+        {
+            "id": "f5177a35-f14e-40d5-9978-8dc56cbef569",
+            "assessmentYear": "31/03/1985",
+            "stGoldRate24CPer10Grams": "2130",
+            "stSilverRateFor1Kg": "3955"
+        },
+        {
+            "id": "68e2a6c6-e69c-40d9-9bf3-530a74f3554e",
+            "assessmentYear": "31/03/1984",
+            "stGoldRate24CPer10Grams": "1975",
+            "stSilverRateFor1Kg": "3570"
+        },
+        {
+            "id": "b67b64f0-d1f5-41f2-a2b3-45e2299fa370",
+            "assessmentYear": "31/03/1983",
+            "stGoldRate24CPer10Grams": "1800",
+            "stSilverRateFor1Kg": "3105"
+        },
+        {
+            "id": "3bcf954a-54be-44e2-96ed-5db57e08a19e",
+            "assessmentYear": "31/03/1982",
+            "stGoldRate24CPer10Grams": "1645",
+            "stSilverRateFor1Kg": "1645"
+        },
+        {
+            "id": "91a1c561-d53a-4b11-b44d-4c5d09bfd4f8",
+            "assessmentYear": "01/04/1981",
+            "stGoldRate24CPer10Grams": "1670",
+            "stSilverRateFor1Kg": "2715"
+        }
+    ]
+}

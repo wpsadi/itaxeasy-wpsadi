@@ -1,0 +1,234 @@
+{
+    "status": true,
+    "data": [
+        {
+            "id": "a03bd783-8482-41f2-8751-ec0150a8c8ec",
+            "financeAct": "2022",
+            "listName": "cost-inflation-index-list",
+            "costInflationIndex": [
+                {
+                    "id": "c43947f0-fc42-47ba-b8db-13e2e459bffd",
+                    "financialYear": "2022-2023",
+                    "costInflationIndex": 331
+                },
+                {
+                    "id": "0c7c979e-9b1c-4dbc-bd30-11288beb42d4",
+                    "financialYear": "2021-2022",
+                    "costInflationIndex": 317
+                },
+                {
+                    "id": "0167d91a-88e3-4fcc-a661-5aa7f8c48500",
+                    "financialYear": "2020-2021",
+                    "costInflationIndex": 301
+                },
+                {
+                    "id": "a0704520-4597-43ff-86c6-bb4d29867583",
+                    "financialYear": "2019-2020",
+                    "costInflationIndex": 289
+                },
+                {
+                    "id": "728ff220-1e3b-4936-8d86-43cb86db89f8",
+                    "financialYear": "2018-2019",
+                    "costInflationIndex": 280
+                },
+                {
+                    "id": "8f63b9b1-6ef9-427a-b497-c0b823a50c73",
+                    "financialYear": "2017-2018",
+                    "costInflationIndex": 272
+                },
+                {
+                    "id": "ffea469a-b363-455e-89b1-78cd17da4edb",
+                    "financialYear": "2016-2017",
+                    "costInflationIndex": 264
+                },
+                {
+                    "id": "d50c8c78-f532-4a76-aa12-c4fbebd6f50b",
+                    "financialYear": "2015-2016",
+                    "costInflationIndex": 254
+                },
+                {
+                    "id": "f4093b49-66b5-4d3d-8273-fa4f082518dc",
+                    "financialYear": "2014-2015",
+                    "costInflationIndex": 240
+                },
+                {
+                    "id": "060322d0-0116-4fea-90a8-e764678c0710",
+                    "financialYear": "2013-2014",
+                    "costInflationIndex": 220
+                },
+                {
+                    "id": "3ace19a6-ef85-4f14-8706-a69a30fcd472",
+                    "financialYear": "2012-2013",
+                    "costInflationIndex": 200
+                },
+                {
+                    "id": "f8ba70b1-ad4e-480a-8331-0171e81df433",
+                    "financialYear": "2011-2012",
+                    "costInflationIndex": 184
+                },
+                {
+                    "id": "d1539814-cd0f-47ad-a444-72beb7bb7a25",
+                    "financialYear": "2010-2011",
+                    "costInflationIndex": 167
+                },
+                {
+                    "id": "eca6cd91-b77f-4e31-b1a5-b5b64777107c",
+                    "financialYear": "2009-2010",
+                    "costInflationIndex": 148
+                },
+                {
+                    "id": "c6210a55-75c0-47d8-a678-7ef4a60fddc5",
+                    "financialYear": "2008-2009",
+                    "costInflationIndex": 137
+                },
+                {
+                    "id": "f459b360-b5af-4cfc-a38c-0eadf50b275b",
+                    "financialYear": "2007-2008",
+                    "costInflationIndex": 129
+                },
+                {
+                    "id": "1da0d047-abc8-4067-8ea2-e8704930b385",
+                    "financialYear": "2006-2007",
+                    "costInflationIndex": 122
+                },
+                {
+                    "id": "c75d89fb-624f-470e-8d91-90581b88a8e8",
+                    "financialYear": "2005-2006",
+                    "costInflationIndex": 117
+                },
+                {
+                    "id": "21604b91-0d86-492f-9282-19b0655b1065",
+                    "financialYear": "2004-2005",
+                    "costInflationIndex": 113
+                },
+                {
+                    "id": "465cb00d-5cb0-42c9-a879-06de5eea39e3",
+                    "financialYear": "2003-2004",
+                    "costInflationIndex": 109
+                },
+                {
+                    "id": "67356061-6d08-40c9-a166-0eb849c7e250",
+                    "financialYear": "2002-2003",
+                    "costInflationIndex": 105
+                },
+                {
+                    "id": "13f9da31-2466-485a-bcda-04a0a9f56054",
+                    "financialYear": "2001-2002",
+                    "costInflationIndex": 100
+                }
+            ]
+        },
+        {
+            "id": "f7c72362-5ea2-46e1-a66d-c369742375f5",
+            "financeAct": "2022",
+            "listName": "cost-inflation-index-list-2",
+            "costInflationIndex": [
+                {
+                    "id": "22ea2a0f-054a-4e72-a663-85b7dd899bbc",
+                    "financialYear": "2021-2022",
+                    "costInflationIndex": 317
+                },
+                {
+                    "id": "8cdac848-8615-46c3-8fb0-11591df470ec",
+                    "financialYear": "2020-2021",
+                    "costInflationIndex": 301
+                },
+                {
+                    "id": "799cd469-0b19-4165-be45-d19d00e7a82a",
+                    "financialYear": "2019-2020",
+                    "costInflationIndex": 289
+                },
+                {
+                    "id": "38a36340-c795-47f6-adc5-6a70e5103625",
+                    "financialYear": "2018-2019",
+                    "costInflationIndex": 280
+                },
+                {
+                    "id": "71b57c9b-2956-449b-87c2-e0f0d5a48094",
+                    "financialYear": "2017-2018",
+                    "costInflationIndex": 272
+                },
+                {
+                    "id": "913807e8-2402-4a82-a769-800f1a3fc589",
+                    "financialYear": "2016-2017",
+                    "costInflationIndex": 264
+                },
+                {
+                    "id": "68cc7425-825e-4e96-8b30-3e7842e6aac9",
+                    "financialYear": "2015-2016",
+                    "costInflationIndex": 254
+                },
+                {
+                    "id": "203e5541-b3f8-47a5-a3e3-ee7688300657",
+                    "financialYear": "2014-2015",
+                    "costInflationIndex": 240
+                },
+                {
+                    "id": "10c05143-3570-41b8-bd94-898dfc07d7fc",
+                    "financialYear": "2013-2014",
+                    "costInflationIndex": 220
+                },
+                {
+                    "id": "668565ff-f5d2-41ff-b8b3-3744b22ae5d4",
+                    "financialYear": "2012-2013",
+                    "costInflationIndex": 200
+                },
+                {
+                    "id": "8eb76440-24a5-4b42-a8b9-27bc5bfe6243",
+                    "financialYear": "2011-2012",
+                    "costInflationIndex": 184
+                },
+                {
+                    "id": "2dc39cae-abe4-42d2-b1bc-341b6280921d",
+                    "financialYear": "2010-2011",
+                    "costInflationIndex": 167
+                },
+                {
+                    "id": "a410427b-457d-496d-bed3-ff4f6646fcab",
+                    "financialYear": "2009-2010",
+                    "costInflationIndex": 148
+                },
+                {
+                    "id": "bc850c29-3e0d-4f8b-82f4-2c74782e1091",
+                    "financialYear": "2008-2009",
+                    "costInflationIndex": 137
+                },
+                {
+                    "id": "58d8b05c-74b3-4b3d-ae4c-8c54bef10ddd",
+                    "financialYear": "2007-2008",
+                    "costInflationIndex": 129
+                },
+                {
+                    "id": "f1ee6a02-ece9-4d72-977f-77064b44510c",
+                    "financialYear": "2006-2007",
+                    "costInflationIndex": 122
+                },
+                {
+                    "id": "c9aec1b9-7bde-4a97-a5f8-13cbfa0e5c74",
+                    "financialYear": "2005-2006",
+                    "costInflationIndex": 113
+                },
+                {
+                    "id": "b009c134-9680-441b-90dc-84d93d522567",
+                    "financialYear": "2004-2005",
+                    "costInflationIndex": 113
+                },
+                {
+                    "id": "c5d18b7b-bee8-45cd-bac1-d44c72301355",
+                    "financialYear": "2003-2004",
+                    "costInflationIndex": 109
+                },
+                {
+                    "id": "250a083c-a3e3-4abf-b9c8-0b2d9e2dacb5",
+                    "financialYear": "2002-2003",
+                    "costInflationIndex": 105
+                },
+                {
+                    "id": "4f216d57-4835-4dd1-9b06-81bff0f636ec",
+                    "financialYear": "2001-2002",
+                    "costInflationIndex": 100
+                }
+            ]
+        }
+    ]
+}
