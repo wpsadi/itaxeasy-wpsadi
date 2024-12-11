@@ -6,7 +6,7 @@ import { SignupForm } from "./signupForm";
 function Page() {
   return (
     <>
-        <div className="overflow-auto lg:h-[80vh]">
+        <div className="overflow-auto">
         <SignupForm/>
         </div>
 

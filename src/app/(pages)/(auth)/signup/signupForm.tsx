@@ -29,6 +29,7 @@ import { toast } from "@/hooks/use-toast";
 import { signupSchema } from "@/validations/auth/signup";
 
 import { useSignupMutation } from "../../../../services/auth/signup/signupMutation";
+import { GoogleButtonSignup } from "./googleSignupBtn";
 
 export function SignupForm() {
   const signUpMutation = useSignupMutation();
@@ -225,7 +226,7 @@ export function SignupForm() {
             )}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 hidden">
             <FormField
               control={form.control}
               name="gender"
@@ -252,8 +253,8 @@ export function SignupForm() {
                 </FormItem>
               )}
             />
-
-            <FormField
+<div className="hidden">
+<FormField
               control={form.control}
               name="pinCode"
               render={({ field }) => (
@@ -270,9 +271,12 @@ export function SignupForm() {
                 </FormItem>
               )}
             />
+</div>
+            
           </div>
 
-          <FormField
+        <div className="hidden">
+        <FormField
             control={form.control}
             name="address"
             render={({ field }) => (
@@ -290,6 +294,7 @@ export function SignupForm() {
               </FormItem>
             )}
           />
+        </div>
 
           <Button
             type="submit"
@@ -298,6 +303,10 @@ export function SignupForm() {
           >
             {signUpMutation.isPending ? "Signing up..." : "Sign Up"}
           </Button>
+
+          <div className="">
+            <GoogleButtonSignup disabled={signUpMutation.isPending}/>
+          </div>
 
           <div className="text-center space-y-2">
             <div>
