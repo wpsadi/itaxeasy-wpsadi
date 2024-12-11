@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "analytic-build":"ANALYZE=true npm run build"
+    "analytic-build": "ANALYZE=true npm run build"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -17,6 +17,7 @@
     "@material-tailwind/react": "^2.1.10",
     "@next/bundle-analyzer": "^15.1.0",
     "@radix-ui/react-avatar": "^1.1.1",
+    "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
     "@radix-ui/react-label": "^2.1.0",
