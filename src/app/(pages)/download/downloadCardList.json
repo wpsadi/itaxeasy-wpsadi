@@ -1,0 +1,70 @@
+{
+  "downloadlist": [
+    {
+      "link": "/",
+      "icon": "form16",
+      "label": "Form 16",
+      "description": "Download Blank Form16 From Here."
+    },
+    {
+      "link": "/downloadlist/gold&silverrate",
+      "icon": "gold",
+      "label": "Gold & Silver Rate",
+      "description": "Find Your Gold Rate And Download It."
+    },
+    {
+      "link": "/",
+      "icon": "inflation",
+      "label": "New Cost Inflation Index",
+      "description": "The Cost Inflation Index For FY 2023-24"
+    },
+    {
+      "link": "/",
+      "icon": "inflation",
+      "label": "Cost Inflation Index",
+      "description": "The Cost Inflation Index For FY 2023-24"
+    },
+    {
+      "link": "/",
+      "icon": "incomeTax",
+      "label": "Status wise Income Tax Code and PAN Code",
+      "description": "Applicants for PAN are required to provide the AO code in their application."
+    },
+    {
+      "link": "/",
+      "icon": "savingCertificate1",
+      "label": "Interest Accrued on National Saving Certificates (VIIIth Issue)",
+      "description": "VIII are that it has no limit"
+    },
+    {
+      "link": "/",
+      "icon": "interestIndraVikas",
+      "label": "Interest Accrued on Indira Vikas Patras (IVP)",
+      "description": "Interest accrued on IVPs at the rate of 13.43% per annum"
+    },
+    {
+      "link": "/",
+      "icon": "interestOnKVP",
+      "label": "Interest Accrued on National Saving Certificates (IXth Issue)",
+      "description": "The NSC interest rate in 2021 and 2022 currently 6.8%"
+    },
+    {
+      "link": "/",
+      "icon": "depreciation",
+      "label": "Depreciation Table",
+      "description": "Depreciation allowance as percentage of WDV"
+    },
+    {
+      "link": "/",
+      "icon": "interestOnKVP",
+      "label": "Interest On KVP",
+      "description": "Kisan Vikas Patra is a small savings instrument"
+    },
+    {
+      "link": "/",
+      "icon": "countryCode",
+      "label": "Country Code",
+      "description": "To File ITR Select Country Code."
+    }
+  ]
+}
