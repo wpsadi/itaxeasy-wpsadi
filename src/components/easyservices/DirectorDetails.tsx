@@ -16,31 +16,26 @@ import {
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
 
-// Zod schema for validating Aadhaar and PAN numbers
-const validationSchema = z.object({
-  aadhaar: z
+// Zod schema for validating DIN number
+const dinSchema = z.object({
+  din: z
     .string()
-    .length(12, "Aadhaar number must be exactly 12 digits long")
-    .regex(/^[0-9]{12}$/, "Aadhaar number must contain only 12 digits"),
-  pan: z
-    .string()
-    .length(10, "PAN number must be exactly 10 characters long")
-    .regex(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/, "PAN number is invalid"),
+    .length(8, "DIN number must be exactly 8 characters long")
+    .regex(/^\d+$/, "DIN number must only contain digits"),
 });
 
 // Type for the form values
-type FormValues = z.infer<typeof validationSchema>;
+type DinFormValues = z.infer<typeof dinSchema>;
 
-export function CheckAadhaarLinkStatus() {
-  const form = useForm<FormValues>({
-    resolver: zodResolver(validationSchema),
+export function DINSearchForm() {
+  const form = useForm<DinFormValues>({
+    resolver: zodResolver(dinSchema),
     defaultValues: {
-      aadhaar: "",
-      pan: "",
+      din: "",
     },
   });
 
-  function onSubmit(data: FormValues) {
+  function onSubmit(data: DinFormValues) {
     console.log(data);
     // Handle search logic here
   }
@@ -52,22 +47,22 @@ export function CheckAadhaarLinkStatus() {
   return (
     <div className="grid p-10 gap-5 md:grid-cols-2">
       <Card>
+        <h1 className="p-5 text-2xl">Company Director Details</h1>
         <CardHeader>
-          <CardTitle>Check Aadhaar Link Status</CardTitle>
+          <CardTitle>Search By DIN</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              {/* Aadhaar Number Field */}
               <FormField
                 control={form.control}
-                name="aadhaar"
+                name="din"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Aadhaar No.</FormLabel>
+                    <FormLabel>DIN Number:</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter your Aadhaar number"
+                        placeholder="Enter DIN Number"
                         {...field}
                       />
                     </FormControl>
@@ -75,25 +70,6 @@ export function CheckAadhaarLinkStatus() {
                   </FormItem>
                 )}
               />
-
-              {/* PAN Number Field */}
-              <FormField
-                control={form.control}
-                name="pan"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>PAN No.</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Enter your PAN number"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
               <div className="flex gap-4">
                 <Button
                   type="submit"
@@ -116,10 +92,10 @@ export function CheckAadhaarLinkStatus() {
       <Card>
         <CardContent className="p-6">
           <h2 className="text-2xl font-bold mb-2">
-            Welcome to the Aadhaar and PAN search page.
+            Welcome to the DIN search page.
           </h2>
           <p className="text-muted-foreground">
-            Use the search bar to find information related to Aadhaar and PAN numbers.
+            Use the search bar to find information related to the given DIN number.
           </p>
         </CardContent>
       </Card>
