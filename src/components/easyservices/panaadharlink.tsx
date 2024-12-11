@@ -49,7 +49,7 @@ export default function PanAadhaarStatus() {
                   {...form.register("pan")}
                   id="pan"
                   placeholder="Enter PAN No."
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {form.formState.errors.pan && (
                   <p className="text-red-500 text-sm mt-1">
@@ -60,7 +60,7 @@ export default function PanAadhaarStatus() {
               <div>
                 <label
                   htmlFor="aadhaar"
-                  className="block text-sm font-medium text-gray-700 mb-1"
+                  className="block text-sm font-medium text-gray-700  mb-1"
                 >
                   Aadhaar No.
                 </label>
@@ -68,7 +68,7 @@ export default function PanAadhaarStatus() {
                   {...form.register("aadhaar")}
                   id="aadhaar"
                   placeholder="Enter Aadhaar No."
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {form.formState.errors.aadhaar && (
                   <p className="text-red-500 text-sm mt-1">
