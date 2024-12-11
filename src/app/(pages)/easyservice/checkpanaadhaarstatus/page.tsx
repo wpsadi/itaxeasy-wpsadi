@@ -1,14 +1,13 @@
 
 import HomeFooter from "@/components/common/HomeFooter";
 import { HomeNavbar } from "@/components/common/HomeNavbar";
-
-import { GSTINSearchForm } from "@/components/easyservices/gstinsearch";
+import PanAadhaarStatus from "@/components/easyservices/panaadharlink";
 
 export default function Page() {
   return (
     <>
       <HomeNavbar />
-      <GSTINSearchForm></GSTINSearchForm>
+      <PanAadhaarStatus></PanAadhaarStatus>
       <HomeFooter/>
     </>
   );

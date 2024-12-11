@@ -60,7 +60,7 @@ export function TrackGSTForm() {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-10">
       <div className="bg-white p-6 rounded-lg shadow-sm">
         <h1 className="text-2xl font-semibold mb-6">Track GST Return</h1>
         <Form {...form}>
