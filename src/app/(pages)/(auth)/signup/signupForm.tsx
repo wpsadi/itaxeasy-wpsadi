@@ -226,43 +226,67 @@ export function SignupForm() {
             )}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 hidden">
+          <div className="hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
+              <FormField
+                control={form.control}
+                name="gender"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Gender</FormLabel>
+                    <Select
+                      disabled={signUpMutation.isPending}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="male">Male</SelectItem>
+                        <SelectItem value="female">Female</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="hidden">
+                <FormField
+                  control={form.control}
+                  name="pinCode"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>PIN Code</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Enter PIN code"
+                          disabled={signUpMutation.isPending}
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden">
             <FormField
               control={form.control}
-              name="gender"
+              name="address"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Gender</FormLabel>
-                  <Select
-                    disabled={signUpMutation.isPending}
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select gender" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="male">Male</SelectItem>
-                      <SelectItem value="female">Female</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-<div className="hidden">
-<FormField
-              control={form.control}
-              name="pinCode"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>PIN Code</FormLabel>
+                  <FormLabel>Address</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Enter PIN code"
+                    <Textarea
+                      placeholder="Enter your address"
+                      className="resize-none"
                       disabled={signUpMutation.isPending}
                       {...field}
                     />
@@ -271,30 +295,7 @@ export function SignupForm() {
                 </FormItem>
               )}
             />
-</div>
-            
           </div>
-
-        <div className="hidden">
-        <FormField
-            control={form.control}
-            name="address"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Address</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Enter your address"
-                    className="resize-none"
-                    disabled={signUpMutation.isPending}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
 
           <Button
             type="submit"
@@ -305,7 +306,7 @@ export function SignupForm() {
           </Button>
 
           <div className="">
-            <GoogleButtonSignup disabled={signUpMutation.isPending}/>
+            <GoogleButtonSignup disabled={signUpMutation.isPending} />
           </div>
 
           <div className="text-center space-y-2">

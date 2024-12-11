@@ -40,6 +40,7 @@ import { MainMenuItem, MenuItem } from "@/types/menu";
 import { useUserProfileQuery } from "../../services/user/profile/UserProfileQuery";
 import { NavbarUserDropdown } from "./NavbarLoggedInUI";
 
+
 const ourProductsMenu: MenuItem[] = [
   {
     url: "#",
