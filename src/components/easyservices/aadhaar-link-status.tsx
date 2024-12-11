@@ -1,8 +1,6 @@
 "use client";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '../ui/dropdown-menu';
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 
+import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,53 +12,56 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { PANFormValues, panSchema } from "@/validations/easyservices/pan";
 
+export function CheckAadhaarLinkStatus() {
+  // Remove the commented-out code to keep the UI for now
 
-export function PANSearchForm() {
-  const form = useForm<PANFormValues>({
-    resolver: zodResolver(panSchema),
-    defaultValues: {
-      pan: "",
-    },
-  });
-
-  function onSubmit(data: PANFormValues) {
-    console.log(data);
-    // Handle search logic here
-  }
-
-  function onClear() {
-    form.reset();
-  }
+  // For now, pass an empty object or a mock object, 
+  // but later integrate react-hook-form as needed
+  const form: any = {}; // A placeholder for now
 
   return (
-    <div className="grid gap-8 md:grid-cols-2 p-10">
+    <div className="grid p-10 gap-5 md:grid-cols-2">
       <Card>
         <CardHeader>
-          <CardTitle>PAN DETAILS</CardTitle>
+          <CardTitle>Search By IFSC</CardTitle>
         </CardHeader>
         <CardContent>
+          {/* Form tag with no react-hook-form logic for now */}
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form className="space-y-4">
               <FormField
-                control={form.control}
-                name="pan"
+                name="AadhaarNo."
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Pan Of Tax Payer :</FormLabel>
+                    <FormLabel>Aadhaar No.</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your PAN Number" {...field} />
+                      <Input
+                        placeholder="Your Aadhaar No."
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
-                  
                 )}
-                
-                />
-
-
+              />
               
+              <FormField
+                name="PanNo"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>PAN Number</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Your PAN Number"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <div className="flex gap-4">
                 <Button
                   type="submit"
@@ -70,7 +71,6 @@ export function PANSearchForm() {
                 </Button>
                 <Button
                   type="button"
-                  onClick={onClear}
                   className="flex-1 bg-orange-400 hover:bg-orange-500"
                 >
                   Clear
@@ -80,13 +80,15 @@ export function PANSearchForm() {
           </Form>
         </CardContent>
       </Card>
+
       <Card>
         <CardContent className="p-6">
           <h2 className="text-2xl font-bold mb-2">
-            Welcome to the PAN verification page.
+            Welcome to the TaxPayer search page.
           </h2>
           <p className="text-muted-foreground">
-            Use the search bar to find information about PAN.
+            Use the search bar to find information about taxpayers and their
+            financial records.
           </p>
         </CardContent>
       </Card>

@@ -34,7 +34,7 @@ export function GSTINSearchForm() {
   }
 
   return (
-    <div className="grid gap-8 md:grid-cols-2">
+    <div className="grid p-10 gap-5 md:grid-cols-2">
       <Card>
         <CardHeader>
           <CardTitle>Search By GSTIN</CardTitle>
