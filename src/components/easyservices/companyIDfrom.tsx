@@ -1,9 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,25 +18,30 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
 import { useEasySearchCompanyID } from "@/services/easy-services/company/company-details";
+
 
 // Zod schema for validating Company ID
 const companyIdSchema = z.object({
   companyId: z
     .string()
     .length(10, "Company ID must be exactly 10 characters long")
+
     .regex(
       /^[A-Za-z0-9]+$/,
       "Company ID must only contain alphanumeric characters"
     ),
+
 });
 
 // Type for the form values
 type CompanyIdFormValues = z.infer<typeof companyIdSchema>;
 
 export function CompanyIDSearchForm() {
-  
+
   const companySearchIDMutation = useEasySearchCompanyID();
+
   const form = useForm<CompanyIdFormValues>({
     resolver: zodResolver(companyIdSchema),
     defaultValues: {
@@ -44,7 +51,9 @@ export function CompanyIDSearchForm() {
 
   function onSubmit(data: CompanyIdFormValues) {
     console.log(data);
+
     companySearchIDMutation.mutate(data.companyId);
+
     // Handle search logic here
   }
 
@@ -69,10 +78,12 @@ export function CompanyIDSearchForm() {
                     <FormLabel>Company ID:</FormLabel>
                     <FormControl>
                       <Input
+
                         disabled={companySearchIDMutation.isPending}
                        
                       
                       placeholder="Enter Company ID" {...field} />
+
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -81,6 +92,7 @@ export function CompanyIDSearchForm() {
               <div className="flex gap-4">
                 <Button
                   type="submit"
+
                   disabled={companySearchIDMutation.isPending}
                   className="flex-1 bg-blue-500 hover:bg-blue-600"
                 >
@@ -92,6 +104,7 @@ export function CompanyIDSearchForm() {
                 </Button>
                 <Button
                   type="button"
+
 
                   onClick={onClear}
                   className="flex-1 bg-orange-400 hover:bg-orange-500"
@@ -109,8 +122,10 @@ export function CompanyIDSearchForm() {
             Welcome to the Company ID search page.
           </h2>
           <p className="text-muted-foreground">
+
             Use the search bar to find information related to the given Company
             ID.
+
           </p>
         </CardContent>
       </Card>
