@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
+import { Head } from "./Head";
 
 // Zod schema for validating Company ID
 const companyIdSchema = z.object({
@@ -45,11 +46,13 @@ export function CompanyIDSearchForm() {
   }
 
   return (
+
+    <div className="m-10">
+    <Head text="Search By Company ID"></Head>
+
+
     <div className="grid p-10 gap-5 md:grid-cols-2">
       <Card>
-        <CardHeader>
-          <CardTitle>Search By Company ID</CardTitle>
-        </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -99,5 +102,7 @@ export function CompanyIDSearchForm() {
         </CardContent>
       </Card>
     </div>
+  </div>
+
   );
 }

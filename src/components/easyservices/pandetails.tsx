@@ -2,6 +2,7 @@
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '../ui/dropdown-menu';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { Head } from "./Head";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,11 +36,12 @@ export function PANSearchForm() {
   }
 
   return (
+    <div className="m-10">
+    <Head text="PAN DETAILS"></Head>
+
+
     <div className="grid gap-8 md:grid-cols-2 p-10">
       <Card>
-        <CardHeader>
-          <CardTitle>PAN DETAILS</CardTitle>
-        </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -91,5 +93,6 @@ export function PANSearchForm() {
         </CardContent>
       </Card>
     </div>
+  </div>
   );
 }

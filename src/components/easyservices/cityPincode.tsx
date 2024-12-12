@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import * as z from "zod";
+import { Head } from "./Head";
 
 // Zod schema for validating City name
 const citySchema = z.object({
@@ -46,11 +47,13 @@ export function CitySearchForm() {
   }
 
   return (
+    
     <div className="grid p-10 gap-5 md:grid-cols-2">
+      <Head text="Search By City"></Head>
+
+
+    <div className="m-10">
       <Card>
-        <CardHeader>
-          <CardTitle>Search By City</CardTitle>
-        </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -100,5 +103,7 @@ export function CitySearchForm() {
         </CardContent>
       </Card>
     </div>
+    </div>
+
   );
 }

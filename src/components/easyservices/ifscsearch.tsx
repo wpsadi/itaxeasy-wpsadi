@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { IFSCFormValues, IFSCSchema } from "@/validations/easyservices/IFSCin";
+import { Head } from "./Head";
 
 export function IFSCSearchForm() {
   const form = useForm<IFSCFormValues>({
@@ -34,11 +35,12 @@ export function IFSCSearchForm() {
   }
 
   return (
+    <div className="m-10">
+    <Head text="Search By IFSC"></Head>
+
+
     <div className="grid p-10 gap-5 md:grid-cols-2">
       <Card>
-        <CardHeader>
-          <CardTitle>Search By IFSC</CardTitle>
-        </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -89,5 +91,6 @@ export function IFSCSearchForm() {
         </CardContent>
       </Card>
     </div>
+  </div>
   );
 }

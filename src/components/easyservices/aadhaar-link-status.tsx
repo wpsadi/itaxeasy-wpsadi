@@ -52,14 +52,11 @@ export function CheckAadhaarLinkStatus() {
 
   return (
     <div className="m-10">
-    <Head text="Check Aadhaar Link Status"></Head>
+        <Head text="Check Aadhaar Link Status"></Head>
 
         <div className="grid p-10 gap-5 md:grid-cols-2">
             
         <Card>
-            <CardHeader>
-            <CardTitle>Check Aadhaar Link Status</CardTitle>
-            </CardHeader>
             <CardContent>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

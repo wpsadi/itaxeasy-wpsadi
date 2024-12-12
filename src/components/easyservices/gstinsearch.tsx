@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { GSTINFormValues, gstinSchema } from "@/validations/easyservices/gstin";
+import { Head } from "./Head";
 
 export function GSTINSearchForm() {
   const form = useForm<GSTINFormValues>({
@@ -34,11 +35,12 @@ export function GSTINSearchForm() {
   }
 
   return (
+    <div className="m-10">
+    <Head text="Search By GSTIN"></Head>
+
+
     <div className="grid p-10 gap-5 md:grid-cols-2">
       <Card>
-        <CardHeader>
-          <CardTitle>Search By GSTIN</CardTitle>
-        </CardHeader>
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -89,5 +91,6 @@ export function GSTINSearchForm() {
         </CardContent>
       </Card>
     </div>
+  </div>
   );
 }

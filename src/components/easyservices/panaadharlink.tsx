@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { Head } from "./Head";
 
 const formSchema = z.object({
   pan: z.string().min(10, "PAN number must be 10 characters").max(10),
@@ -27,12 +28,13 @@ export default function PanAadhaarStatus() {
   }
 
   return (
+    <div className="m-10">
+    <Head text="Check Pan Aadhaar Status"></Head>
+
+
     <div className="w-full max-w-6xl mx-auto p-4">
       <div className="flex gap-8">
         <div className="flex-1">
-          <h1 className="text-2xl font-semibold mb-6 border-l-4 border-blue-500 pl-3">
-            Check Pan Aadhaar Status
-          </h1>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="bg-white p-6 rounded-lg shadow-sm"
@@ -107,5 +109,6 @@ export default function PanAadhaarStatus() {
         </div>
       </div>
     </div>
+  </div>
   );
 }

@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { Head } from "./Head";
 
 // Zod schema for validation
 const formSchema = z.object({
@@ -47,12 +48,13 @@ export default function VerificationOfBank() {
   }
 
   return (
+    <div className="m-10">
+    <Head text="Verify Account Details"></Head>
+
+
     <div className="w-full max-w-6xl mx-auto p-4">
       <div className="flex gap-8">
         <div className="flex-1">
-          <h1 className="text-2xl font-semibold mb-6 border-l-4 border-blue-500 pl-3">
-            Verify Account Details
-          </h1>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="bg-white p-6 rounded-lg shadow-sm"
@@ -169,5 +171,6 @@ export default function VerificationOfBank() {
         </div>
       </div>
     </div>
+  </div>
   );
 }
