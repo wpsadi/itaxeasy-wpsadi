@@ -58,7 +58,7 @@ export default function PANSearchForm() {
     <div className="grid p-10 gap-5 md:grid-cols-2">
       {/* Form Section */}
       <Card>
-        <CardContent>
+        <CardContent className="p-10">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               {/* PAN Field */}

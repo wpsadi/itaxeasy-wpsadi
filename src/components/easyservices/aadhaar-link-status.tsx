@@ -57,8 +57,8 @@ export function CheckAadhaarLinkStatus() {
         <div className="grid p-10 gap-5 md:grid-cols-2">
             
         <Card>
-            <CardContent>
-            <Form {...form}>
+            <CardContent className="p-10">
+            <Form  {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 {/* Aadhaar Number Field */}
                 <FormField

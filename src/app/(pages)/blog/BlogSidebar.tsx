@@ -17,7 +17,6 @@ export const BlogSidebar = ()=>{
             </div>
             <div className="w-full bg-white shadow flex flex-col my-4 p-6">
               <p className="text-xl font-semibold pb-5">Related Post</p>
-
               <div>
                 <span
                   

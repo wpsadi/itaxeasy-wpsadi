@@ -31,7 +31,7 @@ export default function TanSearch() {
 
 
     <div className="w-full max-w-6xl mx-auto p-4">
-      <div className="flex gap-8">
+      <div className="flex gap-8 p-10">
         <div className="flex-1">
           <form
             onSubmit={form.handleSubmit(onSubmit)}
