@@ -1,9 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,6 +18,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
 import { useAadhaarPanLink } from "@/services/easy-services/aadhar/aadhar-link-verification";
 
 // Zod schema for validating Aadhaar and PAN numbers
@@ -34,7 +37,9 @@ const validationSchema = z.object({
 type FormValues = z.infer<typeof validationSchema>;
 
 export function CheckAadhaarLinkStatus() {
+
   const aadharPanLinkMutation = useAadhaarPanLink();
+
   const form = useForm<FormValues>({
     resolver: zodResolver(validationSchema),
     defaultValues: {
@@ -45,7 +50,9 @@ export function CheckAadhaarLinkStatus() {
 
   function onSubmit(data: FormValues) {
     console.log(data);
+
     aadharPanLinkMutation.mutate(data);
+
     // Handle search logic here
   }
 
@@ -71,7 +78,9 @@ export function CheckAadhaarLinkStatus() {
                     <FormLabel>Aadhaar No.</FormLabel>
                     <FormControl>
                       <Input
+
                         disabled={aadharPanLinkMutation.isPending}
+
                         placeholder="Enter your Aadhaar number"
                         {...field}
                       />
@@ -89,12 +98,15 @@ export function CheckAadhaarLinkStatus() {
                   <FormItem>
                     <FormLabel>PAN No.</FormLabel>
                     <FormControl>
+
                       <Input disabled={aadharPanLinkMutation.isPending} placeholder="Enter your PAN number" {...field} />
+
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
 
               <div className="flex gap-4">
                 <Button
@@ -107,6 +119,7 @@ export function CheckAadhaarLinkStatus() {
                       ? "Searching..."
                       : "Search"
                   }
+
                 </Button>
                 <Button
                   type="button"
@@ -118,11 +131,13 @@ export function CheckAadhaarLinkStatus() {
               </div>
             </form>
           </Form>
+
           {
             // here is response data
             aadharPanLinkMutation.isSuccess &&
             aadharPanLinkMutation?.data?.message
           }
+
         </CardContent>
       </Card>
       <Card>
@@ -131,8 +146,10 @@ export function CheckAadhaarLinkStatus() {
             Welcome to the Aadhaar and PAN search page.
           </h2>
           <p className="text-muted-foreground">
+
             Use the search bar to find information related to Aadhaar and PAN
             numbers.
+
           </p>
         </CardContent>
       </Card>
