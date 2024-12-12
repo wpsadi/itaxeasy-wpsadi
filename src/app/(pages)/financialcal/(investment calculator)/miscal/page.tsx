@@ -40,8 +40,8 @@ export default function PostOfficeMISCalculator() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      investmentAmount: "",
-      interestRate: "",
+      investmentAmount: 0,
+      interestRate: 0,
     },
   })
 

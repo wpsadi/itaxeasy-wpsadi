@@ -16,6 +16,35 @@ const Blogs = () => {
     limit: 6,
   });
 
+  if (BlogsQuery.isPending) {
+    return (
+      <div className="container mx-auto flex flex-row flex-wrap pt-6">
+        <div className="w-full md:w-2/3">
+          <div className="w-full flex flex-col items-center px-3">
+            <h1 className="text-2xl font-bold text-center">
+              Loading Blogs...
+            </h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (BlogsQuery.isError) {
+
+    return (
+      <div className="container mx-auto flex flex-row flex-wrap pt-6">
+        <div className="w-full md:w-2/3">
+          <div className="w-full flex flex-col items-center px-3">
+            <h1 className="text-2xl font-bold text-center">
+              Oops! Something went wrong.
+            </h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="container mx-auto flex flex-row flex-wrap pt-6">

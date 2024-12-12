@@ -68,9 +68,9 @@ export default function AdvanceTaxCalculator() {
       panNo: "",
       taxPayerType: "Individual",
       section115BAC: "No",
-      netTaxableIncome: "",
-      relief: "",
-      tdsCredit: "",
+      netTaxableIncome: 0,
+      relief: 0,
+      tdsCredit: 0,
     },
   })
 

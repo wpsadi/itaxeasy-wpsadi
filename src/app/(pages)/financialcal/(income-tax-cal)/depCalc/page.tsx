@@ -26,8 +26,9 @@ import {
   FormLabel,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { calculateDepreciation } from "./(lib)/calculate"
 
-import { calculateDepreciation } from "../(income-tax-cal)/depCalc/(lib)/calculate"
+
 
 // Register ChartJS components
 ChartJS.register(
@@ -58,9 +59,9 @@ export default function DepreciationCalculator() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      purchasePrice: "",
-      scrapValue: "",
-      usefulLife: "",
+      purchasePrice: 0,
+      scrapValue: 0,
+      usefulLife: 0,
     },
   })
 
@@ -101,11 +102,11 @@ export default function DepreciationCalculator() {
     },
     scales: {
         x: {
-          type: "category",
+          type: "category" as const,
           beginAtZero: true,
         },
         y: {
-          type: "linear", 
+          type: "linear" as const, 
           beginAtZero: true,
         },
       },
