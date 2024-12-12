@@ -2,6 +2,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 
 import { LoadUser } from "@/components/common/LoadUser";
 import { Toaster } from "@/components/ui/toaster";
@@ -35,11 +36,13 @@ export default function RootLayout({
       <body className={`${inter.className} text-slate-800 h-full`}>
         <div className="min-h-screen flex flex-col">
           <Toaster />
-         
+          <ToastContainer />
+
           <TanstackQuery>
-          <LoadUser />{/* This is to load th user*/}
+            <LoadUser />
+            {/* This is to load th user*/}
             {children}
-            </TanstackQuery>
+          </TanstackQuery>
         </div>
       </body>
     </html>

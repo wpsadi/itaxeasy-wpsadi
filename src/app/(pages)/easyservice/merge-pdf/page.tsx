@@ -1,15 +1,11 @@
 "use client";
 
-
-import HomeFooter from "@/components/common/HomeFooter";
-import { HomeNavbar } from "@/components/common/HomeNavbar";
-import { useState } from "react";
-import { Button } from "@/components/ui/button"; // ShadCN button
-
 import { UploadIcon } from "lucide-react";
 import { PDFDocument } from "pdf-lib"; // Ensure pdf-lib is installed
 import { useState } from "react";
 
+import HomeFooter from "@/components/common/HomeFooter";
+import { HomeNavbar } from "@/components/common/HomeNavbar";
 import { Button } from "@/components/ui/button"; // ShadCN button
 
 export default function MergePDFComponent() {
@@ -71,60 +67,58 @@ export default function MergePDFComponent() {
   return (
     <div>
       <HomeNavbar />
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-10">
-      
-      <h1 className="text-2xl font-semibold text-blue-600 mb-6">
-        Merge PDF Files
-      </h1>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-10">
+        <h1 className="text-2xl font-semibold text-blue-600 mb-6">
+          Merge PDF Files
+        </h1>
 
-      {/* Upload Section */}
-      <div className="border-dashed border-2 border-gray-400 rounded-lg w-96 h-48 flex flex-col items-center justify-center space-y-2 p-4">
-        <UploadIcon className="w-8 h-8 text-blue-500" />
-        <label htmlFor="file-upload" className="text-blue-500 cursor-pointer">
-          Drag & drop files to upload
-        </label>
-        <input
-          type="file"
-          id="file-upload"
-          className="hidden"
-          accept="application/pdf"
-          multiple
-          onChange={handleFileUpload}
-        />
-        <p className="text-gray-500 text-sm">Only PDF files are supported</p>
-      </div>
+        {/* Upload Section */}
+        <div className="border-dashed border-2 border-gray-400 rounded-lg w-96 h-48 flex flex-col items-center justify-center space-y-2 p-4">
+          <UploadIcon className="w-8 h-8 text-blue-500" />
+          <label htmlFor="file-upload" className="text-blue-500 cursor-pointer">
+            Drag & drop files to upload
+          </label>
+          <input
+            type="file"
+            id="file-upload"
+            className="hidden"
+            accept="application/pdf"
+            multiple
+            onChange={handleFileUpload}
+          />
+          <p className="text-gray-500 text-sm">Only PDF files are supported</p>
+        </div>
 
-      {/* Uploaded Files */}
-      <div className="mt-4 w-96 space-y-2">
-        {files.map((file, index) => (
-          <div
-            key={index}
-            className="flex justify-between items-center bg-gray-100 p-2 rounded-lg shadow-sm"
-          >
-            <span className="text-sm text-gray-700 truncate max-w-[75%]">
-              {file.name}
-            </span>
-            <button
-              onClick={() => handleRemoveFile(index)}
-              className="text-red-500 text-sm"
+        {/* Uploaded Files */}
+        <div className="mt-4 w-96 space-y-2">
+          {files.map((file, index) => (
+            <div
+              key={index}
+              className="flex justify-between items-center bg-gray-100 p-2 rounded-lg shadow-sm"
             >
-              Remove
-            </button>
-          </div>
-        ))}
+              <span className="text-sm text-gray-700 truncate max-w-[75%]">
+                {file.name}
+              </span>
+              <button
+                onClick={() => handleRemoveFile(index)}
+                className="text-red-500 text-sm"
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Merge Button */}
+        <Button
+          className="mt-4 bg-blue-500 text-white hover:bg-blue-600 disabled:bg-gray-300"
+          onClick={handleMergePDFs}
+          disabled={files.length < 2 || isMerging}
+        >
+          {isMerging ? "Merging..." : "Merge PDFs"}
+        </Button>
       </div>
-
-      {/* Merge Button */}
-      <Button
-        className="mt-4 bg-blue-500 text-white hover:bg-blue-600 disabled:bg-gray-300"
-        onClick={handleMergePDFs}
-        disabled={files.length < 2 || isMerging}
-      >
-        {isMerging ? "Merging..." : "Merge PDFs"}
-      </Button>
-    </div>
       <HomeFooter></HomeFooter>
-
     </div>
   );
 }

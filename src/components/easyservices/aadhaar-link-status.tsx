@@ -6,8 +6,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Head } from "./Head";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -18,6 +17,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useAadhaarPanLink } from "@/services/easy-services/aadhar/aadhar-link-verification";
+
+import { Head } from "./Head";
 
 // Zod schema for validating Aadhaar and PAN numbers
 const validationSchema = z.object({
@@ -58,84 +59,81 @@ export function CheckAadhaarLinkStatus() {
   }
 
   return (
-
     <div className="m-10">
-        <Head text="Check Aadhaar Link Status"></Head>
+      <Head text="Check Aadhaar Link Status"></Head>
 
-        <div className="grid p-10 gap-5 md:grid-cols-2">
-            
+      <div className="grid p-10 gap-5 md:grid-cols-2">
         <Card>
-            <CardContent className="p-10">
-            <Form  {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <CardContent className="p-10">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
+              >
                 {/* Aadhaar Number Field */}
                 <FormField
-                    control={form.control}
-                    name="aadhaar"
-                    render={({ field }) => (
+                  control={form.control}
+                  name="aadhaar"
+                  render={({ field }) => (
                     <FormItem>
-                        <FormLabel>Aadhaar No.</FormLabel>
-                        <FormControl>
+                      <FormLabel>Aadhaar No.</FormLabel>
+                      <FormControl>
                         <Input
-                            placeholder="Enter your Aadhaar number"
-                            {...field}
+                          placeholder="Enter your Aadhaar number"
+                          {...field}
                         />
-                        </FormControl>
-                        <FormMessage />
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
-                    )}
+                  )}
                 />
 
                 {/* PAN Number Field */}
                 <FormField
-                    control={form.control}
-                    name="pan"
-                    render={({ field }) => (
+                  control={form.control}
+                  name="pan"
+                  render={({ field }) => (
                     <FormItem>
-                        <FormLabel>PAN No.</FormLabel>
-                        <FormControl>
-                        <Input
-                            placeholder="Enter your PAN number"
-                            {...field}
-                        />
-                        </FormControl>
-                        <FormMessage />
+                      <FormLabel>PAN No.</FormLabel>
+                      <FormControl>
+                        <Input placeholder="Enter your PAN number" {...field} />
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
-                    )}
+                  )}
                 />
-                
+
                 <div className="flex gap-4">
-                    <Button
+                  <Button
                     type="submit"
                     className="flex-1 bg-blue-500 hover:bg-blue-600"
-                    >
+                  >
                     Search
-                    </Button>
-                    <Button
+                  </Button>
+                  <Button
                     type="button"
                     onClick={onClear}
                     className="flex-1 bg-orange-400 hover:bg-orange-500"
-                    >
+                  >
                     Clear
-                    </Button>
+                  </Button>
                 </div>
-                </form>
+              </form>
             </Form>
-            </CardContent>
+          </CardContent>
         </Card>
         <Card>
-            <CardContent className="p-6">
+          <CardContent className="p-6">
             <h2 className="text-2xl font-bold mb-2">
-                Welcome to the Aadhaar and PAN search page.
+              Welcome to the Aadhaar and PAN search page.
             </h2>
             <p className="text-muted-foreground">
-                Use the search bar to find information related to Aadhaar and PAN numbers.
+              Use the search bar to find information related to Aadhaar and PAN
+              numbers.
             </p>
-            </CardContent>
+          </CardContent>
         </Card>
-        </div>
-
-  </div>
-
+      </div>
+    </div>
   );
 }

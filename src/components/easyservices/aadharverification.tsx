@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -16,12 +16,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-import * as z from "zod";
-import { Head } from "./Head";
-
 import { useSendAadharOTP } from "@/services/easy-services/aadhar/sendAadharOTP";
 
+import { Head } from "./Head";
 
 // Zod schema for validating Aadhaar number
 const aadhaarSchema = z.object({
@@ -55,15 +52,17 @@ export function AadhaarSearchForm() {
   }
 
   return (
-
     <div className="m-10">
       <Head text="Search By Aadhaar Number"></Head>
 
-        <div className="grid p-10 gap-5 md:grid-cols-2">
+      <div className="grid p-10 gap-5 md:grid-cols-2">
         <Card>
           <CardContent className="p-10">
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
+              >
                 <FormField
                   control={form.control}
                   name="aadhaar"
@@ -105,13 +104,12 @@ export function AadhaarSearchForm() {
               Welcome to the Aadhaar search page.
             </h2>
             <p className="text-muted-foreground">
-              Use the search bar to find information related to the given Aadhaar number.
+              Use the search bar to find information related to the given
+              Aadhaar number.
             </p>
           </CardContent>
         </Card>
       </div>
-
-   
     </div>
   );
 }

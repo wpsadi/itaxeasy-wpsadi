@@ -3,9 +3,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Head } from "./Head";
 
 import { useEasySearchTan } from "@/services/easy-services/income-tax/srch-tan";
+
+import { Head } from "./Head";
 
 const formSchema = z.object({
   tan: z.string().min(1, "TAN number is required"),
@@ -31,71 +32,68 @@ export default function TanSearch() {
 
   return (
     <div className="m-10">
-    <Head text="Search Tan Details"></Head>
+      <Head text="Search Tan Details"></Head>
 
-
-    <div className="w-full max-w-6xl mx-auto p-4">
-      <div className="flex gap-8 p-10">
-        <div className="flex-1">
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="bg-white p-6 rounded-lg shadow-sm"
-          >
-            <div className="space-y-4">
-              <div>
-                <label
-                  htmlFor="tan"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Search By TAN:
-                </label>
-                <input
-                  {...form.register("tan")}
-                  id="tan"
-                  disabled={tanSearchMutation.isPending}
-                  placeholder="Enter TAN Number"
-                  className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {form.formState.errors.tan && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {form.formState.errors.tan.message}
-                  </p>
-                )}
+      <div className="w-full max-w-6xl mx-auto p-4">
+        <div className="flex gap-8 p-10">
+          <div className="flex-1">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="bg-white p-6 rounded-lg shadow-sm"
+            >
+              <div className="space-y-4">
+                <div>
+                  <label
+                    htmlFor="tan"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Search By TAN:
+                  </label>
+                  <input
+                    {...form.register("tan")}
+                    id="tan"
+                    disabled={tanSearchMutation.isPending}
+                    placeholder="Enter TAN Number"
+                    className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  {form.formState.errors.tan && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {form.formState.errors.tan.message}
+                    </p>
+                  )}
+                </div>
+                <div className="flex gap-4 mt-6">
+                  <button
+                    type="submit"
+                    disabled={tanSearchMutation.isPending}
+                    className="px-8 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                  >
+                    {tanSearchMutation.isPending ? "Searching..." : "Search"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onClear}
+                    className="px-8 py-2 bg-orange-400 text-white rounded hover:bg-orange-500 transition-colors"
+                  >
+                    Clear
+                  </button>
+                </div>
               </div>
-              <div className="flex gap-4 mt-6">
-                <button
-                  type="submit"
-                  disabled={tanSearchMutation.isPending}
-                  className="px-8 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-                >
-                  {tanSearchMutation.isPending ? "Searching..." : "Search"}
-                </button>
-                <button
-                  type="button"
-                  onClick={onClear}
-                  className="px-8 py-2 bg-orange-400 text-white rounded hover:bg-orange-500 transition-colors"
-                >
-                  Clear
-                </button>
-              </div>
+            </form>
+          </div>
+          {tanSearchMutation.isSuccess && tanSearchMutation?.data?.success}
+          <div className="flex-1 bg-gray-100 p-8 rounded-lg">
+            <div className="bg-white p-6 rounded-lg">
+              <h2 className="text-2xl font-bold mb-2">
+                Welcome to the Tan verification page.
+              </h2>
+              <p className="text-gray-600">
+                Use the search bar to find information about Tan Number.
+              </p>
             </div>
-          </form>
-        </div>
-        {
-          tanSearchMutation.isSuccess && tanSearchMutation?.data?.success
-        }
-        <div className="flex-1 bg-gray-100 p-8 rounded-lg">
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-2xl font-bold mb-2">
-              Welcome to the Tan verification page.
-            </h2>
-            <p className="text-gray-600">
-              Use the search bar to find information about Tan Number.
-            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
   );
 }

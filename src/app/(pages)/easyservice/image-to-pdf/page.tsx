@@ -1,16 +1,14 @@
 "use client"; // Correct directive with a space
+import "react-toastify/dist/ReactToastify.css";
 
-import { UploadIcon } from "lucide-react"; // Icon library
+import jsPDF from "jspdf"; // Library to generate PDFs
+import { MinusCircle, UploadIcon } from "lucide-react"; // Icon library
 import React, { useState } from "react";
+import { toast } from "react-toastify"; // React Toast
 
 import HomeFooter from "@/components/common/HomeFooter";
 import { HomeNavbar } from "@/components/common/HomeNavbar";
 import { Button } from "@/components/ui/button"; // shadcn button
-
-import { UploadIcon, MinusCircle } from "lucide-react"; // Icon library
-import jsPDF from "jspdf"; // Library to generate PDFs
-import { toast } from "react-toastify"; // React Toast
-import "react-toastify/dist/ReactToastify.css";
 
 type ImageWithUniqueId = {
   file: File;
@@ -24,7 +22,7 @@ export default function Page() {
     if (event.target.files) {
       const uploadedFiles = Array.from(event.target.files).map((file) => ({
         file,
-        id: `${file.name}-${Date.now()}` // Ensure unique ID for each image
+        id: `${file.name}-${Date.now()}`, // Ensure unique ID for each image
       }));
       setImages((prevImages) => [...prevImages, ...uploadedFiles]);
     }
@@ -36,7 +34,9 @@ export default function Page() {
 
   const handleGeneratePDF = async () => {
     if (images.length === 0) {
-      toast.error("Please upload at least one image before generating the PDF.");
+      toast.error(
+        "Please upload at least one image before generating the PDF."
+      );
       return;
     }
 

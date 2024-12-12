@@ -3,9 +3,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Head } from "./Head";
 
 import { useEasyBankAccountVerify } from "@/services/easy-services/easy-bank/verify-account";
+
+import { Head } from "./Head";
 
 // Zod schema for validation
 const formSchema = z.object({
@@ -53,138 +54,137 @@ export default function VerificationOfBank() {
 
   return (
     <div className="m-10">
-    <Head text="Verify Account Details"></Head>
+      <Head text="Verify Account Details"></Head>
 
+      <div className="w-full max-w-6xl mx-auto p-4">
+        <div className="flex gap-8">
+          <div className="flex-1 p-10">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="bg-white p-6 rounded-lg shadow-sm"
+            >
+              <div className="space-y-4">
+                <div>
+                  <label
+                    htmlFor="accountNumber"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Account Number
+                  </label>
+                  <input
+                    {...form.register("accountNumber")}
+                    disabled={bankDetailsVerifyMutation.isPending}
+                    id="accountNumber"
+                    placeholder="Enter Account Number"
+                    className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  {form.formState.errors.accountNumber && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {form.formState.errors.accountNumber.message}
+                    </p>
+                  )}
+                </div>
 
-    <div className="w-full max-w-6xl mx-auto p-4">
-      <div className="flex gap-8">
-        <div className="flex-1 p-10">
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="bg-white p-6 rounded-lg shadow-sm"
-          >
-            <div className="space-y-4">
-              <div>
-                <label
-                  htmlFor="accountNumber"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Account Number
-                </label>
-                <input
-                  {...form.register("accountNumber")}
-                  disabled={bankDetailsVerifyMutation.isPending}
-                  id="accountNumber"
-                  placeholder="Enter Account Number"
-                  className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {form.formState.errors.accountNumber && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {form.formState.errors.accountNumber.message}
-                  </p>
-                )}
+                <div>
+                  <label
+                    htmlFor="ifscCode"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    IFSC Code
+                  </label>
+                  <input
+                    {...form.register("ifscCode")}
+                    id="ifscCode"
+                    disabled={bankDetailsVerifyMutation.isPending}
+                    placeholder="Enter IFSC Code"
+                    className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  {form.formState.errors.ifscCode && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {form.formState.errors.ifscCode.message}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="accountHolderName"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Account Holder Name
+                  </label>
+                  <input
+                    {...form.register("accountHolderName")}
+                    disabled={bankDetailsVerifyMutation.isPending}
+                    id="accountHolderName"
+                    placeholder="Enter Account Holder Name"
+                    className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  {form.formState.errors.accountHolderName && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {form.formState.errors.accountHolderName.message}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="mobile"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Mobile Number
+                  </label>
+                  <input
+                    {...form.register("mobile")}
+                    disabled={bankDetailsVerifyMutation.isPending}
+                    id="mobile"
+                    placeholder="Enter Mobile Number"
+                    className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  {form.formState.errors.mobile && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {form.formState.errors.mobile.message}
+                    </p>
+                  )}
+                </div>
+
+                <div className="flex gap-4 mt-6">
+                  <button
+                    type="submit"
+                    disabled={bankDetailsVerifyMutation.isPending}
+                    className="px-8 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                  >
+                    {bankDetailsVerifyMutation.isPending
+                      ? "Verifying..."
+                      : "Verify"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onClear}
+                    className="px-8 py-2 bg-orange-400 text-white rounded hover:bg-orange-500 transition-colors"
+                  >
+                    Clear
+                  </button>
+                </div>
               </div>
+            </form>
+          </div>
 
-              <div>
-                <label
-                  htmlFor="ifscCode"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  IFSC Code
-                </label>
-                <input
-                  {...form.register("ifscCode")}
-                  id="ifscCode"
-                  disabled={bankDetailsVerifyMutation.isPending}
-                  placeholder="Enter IFSC Code"
-                  className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {form.formState.errors.ifscCode && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {form.formState.errors.ifscCode.message}
-                  </p>
-                )}
-              </div>
+          {bankDetailsVerifyMutation.isSuccess &&
+            bankDetailsVerifyMutation?.data?.message}
 
-              <div>
-                <label
-                  htmlFor="accountHolderName"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Account Holder Name
-                </label>
-                <input
-                  {...form.register("accountHolderName")}
-                  disabled={bankDetailsVerifyMutation.isPending}
-                  id="accountHolderName"
-                  placeholder="Enter Account Holder Name"
-                  className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {form.formState.errors.accountHolderName && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {form.formState.errors.accountHolderName.message}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <label
-                  htmlFor="mobile"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Mobile Number
-                </label>
-                <input
-                  {...form.register("mobile")}
-                  disabled={bankDetailsVerifyMutation.isPending}
-                  id="mobile"
-                  placeholder="Enter Mobile Number"
-                  className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                {form.formState.errors.mobile && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {form.formState.errors.mobile.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="flex gap-4 mt-6">
-                <button
-                  type="submit"
-                  disabled={bankDetailsVerifyMutation.isPending}
-                  className="px-8 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-                >
-                  {bankDetailsVerifyMutation.isPending
-                    ? "Verifying..."
-                    : "Verify"}
-                </button>
-                <button
-                  type="button"
-                  onClick={onClear}
-                  className="px-8 py-2 bg-orange-400 text-white rounded hover:bg-orange-500 transition-colors"
-                >
-                  Clear
-                </button>
-              </div>
+          <div className="flex-1 bg-gray-100 p-8 rounded-lg">
+            <div className="bg-white p-6 rounded-lg">
+              <h2 className="text-2xl font-bold mb-2">
+                Welcome to the Account Verification Page.
+              </h2>
+              <p className="text-gray-600 text-center">
+                Use the form to verify account details.
+              </p>
             </div>
-          </form>
-        </div>
-
-        {bankDetailsVerifyMutation.isSuccess &&
-          bankDetailsVerifyMutation?.data?.message}
-
-        <div className="flex-1 bg-gray-100 p-8 rounded-lg">
-          <div className="bg-white p-6 rounded-lg">
-            <h2 className="text-2xl font-bold mb-2">
-              Welcome to the Account Verification Page.
-            </h2>
-            <p className="text-gray-600 text-center">
-              Use the form to verify account details.
-            </p>
           </div>
         </div>
       </div>
     </div>
-  </div>
   );
 }
