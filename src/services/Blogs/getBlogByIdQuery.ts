@@ -21,18 +21,16 @@ export type IndividualBlogData = {
   createdAt: string;
 };
 
-const placeholderData: SuccessResponse = {
+const placeholderData = {
   success: true,
   data: {
     id: "1",
-    title: "title",
-    contentHeading: "contentHeading",
-    contentDescription: "contentDescription",
-    content: "content",
-    imageUrl: "/favicon.svg",
-    category: "category",
-    createdAt: "2024-12-08T10:18:17.461Z",
-  },
+    title: "Understanding GST: A Comprehensive Guide",
+    contentDescription: "Goods and Services Tax (GST) is a single tax on the supply of goods and services, replacing multiple indirect taxes in India. This blog explains the GST structure, benefits, and its impact on businesses and consumers.",
+    imageUrl: "https://images.pexels.com/photos/4386372/pexels-photo-4386372.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    category: "Business, Taxation",
+    createdAt: "2024-12-12T10:00:00.000Z"
+  }
 };
 
 export const useBlogQuery = (id: string) => {
