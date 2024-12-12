@@ -1,6 +1,4 @@
 "use client";
-import HomeFooter from "@/components/common/HomeFooter";
-import { HomeNavbar } from "@/components/common/HomeNavbar";
 
 import { GSTCalculator } from "./gst-calculator";
 
@@ -13,9 +11,8 @@ export type GSTCalType = {
 export default function Page() {
   return (
     <>
-      <HomeNavbar />
+    
       <GSTCalculator />
-      <HomeFooter />
     </>
   );
 }

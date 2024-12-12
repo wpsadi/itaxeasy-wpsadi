@@ -1,19 +1,22 @@
+
 'use client';
 import Link from 'next/link';
+
 import {
+  countryCode,
   depreciation,
-  incomeTax,
-  interestIndraVikas,
-  interestOnKVP,
-  gold,
   form16,
-  savingCertificate1,
+  gold,
+  incomeTax,
   // savingCertificate2,
   inflation,
-  countryCode,
-} from './icons';
+  interestIndraVikas,
+  interestOnKVP,
+  savingCertificate1,
+} from "./icons";
 
 export default function DownloadIndex() {
+
 
   const list = [
     {
@@ -91,26 +94,30 @@ export default function DownloadIndex() {
   ];
 
 
+
   return (
     <div className="bg-gray-200">
       <div className="pb-10 p-8 max-w-7xl   mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {list.map((element) =>
           element.downloadlist.map((element, index) => (
             <Link
-            key={index}
-            href={`/download${element.link}`} // Ensure dynamic route matches slug
-            className="flex flex-col items-center py-8 px-3 bg-white hover:shadow-lg hover:shadow-primary shadow-md rounded-lg mx-8 md:mx-0"
+              key={index}
+              href={`/download${element.link}`} // Ensure dynamic route matches slug
+              className="flex flex-col items-center py-8 px-3 bg-white hover:shadow-lg hover:shadow-primary shadow-md rounded-lg mx-8 md:mx-0"
             >
-            <span className="object-contain h-11 w-11 fill-zinc-600">{element.icon}</span>
-            <p className="heading-6 text-center mt-8">{element.label}</p>
-            <p className="text-sm text-center mt-1">{element.description}</p>
+              <span className="object-contain h-11 w-11 fill-zinc-600">
+                {element.icon}
+              </span>
+              <p className="heading-6 text-center mt-8">{element.label}</p>
+              <p className="text-sm text-center mt-1">{element.description}</p>
             </Link>
+
           )),
+
         )}
       </div>
     </div>
   );
 }
-
 
 

@@ -1,8 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,9 +16,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import { Head } from "./Head";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 
 // Validation schema using Zod
 const PANFormSchema = z.object({
@@ -41,7 +53,9 @@ export default function PANSearchForm() {
   });
 
   const onSubmit = (data: PANFormValues) => {
-    setMessage(`Searching for PAN: ${data.pan}, State Code: ${data.gstStateCode}`);
+    setMessage(
+      `Searching for PAN: ${data.pan}, State Code: ${data.gstStateCode}`
+    );
   };
 
   const onClear = () => {
@@ -69,7 +83,10 @@ export default function PANSearchForm() {
                   <FormItem>
                     <FormLabel>PAN Of Tax Payer</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter PAN Of The Tax Payer" {...field} />
+                      <Input
+                        placeholder="Enter PAN Of The Tax Payer"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -137,7 +154,10 @@ export default function PANSearchForm() {
             Use the search bar to find information about taxpayers and their
             financial records.
           </p>
-          {message && <p className="mt-4 text-blue-500 font-semibold">{message}</p>}
+
+          {message && (
+            <p className="mt-4 text-blue-500 font-semibold">{message}</p>
+          )}
         </CardContent>
       </Card>
     </div>

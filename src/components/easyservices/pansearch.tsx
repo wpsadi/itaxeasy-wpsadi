@@ -6,6 +6,10 @@ import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
 import { Head } from "./Head";
 
+import { useEasySearchPAN } from "@/services/easy-services/gst-services/srch-pan";
+
+import { Button } from "../ui/button";
+
 const formSchema = z.object({
   pan: z.string().min(10, "PAN must be 10 characters").max(10),
   state: z.string().min(1, "Please select a state"),
@@ -29,9 +33,11 @@ const states = [
 ];
 
 export default function PANSearch() {
+  const panSeachMutation = useEasySearchPAN();
   const {
     control,
     handleSubmit,
+    reset: reset,
     formState: { errors },
   } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -43,7 +49,12 @@ export default function PANSearch() {
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log(data);
+    // panSeachMutation.mutate(data);
   };
+
+  function onClear() {
+    reset();
+  }
 
   return (
     <div className="m-10">
@@ -67,6 +78,7 @@ export default function PANSearch() {
                 {...field}
                 type="text"
                 id="pan"
+                disabled={panSeachMutation.isPending}
                 className="w-full p-2 border border-gray-300 rounded"
                 placeholder="Enter PAN Of The Tax Payer"
               />
@@ -90,6 +102,7 @@ export default function PANSearch() {
               <select
                 {...field}
                 id="state"
+                disabled={panSeachMutation.isPending}
                 className="w-full p-2 border border-gray-300 rounded bg-white"
               >
                 <option value="">Select State</option>
@@ -104,7 +117,24 @@ export default function PANSearch() {
           {errors.state && (
             <p className="text-red-500 text-sm mt-1">{errors.state.message}</p>
           )}
+          <div className="flex gap-4 my-3">
+            <Button
+              disabled={panSeachMutation.isPending}
+              type="submit"
+              className="flex-1 bg-blue-500 hover:bg-blue-600"
+            >
+              {panSeachMutation.isPending ? "Searching..." : "Search"}
+            </Button>
+            <Button
+              type="button"
+              onClick={onClear}
+              className="flex-1 bg-orange-400 hover:bg-orange-500"
+            >
+              Clear
+            </Button>
+          </div>
         </div>
+        {panSeachMutation.isSuccess && panSeachMutation?.data?.message}
       </form>
       <div className="mt-8 p-4 bg-gray-100 rounded">
         <h2 className="text-xl font-bold mb-2">

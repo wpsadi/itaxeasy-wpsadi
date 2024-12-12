@@ -314,7 +314,7 @@ export function SignupForm() {
               <span className="text-gray-600">Forgot Password? </span>
               <Link
                 href="/reset-password"
-                className="text-blue-600 hover:underline"
+                className="text-blue-600 hover:underline hidden"
               >
                 Reset
               </Link>

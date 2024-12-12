@@ -1,10 +1,12 @@
 "use client"; // Correct directive with a space
 
+import { UploadIcon } from "lucide-react"; // Icon library
+import React, { useState } from "react";
+
 import HomeFooter from "@/components/common/HomeFooter";
 import { HomeNavbar } from "@/components/common/HomeNavbar";
-
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button"; // shadcn button
+
 import { UploadIcon, MinusCircle } from "lucide-react"; // Icon library
 import jsPDF from "jspdf"; // Library to generate PDFs
 import { toast } from "react-toastify"; // React Toast

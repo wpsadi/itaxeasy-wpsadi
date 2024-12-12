@@ -5,11 +5,14 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Head } from "./Head";
 
+import { useEasySearchTan } from "@/services/easy-services/income-tax/srch-tan";
+
 const formSchema = z.object({
   tan: z.string().min(1, "TAN number is required"),
 });
 
 export default function TanSearch() {
+  const tanSearchMutation = useEasySearchTan();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -19,6 +22,7 @@ export default function TanSearch() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    tanSearchMutation.mutate(values.tan);
   }
 
   function onClear() {
@@ -48,8 +52,9 @@ export default function TanSearch() {
                 <input
                   {...form.register("tan")}
                   id="tan"
+                  disabled={tanSearchMutation.isPending}
                   placeholder="Enter TAN Number"
-                  className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {form.formState.errors.tan && (
                   <p className="text-red-500 text-sm mt-1">
@@ -60,9 +65,10 @@ export default function TanSearch() {
               <div className="flex gap-4 mt-6">
                 <button
                   type="submit"
+                  disabled={tanSearchMutation.isPending}
                   className="px-8 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
                 >
-                  Search
+                  {tanSearchMutation.isPending ? "Searching..." : "Search"}
                 </button>
                 <button
                   type="button"
@@ -75,6 +81,9 @@ export default function TanSearch() {
             </div>
           </form>
         </div>
+        {
+          tanSearchMutation.isSuccess && tanSearchMutation?.data?.success
+        }
         <div className="flex-1 bg-gray-100 p-8 rounded-lg">
           <div className="bg-white p-6 rounded-lg">
             <h2 className="text-2xl font-bold mb-2">

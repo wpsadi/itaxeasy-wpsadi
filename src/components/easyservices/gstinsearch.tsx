@@ -1,8 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { useForm } from "react-hook-form";
-import React from 'react';
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,10 +15,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useEasySearchGSTIN } from "@/services/easy-services/gst-services/Srch-gstin";
 import { GSTINFormValues, gstinSchema } from "@/validations/easyservices/gstin";
 import { Head } from "./Head";
 
 export function GSTINSearchForm() {
+  const gstSrchMutation = useEasySearchGSTIN();
   const form = useForm<GSTINFormValues>({
     resolver: zodResolver(gstinSchema),
     defaultValues: {
@@ -26,8 +29,7 @@ export function GSTINSearchForm() {
   });
 
   function onSubmit(data: GSTINFormValues) {
-    console.log(data);
-    // Handle search logic here
+    gstSrchMutation.mutate(data.gstin);
   }
 
   function onClear() {
@@ -52,6 +54,7 @@ export function GSTINSearchForm() {
                     <FormLabel>Search By:</FormLabel>
                     <FormControl>
                       <Input
+                        disabled={gstSrchMutation.isPending}
                         placeholder="Your GST Identification Number"
                         {...field}
                       />
@@ -63,9 +66,10 @@ export function GSTINSearchForm() {
               <div className="flex gap-4">
                 <Button
                   type="submit"
+                  disabled={gstSrchMutation.isPending}
                   className="flex-1 bg-blue-500 hover:bg-blue-600"
                 >
-                  Search
+                  {gstSrchMutation.isPending ? "Searching..." : "Search"}
                 </Button>
                 <Button
                   type="button"
@@ -78,6 +82,8 @@ export function GSTINSearchForm() {
             </form>
           </Form>
         </CardContent>
+        {/* here is response data */}
+        {gstSrchMutation.isSuccess && gstSrchMutation?.data?.message}
       </Card>
       <Card>
         <CardContent className="p-6">

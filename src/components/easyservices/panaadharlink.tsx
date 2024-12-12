@@ -5,12 +5,15 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Head } from "./Head";
 
+import { useAadhaarPanLink } from "@/services/easy-services/aadhar/aadhar-link-verification";
+
 const formSchema = z.object({
   pan: z.string().min(10, "PAN number must be 10 characters").max(10),
   aadhaar: z.string().min(12, "Aadhaar number must be 12 digits").max(12),
 });
 
 export default function PanAadhaarStatus() {
+  const aadharPanLinkMutation = useAadhaarPanLink();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -21,6 +24,7 @@ export default function PanAadhaarStatus() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    aadharPanLinkMutation.mutate(values);
   }
 
   function onClear() {
@@ -49,6 +53,7 @@ export default function PanAadhaarStatus() {
                 </label>
                 <input
                   {...form.register("pan")}
+                  disabled={aadharPanLinkMutation.isPending}
                   id="pan"
                   placeholder="Enter PAN No."
                   className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -69,6 +74,7 @@ export default function PanAadhaarStatus() {
                 <input
                   {...form.register("aadhaar")}
                   id="aadhaar"
+                  disabled={aadharPanLinkMutation.isPending}
                   placeholder="Enter Aadhaar No."
                   className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -81,9 +87,10 @@ export default function PanAadhaarStatus() {
               <div className="flex gap-4 mt-6">
                 <button
                   type="submit"
+                  disabled={aadharPanLinkMutation.isPending}
                   className="px-8 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
                 >
-                  Search
+                  {aadharPanLinkMutation.isPending ? "Searching..." : "Search"}
                 </button>
                 <button
                   type="button"

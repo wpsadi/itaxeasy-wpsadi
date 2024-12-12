@@ -1,8 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { useForm } from "react-hook-form";
-import React from 'react';
+import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,8 +16,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
 import * as z from "zod";
 import { Head } from "./Head";
+
+import { useSendAadharOTP } from "@/services/easy-services/aadhar/sendAadharOTP";
+
 
 // Zod schema for validating Aadhaar number
 const aadhaarSchema = z.object({
@@ -29,6 +35,8 @@ const aadhaarSchema = z.object({
 type AadhaarFormValues = z.infer<typeof aadhaarSchema>;
 
 export function AadhaarSearchForm() {
+  const aadhaarOTPMutation = useSendAadharOTP();
+
   const form = useForm<AadhaarFormValues>({
     resolver: zodResolver(aadhaarSchema),
     defaultValues: {
@@ -38,7 +46,8 @@ export function AadhaarSearchForm() {
 
   function onSubmit(data: AadhaarFormValues) {
     console.log(data);
-    // Handle search logic here
+
+    aadhaarOTPMutation.mutate(data.aadhaar);
   }
 
   function onClear() {
@@ -46,6 +55,7 @@ export function AadhaarSearchForm() {
   }
 
   return (
+
     <div className="m-10">
       <Head text="Search By Aadhaar Number"></Head>
 
@@ -100,6 +110,8 @@ export function AadhaarSearchForm() {
           </CardContent>
         </Card>
       </div>
+
+   
     </div>
   );
 }

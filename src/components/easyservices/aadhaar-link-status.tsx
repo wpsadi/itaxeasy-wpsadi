@@ -1,8 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { useForm } from "react-hook-form";
-import React from 'react';
+import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Head } from "./Head";
@@ -15,7 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import * as z from "zod";
+import { useAadhaarPanLink } from "@/services/easy-services/aadhar/aadhar-link-verification";
 
 // Zod schema for validating Aadhaar and PAN numbers
 const validationSchema = z.object({
@@ -33,6 +35,8 @@ const validationSchema = z.object({
 type FormValues = z.infer<typeof validationSchema>;
 
 export function CheckAadhaarLinkStatus() {
+  const aadharPanLinkMutation = useAadhaarPanLink();
+
   const form = useForm<FormValues>({
     resolver: zodResolver(validationSchema),
     defaultValues: {
@@ -43,6 +47,9 @@ export function CheckAadhaarLinkStatus() {
 
   function onSubmit(data: FormValues) {
     console.log(data);
+
+    aadharPanLinkMutation.mutate(data);
+
     // Handle search logic here
   }
 
@@ -51,6 +58,7 @@ export function CheckAadhaarLinkStatus() {
   }
 
   return (
+
     <div className="m-10">
         <Head text="Check Aadhaar Link Status"></Head>
 
@@ -128,5 +136,6 @@ export function CheckAadhaarLinkStatus() {
         </div>
 
   </div>
+
   );
 }

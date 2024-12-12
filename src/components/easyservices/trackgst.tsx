@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Head } from "./Head";
 
@@ -23,7 +22,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TrackGSTFormValues, trackGSTSchema } from "@/validations/easyservices/trackgst";
+import { useEasyTrackGST } from "@/services/easy-services/gst-services/track-gst";
+import {
+  TrackGSTFormValues,
+  trackGSTSchema,
+} from "@/validations/easyservices/trackgst";
 
 // Generate financial years (last 5 years)
 const currentYear = new Date().getFullYear();
@@ -33,7 +36,7 @@ const financialYears = Array.from({ length: 5 }, (_, i) => {
 });
 
 export function TrackGSTForm() {
-  const [isLoading, setIsLoading] = useState(false);
+  const gstTrackMutation = useEasyTrackGST();
 
   const form = useForm<TrackGSTFormValues>({
     resolver: zodResolver(trackGSTSchema),
@@ -44,16 +47,8 @@ export function TrackGSTForm() {
   });
 
   async function onSubmit(data: TrackGSTFormValues) {
-    setIsLoading(true);
-    try {
-      // Submit data to your API here
-      console.log(data);
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
+    console.log(data)
+    // gstTrackMutation.mutate(data);
   }
 
   function handleClear() {
@@ -79,7 +74,7 @@ export function TrackGSTForm() {
                     <Input
                       placeholder="Enter GSTN Of The Tax Payer"
                       {...field}
-                      disabled={isLoading}
+                      disabled={gstTrackMutation.isPending}
                     />
                   </FormControl>
                   <FormMessage />
@@ -95,7 +90,7 @@ export function TrackGSTForm() {
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
-                    disabled={isLoading}
+                    disabled={gstTrackMutation.isPending}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -115,8 +110,14 @@ export function TrackGSTForm() {
               )}
             />
             <div className="flex gap-4 pt-2">
-              <Button type="submit" className="flex-1" disabled={isLoading}>
-                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              <Button
+                type="submit"
+                className="flex-1"
+                disabled={gstTrackMutation.isPending}
+              >
+                {gstTrackMutation.isPending && (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
                 Search
               </Button>
               <Button
@@ -124,7 +125,7 @@ export function TrackGSTForm() {
                 variant="outline"
                 className="flex-1"
                 onClick={handleClear}
-                disabled={isLoading}
+                disabled={gstTrackMutation.isPending}
               >
                 Clear
               </Button>
@@ -132,6 +133,9 @@ export function TrackGSTForm() {
           </form>
         </Form>
       </div>
+      {
+        gstTrackMutation.isSuccess && gstTrackMutation?.data?.message
+      }
       <div className="bg-gray-100 p-8 rounded-lg">
         <div className="bg-white p-6 rounded-lg">
           <h2 className="text-2xl font-semibold mb-4 text-center">
