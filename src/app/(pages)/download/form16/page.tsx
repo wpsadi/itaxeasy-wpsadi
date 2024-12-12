@@ -73,26 +73,26 @@ export default function Page() {
   );
 
   // Add a new line
-  // const BreakupAmount6AaddLine = () => {
-  //   BreakupAmount6AsetLines((prevLines) => [
-  //     ...prevLines,
-  //     {
-  //       col1: "",
-  //       col2: "",
-  //       col3: "",
-  //       col4: "",
-  //       col5: "",
-  //       col6: "",
-  //     },
-  //   ]);
-  // };
+  const BreakupAmount6AaddLine = () => {
+    BreakupAmount6AsetLines((prevLines) => [
+      ...prevLines,
+      {
+        col1: "",
+        col2: "",
+        col3: "",
+        col4: "",
+        col5: "",
+        col6: "",
+      },
+    ]);
+  };
 
   // Remove a line
-  // const BreakupAmount6AremoveLine = (index: number) => {
-  //   BreakupAmount6AsetLines((prevLines) =>
-  //     prevLines.filter((_, i) => i !== index)
-  //   );
-  // };
+  const BreakupAmount6AremoveLine = (index: number) => {
+    BreakupAmount6AsetLines((prevLines) =>
+      prevLines.filter((_, i) => i !== index)
+    );
+  };
 
   const BreakupAmount10initialLines = [
     {
@@ -110,7 +110,7 @@ export default function Page() {
   );
 
   // Add a new line
-  const addLine = () => {
+  const BreakupAmount10addLine = () => {
     BreakupAmount10setLines((prevLines) => [
       ...prevLines,
       {
@@ -125,11 +125,11 @@ export default function Page() {
   };
 
   // Remove a line
-  // const BreakupAmount10removeLine = (index: number) => {
-  //   BreakupAmount10setLines((prevLines) =>
-  //     prevLines.filter((_, i) => i !== index)
-  //   );
-  // };
+  const BreakupAmount10removeLine = (index: number) => {
+    BreakupAmount10setLines((prevLines) =>
+      prevLines.filter((_, i) => i !== index)
+    );
+  };
 
   const CentralGovtChallaninitialLines = [
     {
@@ -162,7 +162,7 @@ export default function Page() {
   };
 
   // Remove a line
-  const removeLine = (index: number) => {
+  const CentralGovtChallanremoveLine = (index: number) => {
     CentralGovtChallansetLines((prevLines) =>
       prevLines.filter((_, i) => i !== index)
     );
@@ -645,120 +645,153 @@ export default function Page() {
             <TableRow>
               <TableCell
                 className="text-center text-sm font-bold text-gray-900 border border-neutral-600"
+                rowSpan={2}
                 colSpan={1}
               >
                 Sl. No
               </TableCell>
-              <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600 text-center ">
+              <TableCell
+                className="text-sm font-bold text-gray-900 border border-neutral-600 text-center "
+                rowSpan={2}
+              >
                 Tax Deposited in respect of the deductee (Rs.)
               </TableCell>
-              <TableCell colSpan={18} rowSpan={2} className=" p-0">
-                <TableRow>
-                  <TableCell
-                    className="text-sm font-bold text-gray-900 border border-neutral-600"
-                    colSpan={14}
-                  >
-                    Book Identification Number (BIN)
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600">
-                    Receipt Numbers of Form No. 24G
-                  </TableCell>
-                  <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600  ">
-                    DDO serial number in Form no.24G
-                  </TableCell>
-                  <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600  ">
-                    Date of transfer voucher (dd/mm/yyyy)
-                  </TableCell>
-                  <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600 ">
-                    Status of matching with Form no. 24G
-                  </TableCell>
-                </TableRow>
-                {CentralGovtTaxlines.map((line, index) => (
-                  <TableRow key={index}>
-                    <TableCell
-                      className="px-2 py-2 text-sm font-medium text-neutral-500 border-collapse border border-neutral-600 "
-                      colSpan={1}
-                    >
-                      <input
-                        className=" border-none focus:ring-0 outline-none w-full bg-white"
-                        value={line.col1}
-                        onChange={(e) => {
-                          const updatedLines = [...CentralGovtTaxlines];
-                          updatedLines[index].col1 = e.target.value;
-                          CentralGovtTaxSetLines(updatedLines);
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell
-                      className="px-2 py-2 text-sm font-medium text-neutral-500 border-collapse border border-neutral-600 "
-                      colSpan={1}
-                    >
-                      <input
-                        className="focus:outline-none w-full bg-white"
-                        value={line.col1}
-                        onChange={(e) => {
-                          const updatedLines = [...CentralGovtTaxlines];
-                          updatedLines[index].col1 = e.target.value;
-                          CentralGovtTaxSetLines(updatedLines);
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell
-                      className="px-2 py-2 text-sm font-medium text-neutral-500 border-collapse border border-neutral-600 "
-                      colSpan={1}
-                    >
-                      <input
-                        className="focus:outline-none w-full bg-white"
-                        value={line.col1}
-                        onChange={(e) => {
-                          const updatedLines = [...CentralGovtTaxlines];
-                          updatedLines[index].col1 = e.target.value;
-                          CentralGovtTaxSetLines(updatedLines);
-                        }}
-                      />
-                    </TableCell>
+              <TableCell
+                className="text-sm font-bold text-gray-900 border border-neutral-600 text-center"
+                rowSpan={1}
+                colSpan={18}
+              >
+                Book Identification Number (BIN)
+              </TableCell>
+            </TableRow>
 
-                    <TableCell
-                      className="px-2 py-2 text-sm font-medium text-neutral-500 border-collapse border border-neutral-600 "
-                      colSpan={1}
-                    >
-                      <input
-                        className="focus:outline-none w-full bg-white"
-                        value={line.col1}
-                        onChange={(e) => {
-                          const updatedLines = [...CentralGovtTaxlines];
-                          updatedLines[index].col1 = e.target.value;
-                          CentralGovtTaxSetLines(updatedLines);
-                        }}
-                      />
-
-                      <span className="flex justify-end">
-                        {/* Only show the '+' button if it's the last line */}
-                        {index === CentralGovtTaxlines.length - 1 && (
-                          <FiPlus
-                            onClick={CentralGovtTaxSetLinesaddLine}
-                            className="cursor-pointer text-green-500 ml-2"
-                            size={20}
-                          />
-                        )}
-                        {/* Show the '-' button for all lines except the first one */}
-                        {index > 0 && (
-                          <FiMinus
-                            onClick={() => removeCentralGovtTaxLine(index)}
-                            className="cursor-pointer text-red-500 ml-2"
-                            size={20}
-                          />
-                        )}
-                      </span>
-                    </TableCell>
-                  </TableRow>
-                ))}
+            <TableRow>
+              <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600">
+                Receipt Numbers of Form No. 24G
+              </TableCell>
+              <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600  ">
+                DDO serial number in Form no.24G
+              </TableCell>
+              <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600  ">
+                Date of transfer voucher (dd/mm/yyyy)
+              </TableCell>
+              <TableCell
+                className="text-sm font-bold text-gray-900 border border-neutral-600 "
+                colSpan={14}
+              >
+                Status of matching with Form no. 24G
               </TableCell>
             </TableRow>
 
             {/* *****data2***** */}
+
+            {CentralGovtTaxlines.map((line, index) => (
+              <TableRow key={index}>
+                <TableCell
+                  className="px-2 py-2 text-sm font-medium text-neutral-500 border-collapse border border-neutral-600 col-span-1"
+                  colSpan={1}
+                >
+                  <input
+                    className="focus:outline-none w-full bg-white"
+                    value={line.col1}
+                    onChange={(e) => {
+                      const updatedLines = [...CentralGovtTaxlines];
+                      updatedLines[index].col1 = e.target.value;
+                      CentralGovtTaxSetLines(updatedLines);
+                    }}
+                  />
+                </TableCell>
+                <TableCell
+                  className="px-2 py-2 text-sm font-medium text-left text-neutral-500 border border-neutral-600 col-span-3"
+                  colSpan={1}
+                >
+                  <input
+                    className="focus:outline-none text-left w-full bg-white"
+                    value={line.col2}
+                    onChange={(e) => {
+                      const updatedLines = [...CentralGovtTaxlines];
+                      updatedLines[index].col2 = e.target.value;
+                      CentralGovtTaxSetLines(updatedLines);
+                    }}
+                  />
+                </TableCell>
+                <TableCell
+                  className="px-2 py-2 text-sm font-medium text-neutral-500 border-collapse border border-neutral-600 col-span-2"
+                  colSpan={1}
+                >
+                  <input
+                    className="focus:outline-none w-full bg-white"
+                    value={line.col3}
+                    onChange={(e) => {
+                      const updatedLines = [...CentralGovtTaxlines];
+                      updatedLines[index].col3 = e.target.value;
+                      CentralGovtTaxSetLines(updatedLines);
+                    }}
+                  />
+                </TableCell>
+                <TableCell
+                  className="px-2 py-2 text-sm font-medium text-left text-neutral-500 border border-neutral-600 col-span-2"
+                  colSpan={1}
+                >
+                  <input
+                    className="focus:outline-none w-full bg-white"
+                    value={line.col4}
+                    onChange={(e) => {
+                      const updatedLines = [...CentralGovtTaxlines];
+                      updatedLines[index].col4 = e.target.value;
+                      CentralGovtTaxSetLines(updatedLines);
+                    }}
+                  />
+                </TableCell>
+                <TableCell
+                  className="px-2 py-2 text-sm font-medium text-left text-neutral-500 border border-neutral-500 col-span-2"
+                  colSpan={1}
+                >
+                  <input
+                    className="focus:outline-none w-full bg-white"
+                    value={line.col5}
+                    onChange={(e) => {
+                      const updatedLines = [...CentralGovtTaxlines];
+                      updatedLines[index].col5 = e.target.value;
+                      CentralGovtTaxSetLines(updatedLines);
+                    }}
+                  />
+                </TableCell>
+                <TableCell
+                  className="px-2 py-2 text-sm font-medium text-neutral-500 border border-neutral-500 col-span-2"
+                  colSpan={18}
+                >
+                  <input
+                    className="focus:outline-none text-left no-border w-full bg-white"
+                    value={line.col6}
+                    onChange={(e) => {
+                      const updatedLines = [...CentralGovtTaxlines];
+                      updatedLines[index].col6 = e.target.value;
+                      CentralGovtTaxSetLines(updatedLines);
+                    }}
+                  />
+                  <span className="flex justify-end">
+                    {/* Only show the '+' button if it's the last line */}
+                    {index === CentralGovtTaxlines.length - 1 && (
+                      <FiPlus
+                        onClick={CentralGovtTaxSetLinesaddLine}
+                        className="cursor-pointer text-green-500 ml-2"
+                        size={20}
+                      />
+                    )}
+                    {/* Show the '-' button for all lines except the first one */}
+                    {index > 0 && (
+                      <FiMinus
+                        onClick={() => removeCentralGovtTaxLine(index)}
+                        className="cursor-pointer text-red-500 ml-2"
+                        size={20}
+                      />
+                    )}
+                  </span>
+                </TableCell>
+              </TableRow>
+            ))}
+
             <TableRow>
               <TableCell className="px-2 py-2 text-sm font-bold text-gray-900 border border-neutral-600 col-span-1 text-left">
                 Total (Rs.)
@@ -775,7 +808,7 @@ export default function Page() {
             <TableRow>
               <TableCell
                 className="px-2 py-2 text-sm font-bold text-gray-900 border border-neutral-600 text-center"
-                colSpan={7}
+                colSpan={18}
               >
                 II. DETAILS OF TAX DEDUCTED AND DEPOSITED IN THE CENTRAL
                 GOVERNMENT ACCOUNT THROUGH CHALLAN
@@ -789,36 +822,40 @@ export default function Page() {
             <TableRow>
               <TableCell
                 className="px-2 py-4 text-center text-sm font-bold text-gray-900 border border-neutral-600"
+                rowSpan={2}
                 colSpan={1}
               >
                 Sl. No
               </TableCell>
-              <TableCell className="px-2 py-4 text-sm font-bold text-gray-900 border border-neutral-600 text-center ">
+              <TableCell
+                className="px-2 py-4 text-sm font-bold text-gray-900 border border-neutral-600 text-center "
+                rowSpan={2}
+              >
                 Tax Deposited in respect of the deductee (Rs.)
               </TableCell>
-              <TableCell colSpan={14}>
-                <TableRow>
-                  <TableCell
-                    className="text-sm font-bold text-gray-900 border text-center border-neutral-600"
-                    colSpan={14}
-                  >
-                    Challan Identification Number (CIN)
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="px-2 py-1 text-sm font-bold text-gray-900 border border-neutral-600">
-                    BSR Code of the Bank Branch
-                  </TableCell>
-                  <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600  ">
-                    Date on which Tax deposited (dd/mm/yyyy)
-                  </TableCell>
-                  <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600  ">
-                    Challan Serial Number
-                  </TableCell>
-                  <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600 ">
-                    Status of matching with OLTAS*
-                  </TableCell>
-                </TableRow>
+              <TableCell
+                colSpan={18}
+                className="px-2 py-4 text-sm font-bold text-gray-900 border border-neutral-600 text-center"
+              >
+                Challan Identification Number (CIN)
+              </TableCell>
+            </TableRow>
+
+            <TableRow>
+              <TableCell className="px-2 py-1 text-sm font-bold text-gray-900 border border-neutral-600">
+                BSR Code of the Bank Branch
+              </TableCell>
+              <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600  ">
+                Date on which Tax deposited (dd/mm/yyyy)
+              </TableCell>
+              <TableCell className="text-sm font-bold text-gray-900 border border-neutral-600  ">
+                Challan Serial Number
+              </TableCell>
+              <TableCell
+                className="text-sm font-bold text-gray-900 border border-neutral-600 "
+                colSpan={14}
+              >
+                Status of matching with OLTAS*
               </TableCell>
             </TableRow>
 
@@ -919,7 +956,7 @@ export default function Page() {
                     {/* Show the '-' button for all lines except the first one */}
                     {index > 0 && (
                       <FiMinus
-                        onClick={() => removeLine(index)}
+                        onClick={() => CentralGovtChallanremoveLine(index)}
                         className="cursor-pointer text-red-500 ml-2"
                         size={20}
                       />
@@ -1099,7 +1136,7 @@ export default function Page() {
                 colSpan={14}
               >
                 Provisional tax credit is effected only for TDS / TCS Statements
-                filed by Government deductors. &quot;P&quot; status will be changed to
+                filed by Government deductors. &ldquo;P&ldquo; status will be changed to
                 Final (F) on verification of payment details submitted by Pay
                 and Accounts Officer (PAO) statement
               </TableCell>
@@ -2598,7 +2635,10 @@ export default function Page() {
             </TableRow>
 
             <TableRow>
-              <TableCell className="px-2 py-2 text-sm font-bold text-gray-900 border border-neutral-600 col-span-12 text-left">
+              <TableCell
+                className="px-2 py-2 text-sm font-bold text-gray-900 border border-neutral-600 col-span-12 p-7 text-center"
+                colSpan={14}
+              >
                 2. (f) Break up for ‘Amount of any other exemption under section
                 10’ to be filled in the table below
               </TableCell>
@@ -2701,7 +2741,7 @@ export default function Page() {
                     {/* Only show the '+' button if it's the last line */}
                     {index === BreakupAmount10lines.length - 1 && (
                       <FiPlus
-                        onClick={addLine}
+                        onClick={BreakupAmount10addLine}
                         className="cursor-pointer text-green-500 ml-2"
                         size={20}
                       />
@@ -2709,7 +2749,7 @@ export default function Page() {
                     {/* Show the '-' button for all lines except the first one */}
                     {index > 0 && (
                       <FiMinus
-                        onClick={() => removeLine(index)}
+                        onClick={() => BreakupAmount10removeLine(index)}
                         className="cursor-pointer text-red-500 ml-2"
                         size={20}
                       />
@@ -2754,7 +2794,7 @@ export default function Page() {
 
             {/* ************breakup Chapter VI A***************** */}
 
-            {BreakupAmount6Alines.map((line, index) => (
+            {BreakupAmount6Alines.map((BreakupAmount6Aline, index) => (
               <TableRow key={index}>
                 <TableCell
                   className="px-2 py-2 text-sm font-medium text-neutral-500 border-collapse border border-neutral-600 col-span-1"
@@ -2762,7 +2802,7 @@ export default function Page() {
                 >
                   <input
                     className="focus:outline-none w-full bg-white"
-                    value={line.col1}
+                    value={BreakupAmount6Aline.col1}
                     onChange={(e) => {
                       const updatedLines = [...BreakupAmount6Alines];
                       updatedLines[index].col1 = e.target.value;
@@ -2776,7 +2816,7 @@ export default function Page() {
                 >
                   <input
                     className="focus:outline-none text-left w-full bg-white"
-                    value={line.col2}
+                    value={BreakupAmount6Aline.col2}
                     onChange={(e) => {
                       const updatedLines = [...BreakupAmount6Alines];
                       updatedLines[index].col2 = e.target.value;
@@ -2790,7 +2830,7 @@ export default function Page() {
                 >
                   <input
                     className="focus:outline-none w-full bg-white"
-                    value={line.col3}
+                    value={BreakupAmount6Aline.col3}
                     onChange={(e) => {
                       const updatedLines = [...BreakupAmount6Alines];
                       updatedLines[index].col3 = e.target.value;
@@ -2804,7 +2844,7 @@ export default function Page() {
                 >
                   <input
                     className="focus:outline-none w-full bg-white"
-                    value={line.col4}
+                    value={BreakupAmount6Aline.col4}
                     onChange={(e) => {
                       const updatedLines = [...BreakupAmount6Alines];
                       updatedLines[index].col4 = e.target.value;
@@ -2818,7 +2858,7 @@ export default function Page() {
                 >
                   <input
                     className="focus:outline-none text-left no-border w-full bg-white"
-                    value={line.col6}
+                    value={BreakupAmount6Aline.col6}
                     onChange={(e) => {
                       const updatedLines = [...BreakupAmount6Alines];
                       updatedLines[index].col6 = e.target.value;
@@ -2829,7 +2869,7 @@ export default function Page() {
                     {/* Only show the '+' button if it's the last line */}
                     {index === BreakupAmount6Alines.length - 1 && (
                       <FiPlus
-                        onClick={addLine}
+                        onClick={BreakupAmount6AaddLine}
                         className="cursor-pointer text-green-500 ml-2"
                         size={20}
                       />
@@ -2837,7 +2877,7 @@ export default function Page() {
                     {/* Show the '-' button for all lines except the first one */}
                     {index > 0 && (
                       <FiMinus
-                        onClick={() => removeLine(index)}
+                        onClick={() => BreakupAmount6AremoveLine(index)}
                         className="cursor-pointer text-red-500 ml-2"
                         size={20}
                       />

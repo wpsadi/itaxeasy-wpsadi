@@ -16,6 +16,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useState } from "react";
+import { Head } from "./Head";
+
 import {
   Select,
   SelectContent,
@@ -23,6 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
 
 // Validation schema using Zod
 const PANFormSchema = z.object({
@@ -58,13 +64,15 @@ export default function PANSearchForm() {
   };
 
   return (
+
+    <div className="m-10">
+    <Head text="PAN Of Tax Payer"></Head>
+
+
     <div className="grid p-10 gap-5 md:grid-cols-2">
       {/* Form Section */}
       <Card>
-        <CardHeader>
-          <CardTitle>PAN Of Tax Payer</CardTitle>
-        </CardHeader>
-        <CardContent>
+        <CardContent className="p-10">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               {/* PAN Field */}
@@ -153,5 +161,7 @@ export default function PANSearchForm() {
         </CardContent>
       </Card>
     </div>
+  </div>
+
   );
 }

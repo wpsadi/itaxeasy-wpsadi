@@ -16,7 +16,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
+import * as z from "zod";
+import { Head } from "./Head";
+
 import { useEasySearchDirector } from "@/services/easy-services/company/company-director-details";
+
 
 // Zod schema for validating DIN number
 const dinSchema = z.object({
@@ -52,13 +57,13 @@ export function DINSearchForm() {
   }
 
   return (
+    <div className="m-10">
+    <Head text="Company Director Details"></Head>
+
+
     <div className="grid p-10 gap-5 md:grid-cols-2">
       <Card>
-        <h1 className="p-5 text-2xl">Company Director Details</h1>
-        <CardHeader>
-          <CardTitle>Search By DIN</CardTitle>
-        </CardHeader>
-        <CardContent>
+        <CardContent className="p-10">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
@@ -116,5 +121,6 @@ export function DINSearchForm() {
         </CardContent>
       </Card>
     </div>
+  </div>
   );
 }

@@ -1,5 +1,11 @@
 "use client";
 
+
+import HomeFooter from "@/components/common/HomeFooter";
+import { HomeNavbar } from "@/components/common/HomeNavbar";
+import { useState } from "react";
+import { Button } from "@/components/ui/button"; // ShadCN button
+
 import { UploadIcon } from "lucide-react";
 import { PDFDocument } from "pdf-lib"; // Ensure pdf-lib is installed
 import { useState } from "react";
@@ -63,7 +69,10 @@ export default function MergePDFComponent() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
+    <div>
+      <HomeNavbar />
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-10">
+      
       <h1 className="text-2xl font-semibold text-blue-600 mb-6">
         Merge PDF Files
       </h1>
@@ -113,6 +122,9 @@ export default function MergePDFComponent() {
       >
         {isMerging ? "Merging..." : "Merge PDFs"}
       </Button>
+    </div>
+      <HomeFooter></HomeFooter>
+
     </div>
   );
 }

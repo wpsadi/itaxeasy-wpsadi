@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as React from "react";
 import { Controller, useForm } from "react-hook-form";
 import * as z from "zod";
+import { Head } from "./Head";
 
 import { useEasySearchPAN } from "@/services/easy-services/gst-services/srch-pan";
 
@@ -56,9 +57,12 @@ export default function PANSearch() {
   }
 
   return (
+    <div className="m-10">
+    <Head text="Search By PAN"></Head>
+
+
     <div className="w-full max-w-3xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4 text-blue-600">Search By PAN</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 p-10">
         <div>
           <label
             htmlFor="pan"
@@ -142,5 +146,6 @@ export default function PANSearch() {
         </p>
       </div>
     </div>
+  </div>
   );
 }

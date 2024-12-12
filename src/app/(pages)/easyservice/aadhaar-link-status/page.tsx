@@ -6,9 +6,11 @@ import { CheckAadhaarLinkStatus } from "@/components/easyservices/aadhaar-link-s
 export default function Page() {
   return (
     <>
+
    
       <CheckAadhaarLinkStatus></CheckAadhaarLinkStatus>
      
+
     </>
   );
 }

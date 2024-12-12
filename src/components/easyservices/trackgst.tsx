@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { Head } from "./Head";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -55,9 +56,12 @@ export function TrackGSTForm() {
   }
 
   return (
+    <div className="m-10">
+    <Head text="Track GST Return"></Head>
+
+
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-10">
       <div className="bg-white p-6 rounded-lg shadow-sm">
-        <h1 className="text-2xl font-semibold mb-6">Track GST Return</h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
@@ -144,5 +148,6 @@ export function TrackGSTForm() {
         </div>
       </div>
     </div>
+  </div>
   );
 }

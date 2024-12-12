@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useEasySearchIFSC } from "@/services/easy-services/easy-bank/ifsc-srch";
 import { IFSCFormValues, IFSCSchema } from "@/validations/easyservices/IFSCin";
+import { Head } from "./Head";
 
 export function IFSCSearchForm() {
   const ifsSearchMutation = useEasySearchIFSC();
@@ -39,12 +40,13 @@ export function IFSCSearchForm() {
   }
 
   return (
-    <div className="grid p-10 gap-5 md:grid-cols-2">
+    <div className="m-10">
+    <Head text="Search By IFSC"></Head>
+
+
+    <div className="grid p-10 gap-5 md:grid-cols-2" >
       <Card>
-        <CardHeader>
-          <CardTitle>Search By IFSC</CardTitle>
-        </CardHeader>
-        <CardContent>
+        <CardContent className="p-10">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
@@ -99,5 +101,6 @@ export function IFSCSearchForm() {
         </CardContent>
       </Card>
     </div>
+  </div>
   );
 }

@@ -17,6 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useEasySearchGSTIN } from "@/services/easy-services/gst-services/Srch-gstin";
 import { GSTINFormValues, gstinSchema } from "@/validations/easyservices/gstin";
+import { Head } from "./Head";
 
 export function GSTINSearchForm() {
   const gstSrchMutation = useEasySearchGSTIN();
@@ -36,12 +37,13 @@ export function GSTINSearchForm() {
   }
 
   return (
+    <div className="m-10">
+    <Head text="Search By GSTIN"></Head>
+
+
     <div className="grid p-10 gap-5 md:grid-cols-2">
       <Card>
-        <CardHeader>
-          <CardTitle>Search By GSTIN</CardTitle>
-        </CardHeader>
-        <CardContent>
+        <CardContent className="p-10">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
@@ -95,5 +97,6 @@ export function GSTINSearchForm() {
         </CardContent>
       </Card>
     </div>
+  </div>
   );
 }

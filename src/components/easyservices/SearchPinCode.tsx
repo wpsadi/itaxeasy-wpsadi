@@ -16,7 +16,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
 import { useSearchPincode } from "@/services/easy-services/post-office/srchPincode";
+
 
 // Zod schema for validating Pincode
 const pincodeSchema = z.object({
@@ -52,12 +54,14 @@ export function PincodeSearchForm() {
   }
 
   return (
+
+    <div className="m-10">
+    <Head text="Search By Pincode"></Head>
+
+
     <div className="grid p-10 gap-5 md:grid-cols-2">
       <Card>
-        <CardHeader>
-          <CardTitle>Search By Pincode</CardTitle>
-        </CardHeader>
-        <CardContent>
+        <CardContent className="p-10">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               <FormField
@@ -114,5 +118,7 @@ export function PincodeSearchForm() {
         </CardContent>
       </Card>
     </div>
+  </div>
+
   );
 }
