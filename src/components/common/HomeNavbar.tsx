@@ -1,16 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  ChevronDown,
-  Download,
-  Grid,
-  Layout,
-  LifeBuoy,
-  Link2Icon,
-  Menu,
-  Sparkles,
-} from "lucide-react";
+import { ChevronDown, Download, Grid, Layout, LifeBuoy, Link2Icon, Menu, Sparkles } from 'lucide-react';
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -55,32 +46,7 @@ const ourProductsMenu: MenuItem[] = [
   {
     url: "/library",
     menu: "Easy E-Library",
-  },
-  {
-    url: "/",
-    menu: "Fastag Recharge",
-    upcoming: true,
-  },
-  {
-    url: "#",
-    menu: "Business Erp",
-    upcoming: true,
-  },
-  {
-    url: "#",
-    menu: "School Erp",
-    upcoming: true,
-  },
-  {
-    url: "#",
-    menu: "CRM",
-    upcoming: true,
-  },
-  {
-    url: "#",
-    menu: "Easy Cloud",
-    upcoming: true,
-  },
+  }
 ];
 
 const ourServicesMenu: MenuItem[] = [
@@ -369,7 +335,7 @@ export function HomeNavbar() {
         </Link>
         <div className="hidden xl:flex xl:flex-1">
           <NavigationMenu>
-            <NavigationMenuList>
+            <NavigationMenuList className="gap-1 lg:gap-2 px-2">
               {menuItems.map((item) => (
                 <NavigationMenuItem key={item.title}>
                   {item.submenu ? (
@@ -380,6 +346,7 @@ export function HomeNavbar() {
                             activeSubmenu === item.title ? null : item.title
                           )
                         }
+                        className="text-sm lg:text-base"
                       >
                         {item.title}
                       </NavigationMenuTrigger>
@@ -426,7 +393,7 @@ export function HomeNavbar() {
                   ) : (
                     <Link href={item.href || "#"} legacyBehavior passHref>
                       <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
+                        className={navigationMenuTriggerStyle() + " text-sm lg:text-base"}
                       >
                         {item.title}
                       </NavigationMenuLink>
@@ -489,7 +456,20 @@ export function HomeNavbar() {
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
               <div className="mb-4 flex flex-col space-y-2">
-                <Button
+              {userQuery.isPending && (
+            <Button
+              variant="outline"
+              className="inline-flex mr-2"
+              onClick={() => {
+                router.push("#");
+              }}
+            >
+              ...
+            </Button>
+          )}
+          {userQuery.isError && (
+            <>
+               <Button
                   variant="outline"
                   className="w-full"
                   onClick={() => {
@@ -498,6 +478,7 @@ export function HomeNavbar() {
                 >
                   Log In
                 </Button>
+              
                 <Button
                   className="w-full"
                   onClick={() => {
@@ -506,6 +487,15 @@ export function HomeNavbar() {
                 >
                   Sign Up
                 </Button>
+            </>
+          )}
+
+          {userQuery.isSuccess && (
+            <>
+              <NavbarUserDropdown />
+            </>
+          )}
+              
               </div>
               <Separator className="mb-4" />
               <ScrollArea className="h-[calc(100vh-10rem)] pb-10">
@@ -520,9 +510,9 @@ export function HomeNavbar() {
         </div>
       </div>
       {activeSubmenu && (
-        <div className="hidden lg:block border-t">
+        <div className="hidden md:block border-t">
           <div className="container py-4">
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {menuItems
                 .find((item) => item.title === activeSubmenu)
                 ?.submenu?.map((subItem) => (
@@ -534,7 +524,7 @@ export function HomeNavbar() {
                           <li key={subSubItem.menu}>
                             <Link
                               href={subSubItem.url || "#"}
-                              className="block text-sm text-muted-foreground hover:text-primary"
+                              className="block text-xs lg:text-sm text-muted-foreground hover:text-primary"
                             >
                               {subSubItem.menu}
                             </Link>
@@ -544,7 +534,7 @@ export function HomeNavbar() {
                     ) : (
                       <Link
                         href={subItem.url || "#"}
-                        className="block text-sm text-muted-foreground hover:text-primary"
+                        className="block text-xs lg:text-sm text-muted-foreground hover:text-primary"
                       >
                         {subItem.menu}
                         {subItem.upcoming && (
@@ -570,29 +560,55 @@ function MobileMenuItem({ item }: { item: MainMenuItem }) {
 
   return (
     <div>
-      <div
-        className="flex cursor-pointer items-center justify-between rounded-lg p-2 hover:bg-accent"
-        onClick={() => item.submenu && setIsOpen(!isOpen)}
-      >
-        <div className="flex items-center space-x-4">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
-            <Icon className="h-4 w-4" />
-          </div>
-          <div>
-            <div className="text-sm font-medium">{item.title}</div>
-            <div className="text-xs text-muted-foreground">
-              {item.description}
+      {item.submenu ? (
+        <div
+          className="flex cursor-pointer items-center justify-between rounded-lg p-2 hover:bg-accent"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <div className="flex items-center space-x-4">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
+              <Icon className="h-4 w-4" />
+            </div>
+            <div>
+              <div className="text-sm font-medium">{item.title}</div>
+              <div className="text-xs text-muted-foreground">
+                {item.description}
+              </div>
             </div>
           </div>
+          {item.submenu && (
+            <ChevronDown
+              className={`h-4 w-4 transition-transform duration-200 ${
+                isOpen ? "rotate-180" : ""
+              }`}
+            />
+          )}
         </div>
-        {item.submenu && (
-          <ChevronDown
-            className={`h-4 w-4 transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          />
-        )}
-      </div>
+      ) : (
+        <Link
+          href={item.href || "#"}
+          className="flex cursor-pointer items-center justify-between rounded-lg p-2 hover:bg-accent"
+        >
+          <div className="flex items-center space-x-4">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted">
+              <Icon className="h-4 w-4" />
+            </div>
+            <div>
+              <div className="text-sm font-medium">{item.title}</div>
+              <div className="text-xs text-muted-foreground">
+                {item.description}
+              </div>
+            </div>
+          </div>
+          {item.submenu && (
+            <ChevronDown
+              className={`h-4 w-4 transition-transform duration-200 ${
+                isOpen ? "rotate-180" : ""
+              }`}
+            />
+          )}
+        </Link>
+      )}
       <AnimatePresence>
         {isOpen && item.submenu && (
           <motion.div
@@ -608,7 +624,7 @@ function MobileMenuItem({ item }: { item: MainMenuItem }) {
                   <MobileSubMenuItem item={subItem} />
                 ) : (
                   <Link
-                    href={subItem.url || "#"}
+                    href={subItem.url || item.href || "#"}
                     className="block rounded-md py-2 text-sm hover:bg-accent"
                   >
                     {subItem.menu}
@@ -673,3 +689,4 @@ function MobileSubMenuItem({ item }: { item: MenuItem }) {
     </div>
   );
 }
+
