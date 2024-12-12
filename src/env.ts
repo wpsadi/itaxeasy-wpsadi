@@ -4,7 +4,8 @@ export const env = {
         prefix:parseInt(process.env.NEXT_PUBLIC_HTTPS || "0") === 1 ? "https://" : "http://",
         domain:String(process.env.NEXT_PUBLIC_VERCEL_URL),
         url:`${parseInt(process.env.NEXT_PUBLIC_HTTPS || "0") === 1 ? "https://" : "http://"}${String(process.env.NEXT_PUBLIC_Domain)}`,
-        apiURL:`${String(process.env.NEXT_PUBLIC_API_URL)}`
+        apiURL:`${String(process.env.NEXT_PUBLIC_API_URL)}`,
+        ocr_api_url : `${String(process.env.NEXT_PUBLIC_OCR_API_URL)}`,
     },
     apiKeys:{
         public:{

@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { BusinessProfileCard } from "./(businessProfile)/businessProfile";
 import { UserProfile } from "./(userProfile)/userProfile";
 
+
 export type ProfileType = "user" | "business";
 
 interface ProfileCardProps {
@@ -16,7 +17,7 @@ export function ProfileCard({ activeTab }: ProfileCardProps) {
       {activeTab === "user" && (
         <>
           <Card className="p-6">
-            <UserProfile />
+            <UserProfile activeTab={"user"}/>
           </Card>
         </>
       )}

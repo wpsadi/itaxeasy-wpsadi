@@ -58,7 +58,7 @@ export default function AadharUpload() {
     // Replace this with your actual processing logic
     const processFile = async (file: File) => {
       // Simulating processing delay
-      console.log(file)
+      console.log(file);
       await new Promise((resolve) => setTimeout(resolve, 1000));
       // Return mock data
       return {
