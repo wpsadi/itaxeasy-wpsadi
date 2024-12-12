@@ -46,9 +46,9 @@ export default function NPSCalculator() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      monthlyInvestment: "",
-      rateOfInterest: "",
-      currentAge: "",
+      monthlyInvestment: 0,
+      rateOfInterest: 0,
+      currentAge: 0,
     },
   })
 
