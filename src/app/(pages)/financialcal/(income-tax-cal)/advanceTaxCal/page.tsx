@@ -35,7 +35,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { calculateAdvanceTax, type TaxPayerType } from "@/lib/calculate-advance-tax"
+import { calculateAdvanceTax, type TaxPayerType } from "./(lib)/advance"
 
 const taxPayerTypes: TaxPayerType[] = [
   "Individual",

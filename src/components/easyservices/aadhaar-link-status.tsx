@@ -1,8 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { useForm } from "react-hook-form";
-import React from 'react';
+import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import * as z from "zod";
+import { useAadhaarPanLink } from "@/services/easy-services/aadhar/aadhar-link-verification";
 
 // Zod schema for validating Aadhaar and PAN numbers
 const validationSchema = z.object({
@@ -32,6 +34,7 @@ const validationSchema = z.object({
 type FormValues = z.infer<typeof validationSchema>;
 
 export function CheckAadhaarLinkStatus() {
+  const aadharPanLinkMutation = useAadhaarPanLink();
   const form = useForm<FormValues>({
     resolver: zodResolver(validationSchema),
     defaultValues: {
@@ -42,6 +45,7 @@ export function CheckAadhaarLinkStatus() {
 
   function onSubmit(data: FormValues) {
     console.log(data);
+    aadharPanLinkMutation.mutate(data);
     // Handle search logic here
   }
 
@@ -67,6 +71,7 @@ export function CheckAadhaarLinkStatus() {
                     <FormLabel>Aadhaar No.</FormLabel>
                     <FormControl>
                       <Input
+                        disabled={aadharPanLinkMutation.isPending}
                         placeholder="Enter your Aadhaar number"
                         {...field}
                       />
@@ -84,22 +89,24 @@ export function CheckAadhaarLinkStatus() {
                   <FormItem>
                     <FormLabel>PAN No.</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Enter your PAN number"
-                        {...field}
-                      />
+                      <Input disabled={aadharPanLinkMutation.isPending} placeholder="Enter your PAN number" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              
+
               <div className="flex gap-4">
                 <Button
                   type="submit"
+                  disabled={aadharPanLinkMutation.isPending}
                   className="flex-1 bg-blue-500 hover:bg-blue-600"
                 >
-                  Search
+                  {
+                    aadharPanLinkMutation.isPending
+                      ? "Searching..."
+                      : "Search"
+                  }
                 </Button>
                 <Button
                   type="button"
@@ -111,6 +118,11 @@ export function CheckAadhaarLinkStatus() {
               </div>
             </form>
           </Form>
+          {
+            // here is response data
+            aadharPanLinkMutation.isSuccess &&
+            aadharPanLinkMutation?.data?.message
+          }
         </CardContent>
       </Card>
       <Card>
@@ -119,7 +131,8 @@ export function CheckAadhaarLinkStatus() {
             Welcome to the Aadhaar and PAN search page.
           </h2>
           <p className="text-muted-foreground">
-            Use the search bar to find information related to Aadhaar and PAN numbers.
+            Use the search bar to find information related to Aadhaar and PAN
+            numbers.
           </p>
         </CardContent>
       </Card>

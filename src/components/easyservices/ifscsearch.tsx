@@ -1,8 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { useForm } from "react-hook-form";
-import React from 'react';
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,9 +15,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useEasySearchIFSC } from "@/services/easy-services/easy-bank/ifsc-srch";
 import { IFSCFormValues, IFSCSchema } from "@/validations/easyservices/IFSCin";
 
 export function IFSCSearchForm() {
+  const ifsSearchMutation = useEasySearchIFSC();
   const form = useForm<IFSCFormValues>({
     resolver: zodResolver(IFSCSchema),
     defaultValues: {
@@ -25,7 +28,7 @@ export function IFSCSearchForm() {
   });
 
   function onSubmit(data: IFSCFormValues) {
-    console.log(data);
+    ifsSearchMutation.mutate(data.IFSC);
     // Handle search logic here
   }
 
@@ -50,6 +53,7 @@ export function IFSCSearchForm() {
                     <FormLabel>Search By:</FormLabel>
                     <FormControl>
                       <Input
+                        disabled={ifsSearchMutation.isPending}
                         placeholder="Your IFSC Identification Number"
                         {...field}
                       />
@@ -62,8 +66,9 @@ export function IFSCSearchForm() {
                 <Button
                   type="submit"
                   className="flex-1 bg-blue-500 hover:bg-blue-600"
+                  disabled={ifsSearchMutation.isPending}
                 >
-                  Search
+                  {ifsSearchMutation.isPending ? "Searching..." : "Search"}
                 </Button>
                 <Button
                   type="button"
@@ -77,6 +82,9 @@ export function IFSCSearchForm() {
           </Form>
         </CardContent>
       </Card>
+      {
+        ifsSearchMutation.isSuccess && ifsSearchMutation?.data?.message
+      }
       <Card>
         <CardContent className="p-6">
           <h2 className="text-2xl font-bold mb-2">

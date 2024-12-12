@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-import { calculateDepreciation } from "./(lib)/calculate"
+import { calculateDepreciation } from "../(income-tax-cal)/depCalc/(lib)/calculate"
 
 // Register ChartJS components
 ChartJS.register(

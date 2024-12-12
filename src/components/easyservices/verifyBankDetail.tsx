@@ -4,6 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { useEasyBankAccountVerify } from "@/services/easy-services/easy-bank/verify-account";
+
 // Zod schema for validation
 const formSchema = z.object({
   accountNumber: z
@@ -26,6 +28,7 @@ const formSchema = z.object({
 });
 
 export default function VerificationOfBank() {
+  const bankDetailsVerifyMutation = useEasyBankAccountVerify();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,7 +41,8 @@ export default function VerificationOfBank() {
 
   // Handle form submission
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values); // Process the form values here
+    // console.log(values); // Process the form values here
+    bankDetailsVerifyMutation.mutate(values);
   }
 
   // Handle clear action
@@ -67,6 +71,7 @@ export default function VerificationOfBank() {
                 </label>
                 <input
                   {...form.register("accountNumber")}
+                  disabled={bankDetailsVerifyMutation.isPending}
                   id="accountNumber"
                   placeholder="Enter Account Number"
                   className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -88,6 +93,7 @@ export default function VerificationOfBank() {
                 <input
                   {...form.register("ifscCode")}
                   id="ifscCode"
+                  disabled={bankDetailsVerifyMutation.isPending}
                   placeholder="Enter IFSC Code"
                   className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
@@ -107,6 +113,7 @@ export default function VerificationOfBank() {
                 </label>
                 <input
                   {...form.register("accountHolderName")}
+                  disabled={bankDetailsVerifyMutation.isPending}
                   id="accountHolderName"
                   placeholder="Enter Account Holder Name"
                   className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -127,6 +134,7 @@ export default function VerificationOfBank() {
                 </label>
                 <input
                   {...form.register("mobile")}
+                  disabled={bankDetailsVerifyMutation.isPending}
                   id="mobile"
                   placeholder="Enter Mobile Number"
                   className="w-full p-2 border bg-white border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -141,9 +149,12 @@ export default function VerificationOfBank() {
               <div className="flex gap-4 mt-6">
                 <button
                   type="submit"
+                  disabled={bankDetailsVerifyMutation.isPending}
                   className="px-8 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
                 >
-                  Submit
+                 {
+                  bankDetailsVerifyMutation.isPending ? "Verifying..." : "Verify"
+                 }
                 </button>
                 <button
                   type="button"
@@ -156,6 +167,10 @@ export default function VerificationOfBank() {
             </div>
           </form>
         </div>
+
+        {
+          bankDetailsVerifyMutation.isSuccess && bankDetailsVerifyMutation?.data?.message
+        }
 
         <div className="flex-1 bg-gray-100 p-8 rounded-lg">
           <div className="bg-white p-6 rounded-lg">

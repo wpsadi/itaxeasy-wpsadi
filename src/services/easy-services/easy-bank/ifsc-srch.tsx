@@ -1,34 +1,31 @@
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { isHttpError } from "http-errors";
 
-import { apiAxios } from "@/instances/apiInstance";
 import { toast } from "@/hooks/use-toast";
-import axios from "axios";
+import { apiAxios } from "@/instances/apiInstance";
 
 type SuccessResponse = {
-  success: boolean;
-  data: unknown;
-  entity: string;
-  consent: string;
-  reason: string;
+  success: false;
+  message: "";
 };
 
 type ErrorResponse = {
-  success: boolean;
-  message: string;
+  success: false;
+  message: "";
 };
 
-export const usePanAadharMutation = () => {
+export const useEasySearchIFSC = () => {
   return useMutation({
-    mutationKey: ["panAadharVerify"],
-    mutationFn: async (data: { pan: string; aadhaar: string }) => {
-      const request = await apiAxios.post(`pan/pan-aadhaar-link-status`, data);
-      return request.data as SuccessResponse;
+    mutationKey: ["search-ifsc"],
+    mutationFn: async (ifsc: string) => {
+      const response = await apiAxios.post("bank/details", { ifsc});
+      return response.data as SuccessResponse;
     },
     onError: (error: unknown) => {
       if (isHttpError(error)) {
         toast({
-          title: "Pan-Aadhaar Status Failed",
+          title: "IFSC Search Failed",
           variant: "destructive",
           description: error.message,
         });
@@ -38,7 +35,7 @@ export const usePanAadharMutation = () => {
       if (axios.isAxiosError(error)) {
         const errorResponse = error.response?.data as ErrorResponse;
         toast({
-          title: "Pan-Aadhaar Status Failed",
+          title: "IFSC Search Failed",
           variant: "destructive",
           description: errorResponse.message || "Unknown error occurred.",
         });
@@ -46,7 +43,7 @@ export const usePanAadharMutation = () => {
       }
 
       toast({
-        title: "Pan-Aadhaar Status Failed",
+        title: "IFSC Search Failed",
         variant: "destructive",
         description:
           "Unknown error occurred. Please try again later or contact support.",

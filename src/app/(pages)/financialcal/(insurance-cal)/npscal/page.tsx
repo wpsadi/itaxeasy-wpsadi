@@ -24,7 +24,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import { calculateNPS } from "./(lib)/calculate-nps"
+import { calculateNPS } from "../../(insurance-cal)/npscal/(lib)/calculate-nps"
 
 const formSchema = z.object({
   monthlyInvestment: z.string().transform(Number).refine(val => val > 0, {

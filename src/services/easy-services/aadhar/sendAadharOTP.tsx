@@ -1,34 +1,29 @@
-import { useMutation } from "@tanstack/react-query";
-import { isHttpError } from "http-errors";
-
-import { apiAxios } from "@/instances/apiInstance";
 import { toast } from "@/hooks/use-toast";
+import { apiAxios } from "@/instances/apiInstance";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-
+import { isHttpError } from "http-errors";
 type SuccessResponse = {
-  success: boolean;
-  data: unknown;
-  entity: string;
-  consent: string;
-  reason: string;
+  success: false;
+  message: "";
 };
 
 type ErrorResponse = {
-  success: boolean;
-  message: string;
+  success: false;
+  message: "";
 };
 
-export const usePanAadharMutation = () => {
+export const useSendAadharOTP = () => {
   return useMutation({
-    mutationKey: ["panAadharVerify"],
-    mutationFn: async (data: { pan: string; aadhaar: string }) => {
-      const request = await apiAxios.post(`pan/pan-aadhaar-link-status`, data);
-      return request.data as SuccessResponse;
+    mutationKey: ["aadhar-otp"],
+    mutationFn: async (aadhaar:string) => {
+      const response = await apiAxios.post("aadhar/aadhaar-generate-otp", { aadhaar });
+      return response.data as SuccessResponse;
     },
     onError: (error: unknown) => {
       if (isHttpError(error)) {
         toast({
-          title: "Pan-Aadhaar Status Failed",
+          title: "Aadhar OTP Failed",
           variant: "destructive",
           description: error.message,
         });
@@ -38,7 +33,7 @@ export const usePanAadharMutation = () => {
       if (axios.isAxiosError(error)) {
         const errorResponse = error.response?.data as ErrorResponse;
         toast({
-          title: "Pan-Aadhaar Status Failed",
+          title: "Aadhar OTP Failed",
           variant: "destructive",
           description: errorResponse.message || "Unknown error occurred.",
         });
@@ -46,7 +41,7 @@ export const usePanAadharMutation = () => {
       }
 
       toast({
-        title: "Pan-Aadhaar Status Failed",
+        title: "Aadhar OTP Failed",
         variant: "destructive",
         description:
           "Unknown error occurred. Please try again later or contact support.",
