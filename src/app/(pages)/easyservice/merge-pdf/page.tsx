@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@/components/ui/button"; // ShadCN button
 import { UploadIcon } from "lucide-react";
 import { PDFDocument } from "pdf-lib"; // Ensure pdf-lib is installed
+import { useState } from "react";
+
+import { Button } from "@/components/ui/button"; // ShadCN button
 
 export default function MergePDFComponent() {
   const [files, setFiles] = useState<File[]>([]);
@@ -12,7 +13,9 @@ export default function MergePDFComponent() {
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const uploadedFiles = Array.from(event.target.files);
-      const pdfFiles = uploadedFiles.filter((file) => file.type === "application/pdf");
+      const pdfFiles = uploadedFiles.filter(
+        (file) => file.type === "application/pdf"
+      );
       setFiles((prevFiles) => [...prevFiles, ...pdfFiles]);
     }
   };
@@ -30,8 +33,11 @@ export default function MergePDFComponent() {
       for (const file of files) {
         const arrayBuffer = await file.arrayBuffer();
         const pdf = await PDFDocument.load(arrayBuffer);
-        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
-        copiedPages.forEach((page : any) => mergedPdf.addPage(page));
+        const copiedPages = await mergedPdf.copyPages(
+          pdf,
+          pdf.getPageIndices()
+        );
+        copiedPages.forEach((page) => mergedPdf.addPage(page));
       }
 
       const mergedPdfBytes = await mergedPdf.save();
@@ -65,10 +71,7 @@ export default function MergePDFComponent() {
       {/* Upload Section */}
       <div className="border-dashed border-2 border-gray-400 rounded-lg w-96 h-48 flex flex-col items-center justify-center space-y-2 p-4">
         <UploadIcon className="w-8 h-8 text-blue-500" />
-        <label
-          htmlFor="file-upload"
-          className="text-blue-500 cursor-pointer"
-        >
+        <label htmlFor="file-upload" className="text-blue-500 cursor-pointer">
           Drag & drop files to upload
         </label>
         <input

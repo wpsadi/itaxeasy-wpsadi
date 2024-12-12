@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { isHttpError } from "http-errors";
 
-import { apiAxios } from "@/instances/apiInstance";
 import { toast } from "@/hooks/use-toast";
-import axios from "axios";
+import { apiAxios } from "@/instances/apiInstance";
 
 type SuccessResponse = {
   success: boolean;

@@ -48,7 +48,7 @@ export default function PANSearch() {
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log(data);
-    panSeachMutation.mutate(data);
+    // panSeachMutation.mutate(data);
   };
 
   function onClear() {

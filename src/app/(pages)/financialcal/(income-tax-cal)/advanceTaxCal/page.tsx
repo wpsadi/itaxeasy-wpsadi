@@ -1,32 +1,27 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 import {
   Table,
   TableBody,
@@ -34,8 +29,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { calculateAdvanceTax, type TaxPayerType } from "./(lib)/advance"
+} from "@/components/ui/table";
+
+import { calculateAdvanceTax, type TaxPayerType } from "./(lib)/advance";
 
 const taxPayerTypes: TaxPayerType[] = [
   "Individual",
@@ -46,7 +42,7 @@ const taxPayerTypes: TaxPayerType[] = [
   "Firms",
   "LLP",
   "Co-operative Society",
-]
+];
 
 const formSchema = z.object({
   panNo: z.string().min(10).max(10),
@@ -55,12 +51,14 @@ const formSchema = z.object({
   netTaxableIncome: z.string().transform(Number),
   relief: z.string().transform(Number),
   tdsCredit: z.string().transform(Number),
-})
+});
 
-type FormValues = z.infer<typeof formSchema>
+type FormValues = z.infer<typeof formSchema>;
 
 export default function AdvanceTaxCalculator() {
-  const [result, setResult] = useState<ReturnType<typeof calculateAdvanceTax> | null>(null)
+  const [result, setResult] = useState<ReturnType<
+    typeof calculateAdvanceTax
+  > | null>(null);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -72,7 +70,7 @@ export default function AdvanceTaxCalculator() {
       relief: 0,
       tdsCredit: 0,
     },
-  })
+  });
 
   function onSubmit(data: FormValues) {
     const result = calculateAdvanceTax({
@@ -82,19 +80,19 @@ export default function AdvanceTaxCalculator() {
       netTaxableIncome: data.netTaxableIncome,
       relief: data.relief,
       tdsCredit: data.tdsCredit,
-    })
-    setResult(result)
+    });
+    setResult(result);
   }
 
   const handleReset = () => {
-    form.reset()
-    setResult(null)
-  }
+    form.reset();
+    setResult(null);
+  };
 
   const handleExportExcel = () => {
     // Implement Excel export logic
-    console.log("Export to Excel")
-  }
+    console.log("Export to Excel");
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-6">
@@ -131,7 +129,10 @@ export default function AdvanceTaxCalculator() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Tax Payer</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder="Select tax payer type" />
@@ -154,8 +155,13 @@ export default function AdvanceTaxCalculator() {
                 name="section115BAC"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Whether opting for taxation under Section 115BAC?</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormLabel>
+                      Whether opting for taxation under Section 115BAC?
+                    </FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue />
@@ -213,7 +219,12 @@ export default function AdvanceTaxCalculator() {
                 <Button type="submit" className="flex-1">
                   Calculate
                 </Button>
-                <Button type="button" variant="destructive" onClick={handleReset} className="flex-1">
+                <Button
+                  type="button"
+                  variant="destructive"
+                  onClick={handleReset}
+                  className="flex-1"
+                >
                   Reset
                 </Button>
               </div>
@@ -238,25 +249,43 @@ export default function AdvanceTaxCalculator() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Description</TableHead>
-                    <TableHead className="text-right">Advance Tax liability</TableHead>
+                    <TableHead className="text-right">
+                      Advance Tax liability
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell>Advance tax payable upto June 15, 2024 (Cumulative)</TableCell>
-                    <TableCell className="text-right">{result.advanceTaxLiability.june.toFixed(2)}</TableCell>
+                    <TableCell>
+                      Advance tax payable upto June 15, 2024 (Cumulative)
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {result.advanceTaxLiability.june.toFixed(2)}
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Advance tax payable upto September 15, 2024 (Cumulative)</TableCell>
-                    <TableCell className="text-right">{result.advanceTaxLiability.september.toFixed(2)}</TableCell>
+                    <TableCell>
+                      Advance tax payable upto September 15, 2024 (Cumulative)
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {result.advanceTaxLiability.september.toFixed(2)}
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Advance tax payable upto December 15, 2024 (Cumulative)</TableCell>
-                    <TableCell className="text-right">{result.advanceTaxLiability.december.toFixed(2)}</TableCell>
+                    <TableCell>
+                      Advance tax payable upto December 15, 2024 (Cumulative)
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {result.advanceTaxLiability.december.toFixed(2)}
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Advance tax payable upto March 15, 2025 (Cumulative)</TableCell>
-                    <TableCell className="text-right">{result.advanceTaxLiability.march.toFixed(2)}</TableCell>
+                    <TableCell>
+                      Advance tax payable upto March 15, 2025 (Cumulative)
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {result.advanceTaxLiability.march.toFixed(2)}
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -277,25 +306,47 @@ export default function AdvanceTaxCalculator() {
                 <TableHeader>
                   <TableRow>
                     <TableHead>Description</TableHead>
-                    <TableHead className="text-right">Advance Tax Installments</TableHead>
+                    <TableHead className="text-right">
+                      Advance Tax Installments
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   <TableRow>
-                    <TableCell>First installment payable for the period April 1, 2024 to June 15, 2024</TableCell>
-                    <TableCell className="text-right">{result.installments.first.toFixed(2)}</TableCell>
+                    <TableCell>
+                      First installment payable for the period April 1, 2024 to
+                      June 15, 2024
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {result.installments.first.toFixed(2)}
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Second installment payable for the period June 16, 2024 to September 15, 2024</TableCell>
-                    <TableCell className="text-right">{result.installments.second.toFixed(2)}</TableCell>
+                    <TableCell>
+                      Second installment payable for the period June 16, 2024 to
+                      September 15, 2024
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {result.installments.second.toFixed(2)}
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Third installment payable for the period September 16, 2024 to December 15, 2024</TableCell>
-                    <TableCell className="text-right">{result.installments.third.toFixed(2)}</TableCell>
+                    <TableCell>
+                      Third installment payable for the period September 16,
+                      2024 to December 15, 2024
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {result.installments.third.toFixed(2)}
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Last installment payable for the period December 16, 2024 to March 15, 2025</TableCell>
-                    <TableCell className="text-right">{result.installments.fourth.toFixed(2)}</TableCell>
+                    <TableCell>
+                      Last installment payable for the period December 16, 2024
+                      to March 15, 2025
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {result.installments.fourth.toFixed(2)}
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -304,5 +355,5 @@ export default function AdvanceTaxCalculator() {
         </>
       )}
     </div>
-  )
+  );
 }

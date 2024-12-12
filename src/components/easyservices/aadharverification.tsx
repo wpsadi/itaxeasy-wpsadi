@@ -1,11 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,9 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
 import { useSendAadharOTP } from "@/services/easy-services/aadhar/sendAadharOTP";
-
 
 // Zod schema for validating Aadhaar number
 const aadhaarSchema = z.object({
@@ -34,7 +30,6 @@ const aadhaarSchema = z.object({
 type AadhaarFormValues = z.infer<typeof aadhaarSchema>;
 
 export function AadhaarSearchForm() {
-
   const aadhaarOTPMutation = useSendAadharOTP();
 
   const form = useForm<AadhaarFormValues>({
@@ -48,8 +43,6 @@ export function AadhaarSearchForm() {
     console.log(data);
 
     aadhaarOTPMutation.mutate(data.aadhaar);
-  
-
   }
 
   function onClear() {
@@ -73,9 +66,7 @@ export function AadhaarSearchForm() {
                     <FormLabel>Aadhaar Number:</FormLabel>
                     <FormControl>
                       <Input
-
                         disabled={aadhaarOTPMutation.isPending}
-
                         placeholder="Enter your Aadhaar number"
                         {...field}
                       />
@@ -90,12 +81,7 @@ export function AadhaarSearchForm() {
                   disabled={aadhaarOTPMutation.isPending}
                   className="flex-1 bg-blue-500 hover:bg-blue-600"
                 >
-                  {
-                    aadhaarOTPMutation.isPending
-                      ? "Searching..."
-                      : "Search"
-                  }
-
+                  {aadhaarOTPMutation.isPending ? "Searching..." : "Search"}
                 </Button>
                 <Button
                   type="button"
@@ -112,8 +98,7 @@ export function AadhaarSearchForm() {
 
       {
         // here is response data
-        aadhaarOTPMutation.isSuccess &&
-        aadhaarOTPMutation?.data?.message
+        aadhaarOTPMutation.isSuccess && aadhaarOTPMutation?.data?.message
       }
 
       <Card>
@@ -122,10 +107,8 @@ export function AadhaarSearchForm() {
             Welcome to the Aadhaar search page.
           </h2>
           <p className="text-muted-foreground">
-
             Use the search bar to find information related to the given Aadhaar
             number.
-
           </p>
         </CardContent>
       </Card>

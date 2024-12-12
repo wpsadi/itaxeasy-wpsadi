@@ -46,7 +46,8 @@ export function TrackGSTForm() {
   });
 
   async function onSubmit(data: TrackGSTFormValues) {
-    gstTrackMutation.mutate(data);
+    console.log(data)
+    // gstTrackMutation.mutate(data);
   }
 
   function handleClear() {

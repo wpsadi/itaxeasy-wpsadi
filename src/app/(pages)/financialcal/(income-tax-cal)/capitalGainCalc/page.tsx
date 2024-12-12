@@ -37,9 +37,9 @@ export default function CapitalGainsCalculator() {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      purchasePrice: "",
-      salePrice: "",
-      taxRate: "",
+      purchasePrice: 0,
+      salePrice: 0,
+      taxRate: 0,
     },
   })
 
