@@ -1,15 +1,17 @@
 "use client"; // Correct directive with a space
 
+import "draft-js/dist/Draft.css"; // Import Draft.js styles
+
+import { Editor, EditorState, Modifier, RichUtils } from "draft-js"; // Import Draft.js components
+import React, { useCallback, useState } from "react";
+import { FaBold, FaItalic, FaTextHeight, FaUnderline } from "react-icons/fa"; // Import icons for Bold, Italic, and Underline
+
+import { ErrorPage } from "@/components/common/errorRaiser";
 import HomeFooter from "@/components/common/HomeFooter";
 import { HomeNavbar } from "@/components/common/HomeNavbar";
-import { useUserTypeQuery } from "@/services/user/useUserTypeQuery";
 import { LoadingScreen } from "@/components/common/Loader";
-import { ErrorPage } from "@/components/common/errorRaiser";
-import React, { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button"; // shadcn button
-import { Editor, EditorState, RichUtils, Modifier } from "draft-js"; // Import Draft.js components
-import { FaBold, FaItalic, FaUnderline , FaTextHeight } from "react-icons/fa"; // Import icons for Bold, Italic, and Underline
-import "draft-js/dist/Draft.css"; // Import Draft.js styles
+import { useUserTypeQuery } from "@/services/user/useUserTypeQuery";
 
 export default function BlogEditor() {
   // Always call hooks at the top level
@@ -21,7 +23,6 @@ export default function BlogEditor() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty()); // Draft.js editor state
   const [fontSize, setFontSize] = useState("16px"); // State for selected font size
   const [fontFamily, setFontFamily] = useState("Arial"); // State for selected font family
-
 
   // Handle changes in editor content
   const onEditorChange = useCallback((state: EditorState) => {
@@ -48,7 +49,11 @@ export default function BlogEditor() {
       selection,
       `FONT_SIZE_${size}`
     );
-    const newEditorState = EditorState.push(editorState, contentState, "apply-entity");
+    const newEditorState = EditorState.push(
+      editorState,
+      contentState,
+      "apply-entity"
+    );
     setEditorState(newEditorState);
   };
 
@@ -77,10 +82,13 @@ export default function BlogEditor() {
       selection,
       `FONT_FAMILY_${family}`
     );
-    const newEditorState = EditorState.push(editorState, contentState, "apply-entity");
+    const newEditorState = EditorState.push(
+      editorState,
+      contentState,
+      "apply-entity"
+    );
     setEditorState(newEditorState);
   };
-
 
   const handleSavePost = () => {
     if (!title || !content) {
@@ -108,11 +116,12 @@ export default function BlogEditor() {
     <>
       <HomeNavbar />
       <div className="flex flex-col items-center min-h-screen bg-gray-50 p-4">
-
         <div className="w-full max-w-3xl space-y-4">
-        <div className="w-[50%]">
-          <h1 className="text-3xl font-semibold mt-20 text-blue-600 mb-6">Create Your Own Blog</h1>
-        </div>
+          <div className="w-[50%]">
+            <h1 className="text-3xl font-semibold mt-20 text-blue-600 mb-6">
+              Create Your Own Blog
+            </h1>
+          </div>
           {/* Title Input */}
           <input
             type="text"
@@ -121,7 +130,6 @@ export default function BlogEditor() {
             onChange={(e) => setTitle(e.target.value)}
             className="w-full h-20 text-3xl p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-
 
           {/* Font Size Selector */}
 
@@ -148,10 +156,11 @@ export default function BlogEditor() {
                 <FaUnderline />
               </Button>
               <div className="mb-4 flex ">
-                < Button className=" mr-1 bg-gray-200 hover:bg-gray-300 text-gray-700">
+                <Button className=" mr-1 bg-gray-200 hover:bg-gray-300 text-gray-700">
                   <FaTextHeight className="text-xl text-gray-700" />
-                </ Button>
+                </Button>
                 <select
+                  title="Font Size"
                   value={fontSize}
                   onChange={handleFontSizeChange}
                   className="p-2 border rounded-lg"
@@ -165,6 +174,7 @@ export default function BlogEditor() {
               </div>
               <div className="mb-4">
                 <select
+                  title="Font Family"
                   value={fontFamily}
                   onChange={handleFontFamilyChange}
                   className="p-2 border rounded-lg"
@@ -175,7 +185,7 @@ export default function BlogEditor() {
                   <option value="Courier New">Courier New</option>
                   <option value="Verdana">Verdana</option>
                 </select>
-          </div>
+              </div>
             </div>
             <Editor
               editorState={editorState}
