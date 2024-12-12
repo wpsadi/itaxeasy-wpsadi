@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+import withBundleAnalyzer from "@next/bundle-analyzer";
 import { NextConfig } from "next"; // Import the NextConfig type
 
 // Define the RemotePattern type
@@ -7,20 +8,17 @@ interface RemotePattern {
   hostname: string;
 }
 
- 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
-
+const bundleAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
 // Define the configuration
 const nextConfig: NextConfig = {
-
+  reactStrictMode: false, // Disable Strict Mode
   experimental: {
-    optimizePackageImports: ['icon-library'],
+    optimizePackageImports: ["icon-library"],
   },
- 
+
   webpack: (config) => {
     config.module.rules.push({
       test: /\.json$/,
@@ -46,9 +44,9 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "lh3.googleusercontent.com" },
       { protocol: "https", hostname: "img.freepik.com" },
       { protocol: "https", hostname: "res.cloudinary.com" },
-      { protocol: "https", hostname: "source.unsplash.com" }
+      { protocol: "https", hostname: "source.unsplash.com" },
     ] as RemotePattern[], // Use the RemotePattern type
   },
 };
 
-export default withBundleAnalyzer(nextConfig);
+export default bundleAnalyzer(nextConfig);

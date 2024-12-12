@@ -1,8 +1,12 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import React from "react";
 import { useForm } from "react-hook-form";
-import React from 'react';
+import * as z from "zod";
+
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,7 +18,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import * as z from "zod";
+
+import { useSearchPincode } from "@/services/easy-services/post-office/srchPincode";
+
 
 // Zod schema for validating Pincode
 const pincodeSchema = z.object({
@@ -28,6 +34,9 @@ const pincodeSchema = z.object({
 type PincodeFormValues = z.infer<typeof pincodeSchema>;
 
 export function PincodeSearchForm() {
+
+  const pincodeMutation = useSearchPincode();
+
   const form = useForm<PincodeFormValues>({
     resolver: zodResolver(pincodeSchema),
     defaultValues: {
@@ -37,6 +46,9 @@ export function PincodeSearchForm() {
 
   function onSubmit(data: PincodeFormValues) {
     console.log(data);
+
+    pincodeMutation.mutate(data.pincode);
+
     // Handle search logic here
   }
 
@@ -61,9 +73,10 @@ export function PincodeSearchForm() {
                     <FormLabel>Search By:</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Your Pincode"
-                        {...field}
-                      />
+
+                        disabled={pincodeMutation.isPending}
+                       placeholder="Your Pincode" {...field} />
+
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -77,6 +90,9 @@ export function PincodeSearchForm() {
                   Search
                 </Button>
                 <Button
+
+                 disabled={pincodeMutation.isPending}
+
                   type="button"
                   onClick={onClear}
                   className="flex-1 bg-orange-400 hover:bg-orange-500"
@@ -88,6 +104,12 @@ export function PincodeSearchForm() {
           </Form>
         </CardContent>
       </Card>
+
+      {
+        // here is response data
+        pincodeMutation.isSuccess && pincodeMutation?.data?.message
+      }
+
       <Card>
         <CardContent className="p-6">
           <h2 className="text-2xl font-bold mb-2">

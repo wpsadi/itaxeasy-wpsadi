@@ -1,8 +1,12 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import React from "react";
 import { useForm } from "react-hook-form";
-import React from 'react';
+import * as z from "zod";
+
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,7 +18,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+
+import { useEasySearchDirector } from "@/services/easy-services/company/company-director-details";
+=======
 import * as z from "zod";
+
 
 // Zod schema for validating DIN number
 const dinSchema = z.object({
@@ -28,6 +36,9 @@ const dinSchema = z.object({
 type DinFormValues = z.infer<typeof dinSchema>;
 
 export function DINSearchForm() {
+
+  const directorSrchMutation = useEasySearchDirector()
+
   const form = useForm<DinFormValues>({
     resolver: zodResolver(dinSchema),
     defaultValues: {
@@ -37,6 +48,9 @@ export function DINSearchForm() {
 
   function onSubmit(data: DinFormValues) {
     console.log(data);
+
+    directorSrchMutation.mutate(data.din);
+
     // Handle search logic here
   }
 
@@ -62,9 +76,11 @@ export function DINSearchForm() {
                     <FormLabel>DIN Number:</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter DIN Number"
-                        {...field}
-                      />
+
+                        disabled={directorSrchMutation.isPending}
+                   
+                       placeholder="Enter DIN Number" {...field} />
+
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -73,9 +89,14 @@ export function DINSearchForm() {
               <div className="flex gap-4">
                 <Button
                   type="submit"
+
+                  disabled={directorSrchMutation.isPending}
                   className="flex-1 bg-blue-500 hover:bg-blue-600"
                 >
-                  Search
+                  {
+                    directorSrchMutation.isPending ? "Searching..." : "Search"
+                  }
+
                 </Button>
                 <Button
                   type="button"
@@ -89,13 +110,22 @@ export function DINSearchForm() {
           </Form>
         </CardContent>
       </Card>
+
+      {
+        // Add the search results component
+        directorSrchMutation.isSuccess && directorSrchMutation.data?.message
+      }
+
       <Card>
         <CardContent className="p-6">
           <h2 className="text-2xl font-bold mb-2">
             Welcome to the DIN search page.
           </h2>
           <p className="text-muted-foreground">
-            Use the search bar to find information related to the given DIN number.
+
+            Use the search bar to find information related to the given DIN
+            number.
+
           </p>
         </CardContent>
       </Card>

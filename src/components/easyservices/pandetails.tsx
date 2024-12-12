@@ -1,5 +1,6 @@
 "use client";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '../ui/dropdown-menu';
+
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
@@ -14,10 +15,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useEasyDetailsPAN } from "@/services/easy-services/income-tax/pan-details";
 import { PANFormValues, panSchema } from "@/validations/easyservices/pan";
 
-
 export function PANSearchForm() {
+  const srchPanMutation = useEasyDetailsPAN();
   const form = useForm<PANFormValues>({
     resolver: zodResolver(panSchema),
     defaultValues: {
@@ -26,7 +28,7 @@ export function PANSearchForm() {
   });
 
   function onSubmit(data: PANFormValues) {
-    console.log(data);
+    srchPanMutation.mutate(data.pan);
     // Handle search logic here
   }
 
@@ -50,23 +52,27 @@ export function PANSearchForm() {
                   <FormItem>
                     <FormLabel>Pan Of Tax Payer :</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your PAN Number" {...field} />
+                      <Input
+                        disabled={srchPanMutation.isPending}
+                        placeholder="Your PAN Number"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                   
                 )}
-                
-                />
+
+              />
 
 
-              
               <div className="flex gap-4">
                 <Button
+                  disabled={srchPanMutation.isPending}
                   type="submit"
                   className="flex-1 bg-blue-500 hover:bg-blue-600"
                 >
-                  Search
+                  {srchPanMutation.isPending ? "Searching..." : "Search"}
                 </Button>
                 <Button
                   type="button"
@@ -80,6 +86,7 @@ export function PANSearchForm() {
           </Form>
         </CardContent>
       </Card>
+      {srchPanMutation.isSuccess && srchPanMutation?.data?.message}
       <Card>
         <CardContent className="p-6">
           <h2 className="text-2xl font-bold mb-2">

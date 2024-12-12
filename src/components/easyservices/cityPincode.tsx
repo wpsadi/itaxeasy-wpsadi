@@ -1,8 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import React from "react";
 import { useForm } from "react-hook-form";
-import React from 'react';
+import * as z from "zod";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -14,7 +17,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import * as z from "zod";
+
+import { useSearchCity } from "@/services/easy-services/post-office/srchCity";
+
 
 // Zod schema for validating City name
 const citySchema = z.object({
@@ -29,6 +34,9 @@ const citySchema = z.object({
 type CityFormValues = z.infer<typeof citySchema>;
 
 export function CitySearchForm() {
+
+  const srchCityMutation = useSearchCity();
+
   const form = useForm<CityFormValues>({
     resolver: zodResolver(citySchema),
     defaultValues: {
@@ -38,6 +46,9 @@ export function CitySearchForm() {
 
   function onSubmit(data: CityFormValues) {
     console.log(data);
+
+    srchCityMutation.mutate(data.city);
+
     // Handle search logic here
   }
 
@@ -62,9 +73,10 @@ export function CitySearchForm() {
                     <FormLabel>City Name:</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter City Name"
-                        {...field}
-                      />
+
+                      disabled={srchCityMutation.isPending}
+                       placeholder="Enter City Name" {...field} />
+
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -73,9 +85,14 @@ export function CitySearchForm() {
               <div className="flex gap-4">
                 <Button
                   type="submit"
+
+                  disabled={srchCityMutation.isPending}
                   className="flex-1 bg-blue-500 hover:bg-blue-600"
                 >
-                  Search
+                  {
+                    srchCityMutation.isPending ? "Searching..." : "Search"
+                  }
+
                 </Button>
                 <Button
                   type="button"
@@ -89,13 +106,22 @@ export function CitySearchForm() {
           </Form>
         </CardContent>
       </Card>
+
+      {
+        // here is response data
+        srchCityMutation.isSuccess && srchCityMutation?.data?.message
+      }
+
       <Card>
         <CardContent className="p-6">
           <h2 className="text-2xl font-bold mb-2">
             Welcome to the City search page.
           </h2>
           <p className="text-muted-foreground">
-            Use the search bar to find information related to the given City name.
+
+            Use the search bar to find information related to the given City
+            name.
+
           </p>
         </CardContent>
       </Card>
