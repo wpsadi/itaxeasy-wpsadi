@@ -1,11 +1,9 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -18,9 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
 import { useSearchPincode } from "@/services/easy-services/post-office/srchPincode";
-
 
 // Zod schema for validating Pincode
 const pincodeSchema = z.object({
@@ -34,7 +30,6 @@ const pincodeSchema = z.object({
 type PincodeFormValues = z.infer<typeof pincodeSchema>;
 
 export function PincodeSearchForm() {
-
   const pincodeMutation = useSearchPincode();
 
   const form = useForm<PincodeFormValues>({
@@ -73,10 +68,10 @@ export function PincodeSearchForm() {
                     <FormLabel>Search By:</FormLabel>
                     <FormControl>
                       <Input
-
                         disabled={pincodeMutation.isPending}
-                       placeholder="Your Pincode" {...field} />
-
+                        placeholder="Your Pincode"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -90,9 +85,7 @@ export function PincodeSearchForm() {
                   Search
                 </Button>
                 <Button
-
-                 disabled={pincodeMutation.isPending}
-
+                  disabled={pincodeMutation.isPending}
                   type="button"
                   onClick={onClear}
                   className="flex-1 bg-orange-400 hover:bg-orange-500"

@@ -1,11 +1,11 @@
 "use client"; // Correct directive with a space
 
+import { UploadIcon } from "lucide-react"; // Icon library
+import React, { useState } from "react";
+
 import HomeFooter from "@/components/common/HomeFooter";
 import { HomeNavbar } from "@/components/common/HomeNavbar";
-
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button"; // shadcn button
-import { UploadIcon } from "lucide-react"; // Icon library
 
 export default function Page() {
   const [image, setImage] = useState<File | null>(null);

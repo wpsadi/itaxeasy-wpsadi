@@ -28,7 +28,9 @@ export function PANSearchForm() {
   });
 
   function onSubmit(data: PANFormValues) {
-    srchPanMutation.mutate(data.pan);
+    console.log(data)
+    // srchPanMutation.mutate(data.pan);
+
     // Handle search logic here
   }
 

@@ -1,7 +1,6 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -17,9 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
 import { useSearchCity } from "@/services/easy-services/post-office/srchCity";
-
 
 // Zod schema for validating City name
 const citySchema = z.object({
@@ -34,7 +31,6 @@ const citySchema = z.object({
 type CityFormValues = z.infer<typeof citySchema>;
 
 export function CitySearchForm() {
-
   const srchCityMutation = useSearchCity();
 
   const form = useForm<CityFormValues>({
@@ -73,10 +69,10 @@ export function CitySearchForm() {
                     <FormLabel>City Name:</FormLabel>
                     <FormControl>
                       <Input
-
-                      disabled={srchCityMutation.isPending}
-                       placeholder="Enter City Name" {...field} />
-
+                        disabled={srchCityMutation.isPending}
+                        placeholder="Enter City Name"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -85,14 +81,10 @@ export function CitySearchForm() {
               <div className="flex gap-4">
                 <Button
                   type="submit"
-
                   disabled={srchCityMutation.isPending}
                   className="flex-1 bg-blue-500 hover:bg-blue-600"
                 >
-                  {
-                    srchCityMutation.isPending ? "Searching..." : "Search"
-                  }
-
+                  {srchCityMutation.isPending ? "Searching..." : "Search"}
                 </Button>
                 <Button
                   type="button"
@@ -118,10 +110,8 @@ export function CitySearchForm() {
             Welcome to the City search page.
           </h2>
           <p className="text-muted-foreground">
-
             Use the search bar to find information related to the given City
             name.
-
           </p>
         </CardContent>
       </Card>

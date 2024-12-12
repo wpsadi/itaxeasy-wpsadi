@@ -1,5 +1,4 @@
 /** @type {import('next').NextConfig} */
-import withBundleAnalyzer from "@next/bundle-analyzer";
 import { NextConfig } from "next"; // Import the NextConfig type
 
 // Define the RemotePattern type
@@ -8,9 +7,6 @@ interface RemotePattern {
   hostname: string;
 }
 
-const bundleAnalyzer = withBundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-});
 
 // Define the configuration
 const nextConfig: NextConfig = {
@@ -49,4 +45,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default bundleAnalyzer(nextConfig);
+export default nextConfig;

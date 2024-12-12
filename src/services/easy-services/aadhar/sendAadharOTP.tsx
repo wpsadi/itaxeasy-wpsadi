@@ -1,8 +1,10 @@
-import { toast } from "@/hooks/use-toast";
-import { apiAxios } from "@/instances/apiInstance";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { isHttpError } from "http-errors";
+
+import { toast } from "@/hooks/use-toast";
+import { apiAxios } from "@/instances/apiInstance";
+
 type SuccessResponse = {
   success: false;
   message: "";
@@ -16,8 +18,10 @@ type ErrorResponse = {
 export const useSendAadharOTP = () => {
   return useMutation({
     mutationKey: ["aadhar-otp"],
-    mutationFn: async (aadhaar:string) => {
-      const response = await apiAxios.post("aadhar/aadhaar-generate-otp", { aadhaar });
+    mutationFn: async (aadhaar: string) => {
+      const response = await apiAxios.post("aadhar/aadhaar-generate-otp", {
+        aadhaar,
+      });
       return response.data as SuccessResponse;
     },
     onError: (error: unknown) => {
