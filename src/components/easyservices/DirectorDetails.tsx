@@ -20,8 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { useEasySearchDirector } from "@/services/easy-services/company/company-director-details";
-=======
-import * as z from "zod";
+
 
 
 // Zod schema for validating DIN number
