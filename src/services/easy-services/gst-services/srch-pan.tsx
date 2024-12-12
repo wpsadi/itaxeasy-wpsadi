@@ -4,6 +4,7 @@ import { isHttpError } from "http-errors";
 
 import { toast } from "@/hooks/use-toast";
 import { apiAxios } from "@/instances/apiInstance";
+import { httpError } from "@/utils/httpError";
 
 type SuccessResponse = {
   success: false;
@@ -19,9 +20,12 @@ export const useEasySearchPAN = () => {
   return useMutation({
     mutationKey: ["srch-pan"],
     mutationFn: async (data: {
-      pan: string, name_as_per_pan: string, date_of_birth: string, consent: string, reason: string
+      pan: string, state:string
     }) => {
       const response = await apiAxios.post("pan/get-pan-details", data);  
+      if (response.data?.data?.error){
+        throw httpError.BadRequest("Error from PAN")
+      }
       return response.data as SuccessResponse;
     },
     onError: (error: unknown) => {

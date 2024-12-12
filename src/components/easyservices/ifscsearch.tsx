@@ -90,7 +90,6 @@ export function IFSCSearchForm() {
           </CardContent>
         </Card>
 
-        {ifsSearchMutation.isSuccess && ifsSearchMutation?.data?.message}
 
         <Card>
           <CardContent className="p-6">
@@ -104,6 +103,37 @@ export function IFSCSearchForm() {
           </CardContent>
         </Card>
       </div>
+          {
+              ifsSearchMutation.isSuccess && (
+                <div className="p-10">
+                  <Card>
+                    <CardContent>
+                      <h2 className="text-2xl font-bold mb-2">Search Results</h2>
+                      <p className="text-muted-foreground">                      <div>
+                        <p><strong>MICR:</strong> {ifsSearchMutation.data?.data?.MICR}</p>
+                        <p><strong>Branch:</strong> {ifsSearchMutation.data?.data?.BRANCH}</p>
+                        <p><strong>Address:</strong> {ifsSearchMutation.data?.data?.ADDRESS}</p>
+                        <p><strong>State:</strong> {ifsSearchMutation.data?.data?.STATE}</p>
+                        <p><strong>Contact:</strong> {ifsSearchMutation.data?.data?.CONTACT || "N/A"}</p>
+                        <p><strong>UPI:</strong> {ifsSearchMutation.data?.data?.UPI ? "Yes" : "No"}</p>
+                        <p><strong>RTGS:</strong> {ifsSearchMutation.data?.data?.RTGS ? "Yes" : "No"}</p>
+                        <p><strong>City:</strong> {ifsSearchMutation.data?.data?.CITY}</p>
+                        <p><strong>Centre:</strong> {ifsSearchMutation.data?.data?.CENTRE}</p>
+                        <p><strong>District:</strong> {ifsSearchMutation.data?.data?.DISTRICT}</p>
+                        <p><strong>NEFT:</strong> {ifsSearchMutation.data?.data?.NEFT ? "Yes" : "No"}</p>
+                        <p><strong>IMPS:</strong> {ifsSearchMutation.data?.data?.IMPS ? "Yes" : "No"}</p>
+                        <p><strong>SWIFT:</strong> {ifsSearchMutation.data?.data?.SWIFT || "N/A"}</p>
+                        <p><strong>ISO3166:</strong> {ifsSearchMutation.data?.data?.ISO3166}</p>
+                        <p><strong>Bank:</strong> {ifsSearchMutation.data?.data?.BANK}</p>
+                        <p><strong>Bank Code:</strong> {ifsSearchMutation.data?.data?.BANKCODE}</p>
+                        <p><strong>IFSC:</strong> {ifsSearchMutation.data?.data?.IFSC}</p>
+                      </div>
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+              )
+            }
     </div>
   );
 }

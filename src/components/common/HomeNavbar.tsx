@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Download, Grid, Layout, LifeBuoy, Link2Icon, Menu, Sparkles } from 'lucide-react';
+import { ChevronDown, Download, Grid, Layout,  Link2Icon, Menu,  } from 'lucide-react';
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -70,10 +70,10 @@ const ourServicesMenu: MenuItem[] = [
   {
     menu: "Easy IncomeTax Links",
     subMenu: [
-      {
-        url: "/easyservice/verifypandetails",
-        menu: "Verify Pan Details",
-      },
+      // {
+      //   url: "/easyservice/verifypandetails",
+      //   menu: "Verify Pan Details",
+      // },
       {
         url: "/easyservice/checkpanaadhaarstatus",
         menu: "Check Pan Aadhaar Status",
@@ -91,36 +91,36 @@ const ourServicesMenu: MenuItem[] = [
         url: "/easyservice/ifscdetails",
         menu: "IFSC Code",
       },
-      {
-        url: "/easyservice/verifybankdetails",
-        menu: "Verify Bank Account",
-      },
-      {
-        url: "/easyservice/upiverify",
-        menu: "UPI Verification",
-      },
+      // {
+      //   url: "/easyservice/verifybankdetails",
+      //   menu: "Verify Bank Account",
+      // },
+      // {
+      //   url: "/easyservice/upiverify",
+      //   menu: "UPI Verification",
+      // },
     ],
   },
-  {
-    menu: "Easy MCA",
-    subMenu: [
-      {
-        url: "/easyservice/companydetails",
-        menu: "Company Details",
-      },
-      {
-        url: "/easyservice/companydirectordetails",
-        menu: "Company Director Details",
-      },
-    ],
-  },
+  // {
+  //   menu: "Easy MCA",
+  //   subMenu: [
+  //     {
+  //       url: "/easyservice/companydetails",
+  //       menu: "Company Details",
+  //     },
+  //     {
+  //       url: "/easyservice/companydirectordetails",
+  //       menu: "Company Director Details",
+  //     },
+  //   ],
+  // },
   {
     menu: "Easy Aadhaar Links",
     subMenu: [
-      {
-        url: "/easyservice/aadhaar-verify",
-        menu: "Easy Aadhaar Verification",
-      },
+      // {
+      //   url: "/easyservice/aadhaar-verify",
+      //   menu: "Easy Aadhaar Verification",
+      // },
       {
         url: "/easyservice/aadhaar-link-status",
         menu: "Easy Link Aadhaar Status",
@@ -171,14 +171,14 @@ const financialCalculatorMenu: MenuItem[] = [
         url: "/financialcal/loanagainstcal",
         menu: "Loan Against Property",
       },
-      {
-        url: "/financialcal/homeloancal",
-        menu: "Home Loan Calculator",
-      },
-      {
-        url: "/financialcal/personalloancal",
-        menu: "Personal Loan Calculator",
-      },
+      // {
+      //   url: "/financialcal/homeloancal",
+      //   menu: "Home Loan Calculator",
+      // },
+      // {
+      //   url: "/financialcal/personalloancal",
+      //   menu: "Personal Loan Calculator",
+      // },
     ],
   },
   {
@@ -188,26 +188,26 @@ const financialCalculatorMenu: MenuItem[] = [
         url: "/financialcal/miscal",
         menu: "Post Office MIS",
       },
-      {
-        url: "/financialcal/cagr",
-        menu: "CAGR Calculator",
-      },
-      {
-        url: "/financialcal/rdcal",
-        menu: "RD Calculator",
-      },
-      {
-        url: "/financialcal/fdcal",
-        menu: "FD Calculator",
-      },
-      {
-        url: "/financialcal/lumpsumpcal",
-        menu: "Lump Sum Calculator",
-      },
-      {
-        url: "/financialcal/sipcal",
-        menu: "SIP Calculator",
-      },
+      // {
+      //   url: "/financialcal/cagr",
+      //   menu: "CAGR Calculator",
+      // },
+      // {
+      //   url: "/financialcal/rdcal",
+      //   menu: "RD Calculator",
+      // },
+      // {
+      //   url: "/financialcal/fdcal",
+      //   menu: "FD Calculator",
+      // },
+      // {
+      //   url: "/financialcal/lumpsumpcal",
+      //   menu: "Lump Sum Calculator",
+      // },
+      // {
+      //   url: "/financialcal/sipcal",
+      //   menu: "SIP Calculator",
+      // },
     ],
   },
   {
@@ -221,10 +221,10 @@ const financialCalculatorMenu: MenuItem[] = [
         url: "/financialcal/depCalc",
         menu: "Depreciation Calculator",
       },
-      {
-        url: "/financialcal/advanceTaxCal",
-        menu: "Advance Tax Calculator",
-      },
+      // {
+      //   url: "/financialcal/advanceTaxCal",
+      //   menu: "Advance Tax Calculator",
+      // },
       {
         url: "/financialcal/taxcalculator/new",
         menu: "Tax Calculator",
@@ -295,12 +295,12 @@ const menuItems: MainMenuItem[] = [
     description: "Find the perfect solution for your needs.",
     href: "/blog",
   },
-  {
-    icon: Sparkles,
-    title: "Register a Startup",
-    description: "Learn how we can help you achieve your goals.",
-    href: "/services",
-  },
+  // {
+  //   icon: Sparkles,
+  //   title: "Register a Startup",
+  //   description: "Learn how we can help you achieve your goals.",
+  //   href: "/services",
+  // },
   {
     icon: Link2Icon,
     title: "APIs",
@@ -313,12 +313,12 @@ const menuItems: MainMenuItem[] = [
     description: "Find the perfect solution for your needs.",
     href: "/download",
   },
-  {
-    icon: LifeBuoy,
-    title: "Support",
-    description: "Reach out to us for assistance or inquiries",
-    href: "/support",
-  },
+  // {
+  //   icon: LifeBuoy,
+  //   title: "Support",
+  //   description: "Reach out to us for assistance or inquiries",
+  //   href: "/support",
+  // },
 ];
 
 export function HomeNavbar() {

@@ -7,7 +7,11 @@ import { apiAxios } from "@/instances/apiInstance";
 
 type SuccessResponse = {
   success: false;
-  message: "";
+  data:{
+  
+      message:string;
+   
+  };
 };
 
 type ErrorResponse = {
@@ -22,7 +26,10 @@ export const useAadhaarPanLink= () => {
         aadhaar: string;
         pan: string;
     }) => {
-      const response = await apiAxios.post("aadhaar", data);
+      const response = await apiAxios.post("pan/pan-aadhaar-link-status", {
+        pan: data.pan.toUpperCase(),
+        aadhaar: data.aadhaar.toUpperCase(),
+      });
       return response.data as SuccessResponse;
     },
     onError: (error: unknown) => {

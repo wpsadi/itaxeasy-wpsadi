@@ -4,10 +4,29 @@ import { isHttpError } from "http-errors";
 
 import { toast } from "@/hooks/use-toast";
 import { apiAxios } from "@/instances/apiInstance";
+import { httpError } from "@/utils/httpError";
 
 type SuccessResponse = {
-  success: false;
-  message: "";
+  success: boolean;
+  data: {
+    MICR: string;
+    BRANCH: string;
+    ADDRESS: string;
+    STATE: string;
+    CONTACT: string | null;
+    UPI: boolean;
+    RTGS: boolean;
+    CITY: string;
+    CENTRE: string;
+    DISTRICT: string;
+    NEFT: boolean;
+    IMPS: boolean;
+    SWIFT: string | null;
+    ISO3166: string;
+    BANK: string;
+    BANKCODE: string;
+    IFSC: string;
+  };
 };
 
 type ErrorResponse = {
@@ -20,6 +39,9 @@ export const useEasySearchIFSC = () => {
     mutationKey: ["search-ifsc"],
     mutationFn: async (ifsc: string) => {
       const response = await apiAxios.post("bank/details", { ifsc});
+      if (!response?.data?.data){
+        throw httpError.BadRequest(response.data?.message ?? "No data found")
+      }
       return response.data as SuccessResponse;
     },
     onError: (error: unknown) => {

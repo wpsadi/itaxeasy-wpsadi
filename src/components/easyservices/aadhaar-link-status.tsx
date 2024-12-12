@@ -121,6 +121,7 @@ export function CheckAadhaarLinkStatus() {
               </form>
             </Form>
           </CardContent>
+
         </Card>
         <Card>
           <CardContent className="p-6">
@@ -134,6 +135,20 @@ export function CheckAadhaarLinkStatus() {
           </CardContent>
         </Card>
       </div>
+      {
+        aadharPanLinkMutation.isSuccess && (
+          <div className="p-10">
+            <Card>
+              <CardContent>
+                <h2 className="text-2xl font-bold mb-2">Search Results</h2>
+                <p className="text-muted-foreground">
+                {aadharPanLinkMutation.data?.data?.message}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )
+      }
     </div>
   );
 }

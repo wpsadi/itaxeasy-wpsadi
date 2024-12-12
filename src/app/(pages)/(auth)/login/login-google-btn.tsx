@@ -15,7 +15,7 @@ export function GoogleButton({ disabled }: { disabled: boolean }) {
       onClick={()=>{
         login()
       }}
-      className="w-full btn-square text-primary"
+      className="w-full btn-square text-primary hidden"
       disabled={disabled}
     >
       <svg

@@ -5,7 +5,9 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { useEasySearchTan } from "@/services/easy-services/income-tax/srch-tan";
+import Card from "@/styles/cardStyles";
 
+import { CardContent } from "../ui/card";
 import { Head } from "./Head";
 
 const formSchema = z.object({
@@ -13,6 +15,7 @@ const formSchema = z.object({
 });
 
 export default function TanSearch() {
+  
   const tanSearchMutation = useEasySearchTan();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -93,6 +96,50 @@ export default function TanSearch() {
             </div>
           </div>
         </div>
+        {tanSearchMutation.isSuccess && (
+          <div className="p-10">
+            <Card>
+              <CardContent>
+                <h2 className="text-2xl font-bold mb-2">Search Results</h2>
+                <p className="text-muted-foreground">
+                    {tanSearchMutation.data && (
+                    <div>
+                      <h3 className="text-xl font-semibold">Header</h3>
+                      <pre className="bg-gray-200 p-2 rounded">{JSON.stringify(tanSearchMutation.data.data.header, null, 2)}</pre>
+                      <h3 className="text-xl font-semibold mt-4">Messages</h3>
+                      {/* <ul className="list-disc pl-5">
+                      {tanSearchMutation.data.data.messages.map((message, index) => (
+                        <li key={index}>
+                        <p>Code: {message.code}</p>
+                        <p>Type: {message.type}</p>
+                        <p>Description: {message.desc}</p>
+                        </li>
+                      ))}
+                      </ul> */}
+                      {tanSearchMutation.data.data.nameOrgn && (
+                      <div className="mt-4">
+                        <h3 className="text-xl font-semibold">Organization Details</h3>
+                        <p>Name: {tanSearchMutation.data.data.nameOrgn}</p>
+                        <p>Address Line 1: {tanSearchMutation.data.data.addLine1}</p>
+                        <p>Address Line 2: {tanSearchMutation.data.data.addLine2}</p>
+                        <p>Address Line 3: {tanSearchMutation.data.data.addLine3}</p>
+                        <p>Address Line 4: {tanSearchMutation.data.data.addLine4}</p>
+                        <p>Address Line 5: {tanSearchMutation.data.data.addLine5}</p>
+                        <p>State Code: {tanSearchMutation.data.data.stateCd}</p>
+                        <p>PIN: {tanSearchMutation.data.data.pin}</p>
+                        <p>Phone Number: {tanSearchMutation.data.data.phoneNum}</p>
+                        <p>Date of TAN Allotment: {tanSearchMutation.data.data.dtTanAllotment}</p>
+                        <p>Email ID 1: {tanSearchMutation.data.data.emailId1}</p>
+                        <p>Email ID 2: {tanSearchMutation.data.data.emailId2}</p>
+                      </div>
+                      )}
+                    </div>
+                    )}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );

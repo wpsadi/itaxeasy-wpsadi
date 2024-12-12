@@ -7,10 +7,7 @@ import { apiAxios } from "@/instances/apiInstance";
 
 type SuccessResponse = {
   success: boolean;
-  data: unknown;
-  entity: string;
-  consent: string;
-  reason: string;
+  message: string;
 };
 
 type ErrorResponse = {
@@ -22,7 +19,10 @@ export const usePanAadharMutation = () => {
   return useMutation({
     mutationKey: ["panAadharVerify"],
     mutationFn: async (data: { pan: string; aadhaar: string }) => {
-      const request = await apiAxios.post(`pan/pan-aadhaar-link-status`, data);
+      const request = await apiAxios.post(`pan/pan-aadhaar-link-status`, {
+        pan: data.pan.toUpperCase(),
+        aadhaar: data.aadhaar.toUpperCase(),
+      });
       return request.data as SuccessResponse;
     },
     onError: (error: unknown) => {

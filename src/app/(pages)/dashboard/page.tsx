@@ -1,5 +1,9 @@
+import { notFound } from "next/navigation";
+
 export default function Page(){
-    return (<>
-    Dashboard h ye mtlb login ho chuka h
-    </>)
+    notFound();
+    // return (<>
+    
+    // Dashboard h ye mtlb login ho chuka h
+    // </>)
 }

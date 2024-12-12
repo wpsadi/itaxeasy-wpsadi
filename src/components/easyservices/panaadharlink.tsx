@@ -6,6 +6,7 @@ import * as z from "zod";
 
 import { useAadhaarPanLink } from "@/services/easy-services/aadhar/aadhar-link-verification";
 
+import { Card, CardContent } from "../ui/card";
 import { Head } from "./Head";
 
 const formSchema = z.object({
@@ -117,6 +118,18 @@ export default function PanAadhaarStatus() {
             </div>
           </div>
         </div>
+        {aadharPanLinkMutation.isSuccess && (
+          <div className="p-10">
+            <Card>
+              <CardContent>
+                <h2 className="text-2xl font-bold mb-2">Search Results</h2>
+                <p className="text-muted-foreground">
+                  {aadharPanLinkMutation.data?.data?.message}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -4,14 +4,33 @@ import { isHttpError } from "http-errors";
 
 import { toast } from "@/hooks/use-toast";
 import { apiAxios } from "@/instances/apiInstance";
+import { httpError } from "@/utils/httpError";
 
 type SuccessResponse = {
-  success: false;
-  message: "";
+  success: true;
+  data: {
+    code: number;
+    timestamp: number;
+    transaction_id: string;
+    data: {
+      data: {
+        EFiledlist: Array<{
+          valid: string;
+          mof: string;
+          dof: string;
+          ret_prd: string;
+          rtntype: string;
+          arn: string;
+          status: string;
+        }>;
+      };
+      status_cd: string;
+    };
+  };
 };
 
 type ErrorResponse = {
-  success: false;
+  success: boolean;
   message: "";
 };
 
@@ -24,6 +43,9 @@ export const useEasyTrackGST = () => {
       gstr: string;
     }) => {
       const response = await apiAxios.post("gst/return/track",data);
+      if (response.data?.data?.data?.error_cd){
+        throw httpError.BadRequest(response.data?.data?.data?.message ?? "Error from GST")
+      }
       return response.data as SuccessResponse;
     },
     onError: (error: unknown) => {

@@ -86,7 +86,7 @@ export function GSTINSearchForm() {
             </Form>
           </CardContent>
           {/* here is response data */}
-          {gstSrchMutation.isSuccess && gstSrchMutation?.data?.message}
+       
         </Card>
         <Card>
           <CardContent className="p-6">
@@ -100,6 +100,37 @@ export function GSTINSearchForm() {
           </CardContent>
         </Card>
       </div>
+      {
+              gstSrchMutation.isSuccess && (
+                <div className="p-10">
+                  <Card>
+                    <CardContent>
+                      <h2 className="text-2xl font-bold mb-2">Search Results</h2>
+                      <p className="text-muted-foreground">
+                        <p><strong>Legal Name:</strong> {gstSrchMutation.data?.data?.data?.data?.lgnm}</p>
+                        <p><strong>Trade Name:</strong> {gstSrchMutation.data?.data?.data?.data?.tradeNam}</p>
+                        <p><strong>Principal Address:</strong> {gstSrchMutation.data?.data?.data?.data?.pradr.addr.bnm}, {gstSrchMutation.data?.data?.data?.data?.pradr.addr.loc}, {gstSrchMutation.data?.data?.data?.data?.pradr.addr.st}, {gstSrchMutation.data?.data?.data?.data?.pradr.addr.pncd}</p>
+                        <p><strong>GSTIN:</strong> {gstSrchMutation.data?.data?.data?.data?.gstin}</p>
+                        <p><strong>Status:</strong> {gstSrchMutation.data?.data?.data?.data?.sts}</p>
+                        <p><strong>Nature of Business:</strong> {gstSrchMutation.data?.data?.data?.data?.pradr.ntr}</p>
+                        <p><strong>Additional Addresses:</strong></p>
+                        {gstSrchMutation.data?.data?.data?.data?.adadr.map((address, index) => (
+                        <div key={index}>
+                          <p><strong>Address {index + 1}:</strong> {address.bnm}, {address.loc}, {address.st}, {address.pncd}</p>
+                        </div>
+                        ))}
+                        <p><strong>State Jurisdiction:</strong> {gstSrchMutation.data?.data?.data?.data?.stj}</p>
+                        <p><strong>Central Jurisdiction:</strong> {gstSrchMutation.data?.data?.data?.data?.ctj}</p>
+                        <p><strong>Last Update Date:</strong> {gstSrchMutation.data?.data?.data?.data?.lstupdt}</p>
+                        <p><strong>Registration Date:</strong> {gstSrchMutation.data?.data?.data?.data?.rgdt}</p>
+                        <p><strong>Cancellation Date:</strong> {gstSrchMutation.data?.data?.data?.data?.cxdt}</p>
+                        <p><strong>E-invoice Status:</strong> {gstSrchMutation.data?.data?.data?.data?.einvoiceStatus}</p>
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+              )
+            }
     </div>
   );
 }
